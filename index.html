@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google maps</title>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous" defer></script>
+<script src="script.js" defer></script>
+<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+</head>
+<body>
+  <main id="main">
+    <section id='map'></section>
+
+    <section class="prayer-times-wrapper">
+
+      <div class="calculation-methods">
+        <div class="calc-meth-text">Calculation methods</div>
+        <select class="form-control" id="locations"
+        onchange="GetLocation(this.options[this.selectedIndex])" type="submit">
+        <option value="2">Islamic Society of North America (ISNA)</option>
+        <option value="3">Muslim World League</option>
+        <option value="4">Umm Al-Qura University, Makkah</option>
+        <option value="5">Egyptian General Authority of Survey</option>
+        <option value="1">University of Islamic Sciences, Karachi</option>
+        <option value="7">Institute of Geophysics, University of Tehran</option>
+        <option value="0">Shia Ithna-Ashari, Leva Institute, Qum</option>
+        <option value="8">Gulf Region</option>
+        <option value="9">Kuwait</option>
+        <option value="10">Qatar</option>
+        <option value="11">Majlis Ugama Islam Singapura, Singapore</option>
+        <option value="12">Union Organization Islamic de France</option>
+        <option value="13">Diyanet İşleri Başkanlığı, Turkey</option>
+        <option value="14">Spiritual Administration of Muslims of Russia</option>
+        <option value="15">Moonsighting Committee Worldwide</option>
+      </select>
+      </div>
+
+      <div class="location-wrapper">
+        <div class="country"></div>
+        <div class="city"></div>
+      </div>
+      <div class="date-wrapper">
+        <span class="gregorian-date">
+        </span>
+        <span>/</span>
+        <span class="hijri-date"></span>
+      </div>
+      <div class="countdown"></div>
+      <div class="local-time-wrapper">
+        <div class="localTimeCaption">
+        </div>
+        <div class="localTime"></div>
+      </div>
+
+      <div class="cards-wrapper">
+        <div class="card fajr">
+          <div class="prayer-name fajr-caption">Zora</div>
+          <div class="prayer-time fajr-time">5:43</div>
+        </div>
+
+        <div class="card sunrise">
+          <div class="prayer-name sunrise-caption">Izlazak sunca</div>
+          <div class="prayer-time sunrise-time">5:43</div>
+        </div>
+
+        <div class="card dhuhr">
+          <div class="prayer-name dhuhr-caption">Podne</div>
+          <div class="prayer-time dhuhr-time">5:43</div>
+        </div>
+
+        <div class="card asr">
+          <div class="prayer-name asr-caption">Ikindija</div>
+          <div class="prayer-time asr-time">5:43</div>
+        </div>
+
+        <div class="card maghrib">
+          <div class="prayer-name maghrib-caption">Akšam</div>
+          <div class="prayer-time maghrib-time">5:43</div>
+        </div>
+
+        <div class="card isha">
+          <div class="prayer-name isha-caption">Jacija</div>
+          <div class="prayer-time isha-time">5:43</div>
+        </div>
+       
+      </div>
+
+    </section>
+  </main>
+</body>
+</html>

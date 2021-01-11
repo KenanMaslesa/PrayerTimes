@@ -1,0 +1,298 @@
+body,
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body,
+html,
+#main {
+  height: 100%;
+}
+
+#main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  #main {
+    display: block;
+  }
+}
+
+#main #map {
+  height: 45%;
+  width: 100%;
+}
+
+#main #map .mapboxgl-ctrl.mapboxgl-ctrl-attrib, #main #map .mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+#main .prayer-times-wrapper {
+  height: 55%;
+  width: 100%;
+  background-color: #0f1012;
+  padding: 40px 40px;
+  display: table;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper {
+    height: auto;
+    padding: 0px;
+  }
+}
+
+#main .prayer-times-wrapper .calculation-methods {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .calculation-methods {
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    top: 50px;
+  }
+}
+
+#main .prayer-times-wrapper .calculation-methods .form-control {
+  width: auto;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+}
+
+#main .prayer-times-wrapper .calculation-methods .form-control:focus {
+  outline: none;
+}
+
+#main .prayer-times-wrapper .calculation-methods .calc-meth-text {
+  color: white;
+  padding-bottom: 10px;
+}
+
+#main .prayer-times-wrapper .location-wrapper {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .location-wrapper {
+    padding-top: 80px;
+  }
+}
+
+#main .prayer-times-wrapper .location-wrapper .country {
+  color: rosybrown;
+  font-size: 48px;
+  padding: 15px 0px 10px;
+}
+
+#main .prayer-times-wrapper .location-wrapper .city {
+  color: floralwhite;
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+#main .prayer-times-wrapper .date-wrapper {
+  text-align: center;
+  color: navajowhite;
+}
+
+#main .prayer-times-wrapper .countdown {
+  color: floralwhite;
+  text-align: center;
+  font-size: 70px;
+  padding: 20px;
+}
+
+#main .prayer-times-wrapper .countdown.danger {
+  color: red;
+}
+
+#main .prayer-times-wrapper .local-time-wrapper {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  min-width: 102px;
+  max-width: 102px;
+  height: 100px;
+  text-align: center;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(globus.jpg);
+  background-image: linear-gradient(#16031000), url(globus.jpg);
+  border-radius: 100%;
+  padding: 20px;
+}
+
+#main .prayer-times-wrapper .local-time-wrapper .localTime {
+  color: white;
+  font-size: 17px;
+}
+
+#main .prayer-times-wrapper .local-time-wrapper .localTime::before {
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .local-time-wrapper .localTime {
+    display: none;
+  }
+}
+
+#main .prayer-times-wrapper .local-time-wrapper .localTimeCaption {
+  color: sandybrown;
+  font-size: 10px;
+  padding-bottom: 5px;
+}
+
+#main .prayer-times-wrapper .local-time-wrapper .localTimeCity {
+  color: white;
+  padding: 3px;
+}
+
+#main .prayer-times-wrapper .cards-wrapper {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .cards-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (min-width: 2260px) {
+  #main .prayer-times-wrapper .cards-wrapper {
+    width: 70%;
+  }
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card {
+  width: 15%;
+  display: inline-block;
+  height: 130px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 30px;
+  background-size: cover;
+  position: relative;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #main .prayer-times-wrapper .cards-wrapper .card {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1860px) {
+  #main .prayer-times-wrapper .cards-wrapper .card {
+    width: 30%;
+  }
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card:hover {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.fajr {
+  background-image: url(fajr.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(fajr.jpg);
+  background-image: linear-gradient(#1603108f), url(fajr.jpg);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.sunrise {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(sunrise.jfif);
+  background-image: linear-gradient(#1603108f), url(sunrise.jfif);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.dhuhr {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(dhuhr.jpg);
+  background-image: linear-gradient(#1603108f), url(dhuhr.jpg);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.asr {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(asr.jpg);
+  background-image: linear-gradient(#1603108f), url(asr.jpg);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.maghrib {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(maghrib.jfif);
+  background-image: linear-gradient(#1603108f), url(maghrib.jfif);
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.isha {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(isha.jfif);
+  background-image: linear-gradient(#1603108f), url(isha.jfif);
+}
+
+@media (max-width: 767px) {
+  #main .prayer-times-wrapper .cards-wrapper .card {
+    width: 100%;
+    margin: 10px 0px;
+  }
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card.active {
+  -webkit-box-shadow: 0px 0px 12px 10px #888888;
+          box-shadow: 0px 0px 12px 10px #888888;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card .prayer-name,
+#main .prayer-times-wrapper .cards-wrapper .card .prayer-time {
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card .prayer-name {
+  font-size: 16px;
+}
+
+#main .prayer-times-wrapper .cards-wrapper .card .prayer-time {
+  font-size: 30px;
+}
+/*# sourceMappingURL=style.css.map */
