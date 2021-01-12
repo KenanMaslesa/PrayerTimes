@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google maps</title>
+  <title>Prayer Times</title>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
@@ -22,7 +22,6 @@
     <section class="prayer-times-wrapper">
 
       <div class="calculation-methods">
-        <div class="calc-meth-text">Calculation methods</div>
         <select class="form-control" id="locations"
         onchange="GetLocation(this.options[this.selectedIndex])" type="submit">
         <option value="2">Islamic Society of North America (ISNA)</option>
@@ -57,7 +56,6 @@
       <div class="local-time-wrapper">
         <div class="localTimeCaption">
         </div>
-        <div class="localTimeCity"></div>
         <div class="localTime"></div>
       </div>
 

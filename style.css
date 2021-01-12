@@ -55,6 +55,7 @@ html,
   #main .prayer-times-wrapper {
     height: auto;
     padding: 0px;
+    position: relative;
   }
 }
 
@@ -93,6 +94,14 @@ html,
   transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  margin-top: 33px;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .calculation-methods .form-control {
+    background: #efe9e1;
+    width: 250px;
+  }
 }
 
 #main .prayer-times-wrapper .calculation-methods .form-control:focus {
@@ -114,6 +123,16 @@ html,
   border: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .autolocation {
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    top: -20px;
+  }
 }
 
 #main .prayer-times-wrapper .autolocation:focus {
@@ -136,6 +155,12 @@ html,
   padding: 15px 0px 10px;
 }
 
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .location-wrapper .country {
+    font-size: 40px;
+  }
+}
+
 #main .prayer-times-wrapper .location-wrapper .city {
   color: floralwhite;
   font-size: 35px;
@@ -154,14 +179,20 @@ html,
   padding: 20px;
 }
 
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .countdown {
+    font-size: 67px;
+  }
+}
+
 #main .prayer-times-wrapper .countdown.danger {
   color: red;
 }
 
 #main .prayer-times-wrapper .local-time-wrapper {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  right: 10%;
   min-width: 140px;
   max-width: 140px;
   height: auto;
@@ -171,6 +202,12 @@ html,
   border-radius: 10px;
   padding: 20px;
   word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .local-time-wrapper {
+    display: none;
+  }
 }
 
 #main .prayer-times-wrapper .local-time-wrapper .localTime {
@@ -222,6 +259,12 @@ html,
 @media (min-width: 2260px) {
   #main .prayer-times-wrapper .cards-wrapper {
     width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  #main .prayer-times-wrapper .cards-wrapper .card:last-child {
+    margin-bottom: 40px;
   }
 }
 
@@ -299,8 +342,6 @@ html,
 #main .prayer-times-wrapper .cards-wrapper .card.active {
   -webkit-box-shadow: 0px 0px 12px 10px #888888;
           box-shadow: 0px 0px 12px 10px #888888;
-  -webkit-transition-delay: 1s;
-          transition-delay: 1s;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card .prayer-name,

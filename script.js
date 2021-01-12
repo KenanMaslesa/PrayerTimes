@@ -44,6 +44,7 @@ function setupMap(center){
 
   });
 
+
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
     }
@@ -109,12 +110,20 @@ function setupMap(center){
           funk(JSON.parse(request.responseText));
         }
         else {
-          alert("Error " + request.statusText);
+          alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the city of Sarajevo");
+          latitude = 43.869308818408456, longitude = 18.417377317154944;
+          localStorage.setItem("latitude", latitude);
+          localStorage.setItem("longitude", longitude);
+          showPosition();
         }
       }
     
       request.onerror = function () {
         alert("Error");
+        latitude = 43.869308818408456, longitude = 18.417377317154944;
+        localStorage.setItem("latitude", latitude);
+        localStorage.setItem("longitude", longitude);
+          showPosition();
       };
     
       request.open("GET", url, true);
@@ -149,6 +158,8 @@ function GetCity(obj)
     county = county.replace("City of", "");
     county = county.replace("Naselje", "");
     county = county.replace("Town of", "");
+    county = county.replace("City", "");
+    county = county.replace("County", "");
   }
   else if(obj.locality != '')
   {
@@ -192,11 +203,11 @@ function GetPrayerTimes(obj)
    document.querySelector(".asr-caption").textContent = (flag? "ikindija": "asr");
    document.querySelector(".maghrib-caption").textContent = (flag? "akšam": "maghrib");
    document.querySelector(".isha-caption").textContent = (flag? "jacija": "isha");
-   document.querySelector(".calc-meth-text").textContent = (flag? "Metoda računanja namaskih vremena": "Calculation method");
-   
 
    hours = fajr.substring(0, fajr.indexOf(":"));
    minutes = fajr.substring(fajr.indexOf(":") + 1);
+
+   if(!document.querySelector('.active'))
   document.querySelector(".isha").classList.add("active");
 
   let options = {
@@ -308,7 +319,6 @@ var x = setInterval(function () {
 
   document.querySelector(".localTime").textContent =  flag? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1'):formatAMPM(currentDateTime.getHours()+":"+ currentDateTime.getMinutes());
   document.querySelector(".localTimeCaption").textContent = (flag?"Trenutno vrijeme ":"Current time ");
-  document.querySelector(".localTimeCity").textContent =  county;
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();
