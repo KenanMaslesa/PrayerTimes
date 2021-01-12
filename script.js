@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2VuYW5tYXNsZXNhIiwiYSI6ImNranBxOXJndTJ4cWoydHFvbjNudWx0ZWoifQ.1rTH2UqKJxXmh_U9NZY6DQ';;
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2VuYW5tYXNsZXNhIiwiYSI6ImNranVrZmJ3YzIwdWgyeWwxdnc0N3c1eWEifQ.NU5jwn8auapNwbJVrjKTfg';
 var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
 let latitude = localStorage.getItem("latitude");
