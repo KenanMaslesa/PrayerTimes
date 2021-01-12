@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous" defer></script>
 <script src="script.js" defer></script>
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 </head>
 <body>
@@ -41,7 +42,7 @@
         <option value="15">Moonsighting Committee Worldwide</option>
       </select>
       </div>
-
+      <button class="autolocation">Autolocation</button>
       <div class="location-wrapper">
         <div class="country"></div>
         <div class="city"></div>
@@ -56,6 +57,7 @@
       <div class="local-time-wrapper">
         <div class="localTimeCaption">
         </div>
+        <div class="localTimeCity"></div>
         <div class="localTime"></div>
       </div>
 
@@ -91,7 +93,10 @@
         </div>
        
       </div>
-
+      <div style="font-size:70px;">
+        <i class="ion-ios-moon" id="dark_theme" style="cursor: pointer;"></i>
+        <i class="ion-ios-sunny-outline" style="cursor: pointer;" id="light-theme" style="display: none;"></i>
+      </div>
     </section>
   </main>
 </body>

@@ -1,14 +1,28 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2VuYW5tYXNsZXNhIiwiYSI6ImNranBxOXJndTJ4cWoydHFvbjNudWx0ZWoifQ.1rTH2UqKJxXmh_U9NZY6DQ';;
-navigator.geolocation.getCurrentPosition(successLocation, errorLocation,{enableHighAccuracy: true});
-
+var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
-let latitude;
-let longitude;
+let latitude = localStorage.getItem("latitude");
+let longitude = localStorage.getItem("longitude");
+let currentTime,urlGetPrayerTimes,urlGetCity;
+let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha,currentDateTime,countDownTime, gregorianDate,
+ hijriDate, country, county, flag;
+
+if(latitude == null || longitude == null)
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation,{enableHighAccuracy: true});
+else{
+  setupMap([longitude, latitude]);
+  showPosition();
+}
+document.querySelector(".autolocation").addEventListener('click', function(){
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation,{enableHighAccuracy: true});
+});
 
 function successLocation(position){
   currentPosition = position;
   latitude = position.coords.latitude,
   longitude = position.coords.longitude,
+  localStorage.setItem("latitude", latitude);
+  localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition();
 
@@ -16,30 +30,46 @@ function successLocation(position){
 
 
 function errorLocation(){
-  setupMap(currentPosition);
+  latitude = 43.869308818408456, longitude = 18.417377317154944;
+  setupMap([latitude,longitude]);
+  showPosition();
 }
 
 function setupMap(center){
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/traffic-day-v2', //map.setStyle('mapbox://styles/mapbox/day-v2');
+    style: 'mapbox://styles/mapbox/streets-v11', //map.setStyle('mapbox://styles/mapbox/day-v2');
     center: center,
-    zoom: 10
+    zoom: 14
 
   });
+
+  function nightMap() {
+    map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
+    }
+
+    function dayMap() {
+      map.setStyle('mapbox://styles/mapbox/streets-v11');
+      }
+    
+    document.querySelector(".maghrib").onclick = nightMap;
+    document.querySelector(".sunrise").onclick = dayMap;
+    
   map.on('click', function(e) {
 
     latitude = e.lngLat.lat;
     longitude = e.lngLat.lng;
     marker.setLngLat([longitude, latitude]);
     showPosition();
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
 });
 
 //input
   map.addControl(
     new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    zoom: 4,
+    zoom: 14,
     placeholder: 'Try: Sarajevo',
     mapboxgl: mapboxgl,
     autocomplete: true,
@@ -63,7 +93,8 @@ function setupMap(center){
       longitude = lngLat.lng;
       latitude = lngLat.lat;
       showPosition();
-      console.log(lngLat);
+      localStorage.setItem("latitude", latitude);
+       localStorage.setItem("longitude", longitude);
   }
   marker.on("dragend", onDragEnd);
 
@@ -91,7 +122,6 @@ function setupMap(center){
     }
 
 
-let currentTime,urlGetPrayerTimes,urlGetCity;
 function showPosition() {
   
   urlGetCity ='https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+latitude+'&longitude='+longitude;
@@ -101,8 +131,7 @@ function showPosition() {
   getPoziv(GetPrayerTimes, urlGetPrayerTimes);
 
 }
-let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha,currentDateTime,countDownTime, gregorianDate,
- hijriDate, country, county, flag;
+
                                                      
 function GetCity(obj)
 {
@@ -110,10 +139,20 @@ function GetCity(obj)
   country = obj.countryName;
 
   if (obj.city != '')
-  county = obj.city;
+  {
+    county = obj.city;
+  }
   else if(obj.locality!=''){
     county = obj.locality.replace("Municipality", "");
     county = county.replace("municipality", "");
+    county = county.replace("of", "");
+    county = county.replace("City of", "");
+    county = county.replace("Naselje", "");
+    county = county.replace("Town of", "");
+  }
+  else if(obj.locality != '')
+  {
+    county = obj.locality.replace("Village", "");
   }
 
  
@@ -269,7 +308,7 @@ var x = setInterval(function () {
 
   document.querySelector(".localTime").textContent =  flag? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1'):formatAMPM(currentDateTime.getHours()+":"+ currentDateTime.getMinutes());
   document.querySelector(".localTimeCaption").textContent = (flag?"Trenutno vrijeme ":"Current time ");
-  //document.querySelector(".localTimeCity").textContent =  country;
+  document.querySelector(".localTimeCity").textContent =  county;
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();

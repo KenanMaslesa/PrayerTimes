@@ -23,6 +23,9 @@ html,
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-logo{
       display: none !important;
     }
+    .mapboxgl-marker{
+      cursor: grab !important;
+    }
     
   }
 
@@ -75,7 +78,20 @@ html,
       }
   
     }
+    .autolocation{
+      position: absolute;
+      top: 50px;
+      right: 68px;
+      background: white;
+      height: 36px;
+      padding: 6px 35px;
+      border: 0;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 
+      &:focus{
+        outline: none;
+      }
+    }
     .location-wrapper {
       text-align: center;
 
@@ -114,17 +130,19 @@ html,
       position: absolute;
       top: 10px;
       left: 10px;
-      min-width: 102px;
-      max-width: 102px;
-      height: 100px;
+      min-width: 140px;
+      max-width: 140px;
+      height: auto;
       text-align: center;
       background-image: linear-gradient(#16031000), url(globus.jpg);
-      border-radius: 100%;
+      border-radius: 10px;
       padding: 20px;
+      word-break: break-word;
 
       .localTime {
         color: white;
-        font-size: 17px;
+        font-size: 25px;
+        padding-bottom: 10px;
   
         &::before {
           font-size: 20px;
@@ -137,8 +155,9 @@ html,
       }
       .localTimeCaption{
         color: sandybrown;
-        font-size: 10px;
+        font-size: 12px;
         padding-bottom: 5px;
+        font-weight: bold;
       }
 
       .localTimeCity{
