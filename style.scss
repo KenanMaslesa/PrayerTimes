@@ -17,7 +17,7 @@ html,
     display: block;
   }
   #map {
-    height: 45%;
+    height: 40%;
     width: 100%;
 
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-logo{
@@ -30,7 +30,7 @@ html,
   }
 
   .prayer-times-wrapper {
-    height: 55%;
+    height: 60%;
     width: 100%;
     background-color: #0f1012;
     padding: 40px 40px;
@@ -164,6 +164,10 @@ html,
       @media (max-width: 768px) {
         display: none;
       }
+      @media (min-width: 1024px) and (max-width: 1860px) {
+        top: 43%;
+        right: 3%;
+      }
       .localTime {
         color: white;
         font-size: 25px;
@@ -231,30 +235,34 @@ html,
         @media (min-width: 1024px) and (max-width: 1860px) {
           width: 30%;
         }
-      
-
+       
         &:hover{
           transform: translateY(-10px);
         }
         
         &.fajr{
-        background-image: url(fajr.jpg);
         background-image: (linear-gradient(#1603108f),url(fajr.jpg));
+        background-position: center;
         }
         &.sunrise{
         background-image: (linear-gradient(#1603108f),url(sunrise.jfif));
+        background-position: center;
           }
         &.dhuhr{
           background-image: (linear-gradient(#1603108f),url(dhuhr.jpg));
+          background-position: center;
           }
         &.asr{
           background-image: (linear-gradient(#1603108f),url(asr.jpg));
+          background-position: center;
         }
         &.maghrib{
           background-image: (linear-gradient(#1603108f),url(maghrib.jfif));
+          background-position: center;
         }
         &.isha{
           background-image: (linear-gradient(#1603108f),url(isha.jfif));
+          background-position: center;
         }
       
         @media (max-width: 767px) {

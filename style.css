@@ -30,7 +30,7 @@ html,
 }
 
 #main #map {
-  height: 45%;
+  height: 40%;
   width: 100%;
 }
 
@@ -44,7 +44,7 @@ html,
 }
 
 #main .prayer-times-wrapper {
-  height: 55%;
+  height: 60%;
   width: 100%;
   background-color: #0f1012;
   padding: 40px 40px;
@@ -210,6 +210,13 @@ html,
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1860px) {
+  #main .prayer-times-wrapper .local-time-wrapper {
+    top: 43%;
+    right: 3%;
+  }
+}
+
 #main .prayer-times-wrapper .local-time-wrapper .localTime {
   color: white;
   font-size: 25px;
@@ -302,34 +309,39 @@ html,
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.fajr {
-  background-image: url(fajr.jpg);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(fajr.jpg);
   background-image: linear-gradient(#1603108f), url(fajr.jpg);
+  background-position: center;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.sunrise {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(sunrise.jfif);
   background-image: linear-gradient(#1603108f), url(sunrise.jfif);
+  background-position: center;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.dhuhr {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(dhuhr.jpg);
   background-image: linear-gradient(#1603108f), url(dhuhr.jpg);
+  background-position: center;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.asr {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(asr.jpg);
   background-image: linear-gradient(#1603108f), url(asr.jpg);
+  background-position: center;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.maghrib {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(maghrib.jfif);
   background-image: linear-gradient(#1603108f), url(maghrib.jfif);
+  background-position: center;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.isha {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(isha.jfif);
   background-image: linear-gradient(#1603108f), url(isha.jfif);
+  background-position: center;
 }
 
 @media (max-width: 767px) {
