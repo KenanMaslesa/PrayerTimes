@@ -3,25 +3,25 @@ var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
 let latitude = localStorage.getItem("latitude");
 let longitude = localStorage.getItem("longitude");
-let currentTime,urlGetPrayerTimes,urlGetCity;
-let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha,currentDateTime,countDownTime, gregorianDate,
- hijriDate, country, county, flag;
+let currentTime, urlGetPrayerTimes, urlGetCity;
+let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
+  hijriDate, country, county, flag;
 
-if(latitude == null || longitude == null)
-  navigator.geolocation.getCurrentPosition(successLocation, errorLocation,{enableHighAccuracy: true});
-else{
+if (latitude == null || longitude == null)
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
+else {
   setupMap([longitude, latitude]);
   showPosition();
 }
-document.querySelector(".autolocation").addEventListener('click', function(){
-  navigator.geolocation.getCurrentPosition(successLocation, errorLocation,{enableHighAccuracy: true});
+document.querySelector(".autolocation").addEventListener('click', function () {
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 });
 
-function successLocation(position){
+function successLocation(position) {
   currentPosition = position;
   latitude = position.coords.latitude,
-  longitude = position.coords.longitude,
-  localStorage.setItem("latitude", latitude);
+    longitude = position.coords.longitude,
+    localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition();
@@ -29,13 +29,13 @@ function successLocation(position){
 }
 
 
-function errorLocation(){
+function errorLocation() {
   latitude = 43.869308818408456, longitude = 18.417377317154944;
-  setupMap([latitude,longitude]);
+  setupMap([latitude, longitude]);
   showPosition();
 }
 
-function setupMap(center){
+function setupMap(center) {
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -47,16 +47,23 @@ function setupMap(center){
 
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
-    }
+    document.querySelector("#dark_theme").style.display = 'none';
+    document.querySelector("#light_theme").style.display = 'block';
+    document.querySelector(".prayer-times-wrapper").style.background = '#0a0b0b';
+  }
 
-    function dayMap() {
-      map.setStyle('mapbox://styles/mapbox/streets-v11');
-      }
-    
-    document.querySelector(".maghrib").onclick = nightMap;
-    document.querySelector(".sunrise").onclick = dayMap;
-    
-  map.on('click', function(e) {
+  function dayMap() {
+    map.setStyle('mapbox://styles/mapbox/streets-v11');
+    document.querySelector("#dark_theme").style.display = 'block';
+    document.querySelector("#light_theme").style.display = 'none';
+    document.querySelector(".prayer-times-wrapper").style.background = '#0f1012';
+
+  }
+
+  document.querySelector("#dark_theme").onclick = nightMap;
+  document.querySelector("#light_theme").onclick = dayMap;
+
+  map.on('click', function (e) {
 
     latitude = e.lngLat.lat;
     longitude = e.lngLat.lng;
@@ -64,20 +71,20 @@ function setupMap(center){
     showPosition();
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
-});
+  });
 
-//input
+  //input
   map.addControl(
     new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    zoom: 14,
-    placeholder: 'Try: Sarajevo',
-    mapboxgl: mapboxgl,
-    autocomplete: true,
+      accessToken: mapboxgl.accessToken,
+      zoom: 14,
+      placeholder: 'Try: Sarajevo',
+      mapboxgl: mapboxgl,
+      autocomplete: true,
     })
-    );
+  );
 
-    //navigation-control
+  //navigation-control
   map.addControl(new mapboxgl.NavigationControl());
 
   //full srceen map
@@ -91,67 +98,65 @@ function setupMap(center){
 
   function onDragEnd() {
     var lngLat = marker.getLngLat();
-      longitude = lngLat.lng;
-      latitude = lngLat.lat;
-      showPosition();
-      localStorage.setItem("latitude", latitude);
-       localStorage.setItem("longitude", longitude);
+    longitude = lngLat.lng;
+    latitude = lngLat.lat;
+    showPosition();
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
   }
   marker.on("dragend", onDragEnd);
 
 }
 
-    //vaktija
-    function getPoziv(funk, url) {
+//vaktija
+function getPoziv(funk, url) {
 
-      var request = new XMLHttpRequest();
-      request.onload = function () {
-        if (request.status == 200) {
-          funk(JSON.parse(request.responseText));
-        }
-        else {
-          alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the city of Sarajevo");
-          latitude = 43.869308818408456, longitude = 18.417377317154944;
-          localStorage.setItem("latitude", latitude);
-          localStorage.setItem("longitude", longitude);
-          showPosition();
-        }
-      }
-    
-      request.onerror = function () {
-        alert("Error");
-        latitude = 43.869308818408456, longitude = 18.417377317154944;
-        localStorage.setItem("latitude", latitude);
-        localStorage.setItem("longitude", longitude);
-          showPosition();
-      };
-    
-      request.open("GET", url, true);
-      request.send(null);
+  var request = new XMLHttpRequest();
+  request.onload = function () {
+    if (request.status == 200) {
+      funk(JSON.parse(request.responseText));
     }
+    else {
+      alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the city of Sarajevo");
+      latitude = 43.869308818408456, longitude = 18.417377317154944;
+      localStorage.setItem("latitude", latitude);
+      localStorage.setItem("longitude", longitude);
+      showPosition();
+    }
+  }
+
+  request.onerror = function () {
+    alert("Error");
+    latitude = 43.869308818408456, longitude = 18.417377317154944;
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
+    showPosition();
+  };
+
+  request.open("GET", url, true);
+  request.send(null);
+}
 
 
 function showPosition() {
-  
-  urlGetCity ='https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+latitude+'&longitude='+longitude;
-  currentTime= new Date();
-  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/'+currentTime.getTime()/1000+'?latitude='+latitude+'&longitude='+longitude+'&method=2';
+
+  urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + latitude + '&longitude=' + longitude;
+  currentTime = new Date();
+  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
   getPoziv(GetCity, urlGetCity);
   getPoziv(GetPrayerTimes, urlGetPrayerTimes);
 
 }
 
-                                                     
-function GetCity(obj)
-{
-  if(obj.countryName != '')
-  country = obj.countryName;
 
-  if (obj.city != '')
-  {
+function GetCity(obj) {
+  if (obj.countryName != '')
+    country = obj.countryName;
+
+  if (obj.city != '') {
     county = obj.city;
   }
-  else if(obj.locality!=''){
+  else if (obj.locality != '') {
     county = obj.locality.replace("Municipality", "");
     county = county.replace("municipality", "");
     county = county.replace("of", "");
@@ -161,54 +166,53 @@ function GetCity(obj)
     county = county.replace("City", "");
     county = county.replace("County", "");
   }
-  else if(obj.locality != '')
-  {
+  else if (obj.locality != '') {
     county = obj.locality.replace("Village", "");
   }
 
- 
-    document.querySelector(".country").textContent = country;
-    document.querySelector(".city").textContent = county;
+
+  document.querySelector(".country").textContent = country;
+  document.querySelector(".city").textContent = county;
 }
 
-function GetPrayerTimes(obj)
-{
+function GetPrayerTimes(obj) {
   sati = obj.data.timings.Fajr.substring(0, obj.data.timings.Fajr.indexOf(":"));
   minute = obj.data.timings.Fajr.substring(obj.data.timings.Fajr.indexOf(":") + 1);
-  hijriDate = obj.data.date.hijri.day + " " + obj.data.date.hijri.month.en +", "+ obj.data.date.hijri.year;
-  gregorianDate = obj.data.date.gregorian.day + " " + obj.data.date.gregorian.month.en +", "+ obj.data.date.gregorian.year;
-  
+  hijriDate = obj.data.date.hijri.day + " " + obj.data.date.hijri.month.en + ", " + obj.data.date.hijri.year;
+  gregorianDate = obj.data.date.gregorian.day + " " + obj.data.date.gregorian.month.en + ", " + obj.data.date.gregorian.year;
+
   timeZone = obj.data.meta.timezone;
-  var zone = ['Europe/Sarajevo', 'Europe/Zagreb', 'Europe/Belgrade', 'Europe/Ljubljana', 'Europe/Podgorica', 'Europe/Skopje'];
-   flag = zone.includes(timeZone);
-   fajr = obj.data.timings.Fajr;
-   sunrise = obj.data.timings.Sunrise;
-   dhuhr = obj.data.timings.Dhuhr;
-   asr = obj.data.timings.Asr;
-   maghrib = obj.data.timings.Maghrib;
-   isha = obj.data.timings.Isha;
+  var zone = ['Europe/Sarajevo', 'Europe/Zagreb', 'Europe/Belgrade', 'Europe/Podgorica', 'Europe/Skopje'];
+  flag = zone.includes(timeZone);
+  fajr = obj.data.timings.Fajr;
+  sunrise = obj.data.timings.Sunrise;
+  dhuhr = obj.data.timings.Dhuhr;
+  asr = obj.data.timings.Asr;
+  maghrib = obj.data.timings.Maghrib;
+  isha = obj.data.timings.Isha;
+  var bosnianInstruction = 'Kliknite na bilo koje mjesto na karti za koje želite vidjeti vrijeme namaza';
+  var englishInstruction = 'Click anywhere on the map where you want to see prayer times';
+  document.querySelector(".hijri-date").textContent = hijriDate;
+  document.querySelector(".gregorian-date").textContent = gregorianDate;
+  document.querySelector(".fajr-time").textContent = flag ? fajr : formatAMPM(fajr);
+  document.querySelector(".sunrise-time").textContent = flag ? sunrise : formatAMPM(sunrise);
+  document.querySelector(".dhuhr-time").textContent = flag ? dhuhr : formatAMPM(dhuhr);
+  document.querySelector(".asr-time").textContent = flag ? asr : formatAMPM(asr);
+  document.querySelector(".maghrib-time").textContent = flag ? maghrib : formatAMPM(maghrib);
+  document.querySelector(".isha-time").textContent = flag ? isha : formatAMPM(isha);
+  document.querySelector(".fajr-caption").textContent = (flag ? "zora" : "fajr");
+  document.querySelector(".sunrise-caption").textContent = (flag ? "izlazak sunca" : "sunrise");
+  document.querySelector(".dhuhr-caption").textContent = (flag ? "podne" : "dhuhr");
+  document.querySelector(".asr-caption").textContent = (flag ? "ikindija" : "asr");
+  document.querySelector(".maghrib-caption").textContent = (flag ? "akšam" : "maghrib");
+  document.querySelector(".isha-caption").textContent = (flag ? "jacija" : "isha");
+  document.querySelector(".instructions").textContent = (flag ? bosnianInstruction : englishInstruction);
 
+  hours = fajr.substring(0, fajr.indexOf(":"));
+  minutes = fajr.substring(fajr.indexOf(":") + 1);
 
-   document.querySelector(".hijri-date").textContent = hijriDate;
-   document.querySelector(".gregorian-date").textContent = gregorianDate;
-   document.querySelector(".fajr-time").textContent=flag? fajr : formatAMPM(fajr);
-   document.querySelector(".sunrise-time").textContent=flag? sunrise : formatAMPM(sunrise);
-   document.querySelector(".dhuhr-time").textContent=flag? dhuhr : formatAMPM(dhuhr);
-   document.querySelector(".asr-time").textContent=flag? asr : formatAMPM(asr);
-   document.querySelector(".maghrib-time").textContent=flag? maghrib : formatAMPM(maghrib);
-   document.querySelector(".isha-time").textContent=flag? isha : formatAMPM(isha);
-   document.querySelector(".fajr-caption").textContent = (flag? "zora": "fajr");
-   document.querySelector(".sunrise-caption").textContent = (flag? "izlazak sunca": "sunrise");
-   document.querySelector(".dhuhr-caption").textContent = (flag? "podne": "dhuhr");
-   document.querySelector(".asr-caption").textContent = (flag? "ikindija": "asr");
-   document.querySelector(".maghrib-caption").textContent = (flag? "akšam": "maghrib");
-   document.querySelector(".isha-caption").textContent = (flag? "jacija": "isha");
-
-   hours = fajr.substring(0, fajr.indexOf(":"));
-   minutes = fajr.substring(fajr.indexOf(":") + 1);
-
-   if(!document.querySelector('.active'))
-  document.querySelector(".isha").classList.add("active");
+  if (!document.querySelector('.active'))
+    document.querySelector(".isha").classList.add("active");
 
   let options = {
     timeZone: timeZone,
@@ -219,11 +223,11 @@ function GetPrayerTimes(obj)
     minute: 'numeric',
     second: 'numeric',
   },
-  formater = new Intl.DateTimeFormat([], options);
+    formater = new Intl.DateTimeFormat([], options);
   currentDateTime = new Date(formater.format(new Date()));
 
   countDownTime = new Date(currentDateTime);
-  
+
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
@@ -241,7 +245,7 @@ function setMinutes(m) {
   countDownTime.setMinutes(minutes);
 }
 
-function removeActiveClass(){
+function removeActiveClass() {
   document.querySelector(".fajr").classList.remove("active");
   document.querySelector(".sunrise").classList.remove("active");
   document.querySelector(".dhuhr").classList.remove("active");
@@ -293,7 +297,7 @@ function setTimes() {
     removeActiveClass();
     document.querySelector(".maghrib").classList.add("active");
   }
-  
+
   if (currentDateTime >= countDownTime.getTime()) {
     removeActiveClass();
     document.querySelector(".isha").classList.add("active");
@@ -314,44 +318,44 @@ var x = setInterval(function () {
     minute: 'numeric',
     second: 'numeric',
   },
-  formater = new Intl.DateTimeFormat([], options);
+    formater = new Intl.DateTimeFormat([], options);
   currentDateTime = new Date(formater.format(new Date()));
 
-  document.querySelector(".localTime").textContent =  flag? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1'):formatAMPM(currentDateTime.getHours()+":"+ currentDateTime.getMinutes());
-  document.querySelector(".localTimeCaption").textContent = (flag?"Trenutno vrijeme ":"Current time ");
+  document.querySelector(".localTime").textContent = flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes());
+  document.querySelector(".localTimeCaption").textContent = (flag ? "Trenutno vrijeme " : "Current time ");
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();
 
   if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-  setTimes();
+    setTimes();
 
   var distance = countDownTimeMiliSeconds - currentDateTimeMiliSeconds;
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
+
   if (hours == 0 && minutes <= 9) {
     document.querySelector(".countdown").classList.add("danger");
   }
-  else{
+  else {
     document.querySelector(".countdown").classList.remove("danger");
 
   }
 
   if (distance > 0) {
-  document.querySelector(".countdown").innerHTML = formatTime(hours) + ":"
-  + formatTime(minutes) + ":" + formatTime(seconds);
-  
+    document.querySelector(".countdown").innerHTML = formatTime(hours) + ":"
+      + formatTime(minutes) + ":" + formatTime(seconds);
+
   }
 }, 1000);
 
 function GetLocation(selected) {
   var val = selected.value;
   localStorage.setItem("location", val);
-  currentTime= new Date();
-  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/'+currentTime.getTime()/1000+'?latitude='+latitude+'&longitude='+longitude+'&method='+val;
- getPoziv(GetPrayerTimes, urlGetPrayerTimes);
+  currentTime = new Date();
+  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + val;
+  getPoziv(GetPrayerTimes, urlGetPrayerTimes);
 }
 
 
@@ -373,7 +377,7 @@ function formatAMPM(time) {
   var ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
