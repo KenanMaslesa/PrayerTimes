@@ -226,8 +226,7 @@ function GetPrayerTimes(obj) {
     minute: 'numeric',
     second: 'numeric',
   },
-    formater = new Intl.DateTimeFormat([], options);
-  currentDateTime = new Date(formater.format(new Date()));
+  currentDateTime = new Date();
 
   countDownTime = new Date(currentDateTime);
 
