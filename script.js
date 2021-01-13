@@ -212,7 +212,10 @@ function GetPrayerTimes(obj) {
   minutes = fajr.substring(fajr.indexOf(":") + 1);
 
   if (!document.querySelector('.active'))
-    document.querySelector(".isha").classList.add("active");
+    {
+      document.querySelector(".isha").classList.add("active");
+      $("#dark_theme").trigger('click');
+    }
 
   let options = {
     timeZone: timeZone,
@@ -270,6 +273,8 @@ function setTimes() {
     setMinutes(dhuhr);
     removeActiveClass();
     document.querySelector(".sunrise").classList.add("active");
+    $("#light_theme").trigger('click');
+
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -296,6 +301,7 @@ function setTimes() {
     setMinutes(isha);
     removeActiveClass();
     document.querySelector(".maghrib").classList.add("active");
+    $("#dark_theme").trigger('click');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -304,6 +310,7 @@ function setTimes() {
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
     setMinutes(fajr);
+    $("#dark_theme").trigger('click');
 
   }
 }
@@ -357,7 +364,6 @@ function GetLocation(selected) {
   urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + val;
   getPoziv(GetPrayerTimes, urlGetPrayerTimes);
 }
-
 
 
 //gsap
