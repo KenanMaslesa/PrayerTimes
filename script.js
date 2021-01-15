@@ -1,4 +1,3 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2VuYW5tYXNsZXNhIiwiYSI6ImNranVrZmJ3YzIwdWgyeWwxdnc0N3c1eWEifQ.NU5jwn8auapNwbJVrjKTfg';
 var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
 let latitude = localStorage.getItem("latitude");
@@ -18,95 +17,21 @@ document.querySelector(".autolocation").addEventListener('click', function () {
 });
 
 function successLocation(position) {
-  currentPosition = position;
-  latitude = position.coords.latitude,
+    currentPosition = position;
+    latitude = position.coords.latitude,
     longitude = position.coords.longitude,
     localStorage.setItem("latitude", latitude);
-  localStorage.setItem("longitude", longitude);
-  setupMap([longitude, latitude]);
-  showPosition();
+    localStorage.setItem("longitude", longitude);
+    setupMap([longitude, latitude]);
+    showPosition();
 
 }
-
 
 function errorLocation() {
-  latitude = 43.869308818408456, longitude = 18.417377317154944;
-  setupMap([latitude, longitude]);
-  showPosition();
-}
-
-function setupMap(center) {
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: center,
-    zoom: 14
-
-  });
-
-
-  function nightMap() {
-    map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
-    document.querySelector("#dark_theme").style.display = 'none';
-    document.querySelector("#light_theme").style.display = 'block';
-    document.querySelector(".prayer-times-wrapper").style.background = '#0a0b0b';
-  }
-
-  function dayMap() {
-    map.setStyle('mapbox://styles/mapbox/streets-v11');
-    document.querySelector("#dark_theme").style.display = 'block';
-    document.querySelector("#light_theme").style.display = 'none';
-    document.querySelector(".prayer-times-wrapper").style.background = '#0f1012';
-
-  }
-
-  document.querySelector("#dark_theme").onclick = nightMap;
-  document.querySelector("#light_theme").onclick = dayMap;
-
-  map.on('click', function (e) {
-
-    latitude = e.lngLat.lat;
-    longitude = e.lngLat.lng;
-    marker.setLngLat([longitude, latitude]);
-    showPosition();
-    localStorage.setItem("latitude", latitude);
-    localStorage.setItem("longitude", longitude);
-  });
-
-  //input
-  map.addControl(
-    new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      zoom: 14,
-      placeholder: 'Try: Sarajevo',
-      mapboxgl: mapboxgl,
-      autocomplete: true,
-    })
-  );
-
-  //navigation-control
-  map.addControl(new mapboxgl.NavigationControl());
-
-  //full srceen map
-  map.addControl(new mapboxgl.FullscreenControl());
-
-  //drag marker
-  var marker = new mapboxgl.Marker({
-    draggable: true,
-  }).setLngLat([longitude, latitude])
-    .addTo(map);
-
-  function onDragEnd() {
-    var lngLat = marker.getLngLat();
-    longitude = lngLat.lng;
-    latitude = lngLat.lat;
-    showPosition();
-    localStorage.setItem("latitude", latitude);
-    localStorage.setItem("longitude", longitude);
-  }
-  marker.on("dragend", onDragEnd);
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 
 }
+
 
 //vaktija
 function getPoziv(funk, url) {
@@ -117,11 +42,12 @@ function getPoziv(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the city of Sarajevo");
+      alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the Sarajevo");
       latitude = 43.869308818408456, longitude = 18.417377317154944;
       localStorage.setItem("latitude", latitude);
       localStorage.setItem("longitude", longitude);
       showPosition();
+      window.location.reload();
     }
   }
 
@@ -140,7 +66,7 @@ function getPoziv(funk, url) {
 
 function showPosition() {
 
-  urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + latitude + '&longitude=' + longitude;
+  urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode?latitude=' + latitude + '&longitude=' + longitude + '&key=2a1b056b085a47bfbe75c8452a37109c';
   currentTime = new Date();
   urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
   getPoziv(GetCity, urlGetCity);
@@ -164,13 +90,12 @@ function GetCity(obj) {
     county = county.replace("Naselje", "");
     county = county.replace("Town of", "");
     county = county.replace("City", "");
+    county = county.replace("Local community", "");
     county = county.replace("County", "");
   }
   else if (obj.locality != '') {
     county = obj.locality.replace("Village", "");
   }
-
-
   document.querySelector(".country").textContent = country;
   document.querySelector(".city").textContent = county;
 }
@@ -211,22 +136,12 @@ function GetPrayerTimes(obj) {
   hours = fajr.substring(0, fajr.indexOf(":"));
   minutes = fajr.substring(fajr.indexOf(":") + 1);
 
-  if (!document.querySelector('.active'))
-    {
-      document.querySelector(".isha").classList.add("active");
-      $("#dark_theme").trigger('click');
-    }
+  if (!document.querySelector('.active')) {
+    document.querySelector(".isha").classList.add("active");
+    $("#dark_theme").trigger('click');
+  }
 
-  let options = {
-    timeZone: timeZone,
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  },
-  currentDateTime = new Date();
+  currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
 
   countDownTime = new Date(currentDateTime);
 
@@ -262,9 +177,9 @@ function setTimes() {
   if (currentDateTime >= countDownTime.getTime()) {
     setHours(sunrise);
     setMinutes(sunrise);
-    //document.querySelector(".isha").classList.remove("active");
     removeActiveClass();
     document.querySelector(".fajr").classList.add("active");
+    $("#dark_theme").trigger('click');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -315,24 +230,14 @@ function setTimes() {
 }
 
 var x = setInterval(function () {
-  let options = {
-    timeZone: timeZone,
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  },
-    formater = new Intl.DateTimeFormat([], options);
-  currentDateTime = new Date(formater.format(new Date()));
+
+  currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
 
   document.querySelector(".localTime").textContent = flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes());
   document.querySelector(".localTimeCaption").textContent = (flag ? "Trenutno vrijeme " : "Current time ");
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();
-
   if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
     setTimes();
 
