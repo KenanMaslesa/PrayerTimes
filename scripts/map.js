@@ -9,7 +9,6 @@ function setupMap(center) {
 
   });
 
-
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
     $("#dark_theme").hide();
