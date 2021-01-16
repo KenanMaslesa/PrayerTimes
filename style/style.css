@@ -51,6 +51,17 @@ html,
   left: 25px;
 }
 
+@media (max-width: 768px) {
+  #main .dark-light-mode {
+    top: 48%;
+    left: 50%;
+    z-index: 9;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    color: yellow;
+  }
+}
+
 #main .dark-light-mode #light_theme {
   display: none;
   color: yellow;
@@ -80,8 +91,97 @@ html,
 
 @media (max-width: 888px) {
   #main .instructions {
+    position: absolute;
+    top: 20%;
+    font-size: 15px;
+    z-index: 9999;
+    width: 75%;
+  }
+}
+
+#main .local-time-wrapper {
+  position: absolute;
+  top: 44.9%;
+  right: 0%;
+  min-width: 140px;
+  max-width: 140px;
+  height: auto;
+  text-align: center;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(../images/globus.jpg);
+  background-image: linear-gradient(#16031000), url(../images/globus.jpg);
+  border-radius: 10px;
+  padding: 20px;
+  word-break: break-word;
+  border-top-right-radius: 0px;
+}
+
+@media (max-width: 768px) {
+  #main .local-time-wrapper {
     display: none;
   }
+}
+
+#main .local-time-wrapper.mobile {
+  top: 10px;
+  padding: 0px;
+  padding-top: 10px;
+  z-index: 9;
+  left: 10px;
+  min-width: 100px;
+  width: 110px;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0px;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #main .local-time-wrapper.mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  #main .local-time-wrapper.mobile .localTime {
+    display: block;
+  }
+}
+
+#main .local-time-wrapper.day {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603106e)), url(../images/dhuhr.jpg);
+  background-image: linear-gradient(#1603106e), url(../images/dhuhr.jpg);
+  background-size: cover;
+  background-position: bottom;
+}
+
+#main .local-time-wrapper .localTime {
+  color: white;
+  font-size: 23px;
+  padding-bottom: 10px;
+}
+
+#main .local-time-wrapper .localTime::before {
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  #main .local-time-wrapper .localTime {
+    display: none;
+  }
+}
+
+#main .local-time-wrapper .localTimeCaption {
+  color: sandybrown;
+  font-size: 12px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+#main .local-time-wrapper .localTimeCity {
+  color: white;
+  padding: 3px;
 }
 
 #main #map {
@@ -98,9 +198,11 @@ html,
   width: 90%;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 425px) {
   #main #map .mapboxgl-ctrl-geocoder {
-    width: 80%;
+    width: auto;
+    min-width: 40%;
+    max-width: 65%;
   }
 }
 
@@ -268,66 +370,6 @@ html,
   color: red;
 }
 
-#main .prayer-times-wrapper .local-time-wrapper {
-  position: absolute;
-  top: 44.9%;
-  right: 0%;
-  min-width: 140px;
-  max-width: 140px;
-  height: auto;
-  text-align: center;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(../images/globus.jpg);
-  background-image: linear-gradient(#16031000), url(../images/globus.jpg);
-  border-radius: 10px;
-  padding: 20px;
-  word-break: break-word;
-  border-top-right-radius: 0px;
-}
-
-#main .prayer-times-wrapper .local-time-wrapper.day {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603106e)), url(../images/dhuhr.jpg);
-  background-image: linear-gradient(#1603106e), url(../images/dhuhr.jpg);
-  background-size: cover;
-  background-position: bottom;
-}
-
-@media (max-width: 768px) {
-  #main .prayer-times-wrapper .local-time-wrapper {
-    display: none;
-  }
-}
-
-#main .prayer-times-wrapper .local-time-wrapper .localTime {
-  color: white;
-  font-size: 23px;
-  padding-bottom: 10px;
-}
-
-#main .prayer-times-wrapper .local-time-wrapper .localTime::before {
-  font-size: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  #main .prayer-times-wrapper .local-time-wrapper .localTime {
-    display: none;
-  }
-}
-
-#main .prayer-times-wrapper .local-time-wrapper .localTimeCaption {
-  color: sandybrown;
-  font-size: 12px;
-  padding-bottom: 5px;
-  font-weight: bold;
-}
-
-#main .prayer-times-wrapper .local-time-wrapper .localTimeCity {
-  color: white;
-  padding: 3px;
-}
-
 #main .prayer-times-wrapper .cards-wrapper {
   width: 80%;
   margin-left: auto;
@@ -446,8 +488,8 @@ html,
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.active {
-  -webkit-box-shadow: 0px 0px 12px 10px #888888;
-          box-shadow: 0px 0px 12px 10px #888888;
+  -webkit-box-shadow: 0px 0px 12px 10px #88888878;
+          box-shadow: 0px 0px 12px 10px #88888878;
   -webkit-transition-delay: 0.9s;
           transition-delay: 0.9s;
 }
