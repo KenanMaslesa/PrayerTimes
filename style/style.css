@@ -447,8 +447,8 @@ html,
 #main .prayer-times-wrapper .cards-wrapper .card.active {
   -webkit-box-shadow: 0px 0px 12px 10px #888888;
           box-shadow: 0px 0px 12px 10px #888888;
-  -webkit-transition-delay: 1.5s;
-          transition-delay: 1.5s;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card .prayer-name,

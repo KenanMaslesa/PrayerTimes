@@ -107,6 +107,9 @@ function GetPrayerTimes(obj) {
 
   timeZone = obj.data.meta.timezone;
   var zone = ['Europe/Sarajevo', 'Europe/Zagreb', 'Europe/Belgrade', 'Europe/Podgorica', 'Europe/Skopje'];
+  var bosnianInstruction = 'Kliknite na bilo koje mjesto na karti za koje želite vidjeti vrijeme namaza';
+  var englishInstruction = 'Click anywhere on the map where you want to see prayer times';
+
   flag = zone.includes(timeZone);
   fajr = obj.data.timings.Fajr;
   sunrise = obj.data.timings.Sunrise;
@@ -114,43 +117,41 @@ function GetPrayerTimes(obj) {
   asr = obj.data.timings.Asr;
   maghrib = obj.data.timings.Maghrib;
   isha = obj.data.timings.Isha;
-  var bosnianInstruction = 'Kliknite na bilo koje mjesto na karti za koje želite vidjeti vrijeme namaza';
-  var englishInstruction = 'Click anywhere on the map where you want to see prayer times';
-  document.querySelector(".hijri-date").textContent = hijriDate;
-  document.querySelector(".gregorian-date").textContent = gregorianDate;
-  document.querySelector(".fajr-time").textContent = flag ? fajr : formatAMPM(fajr);
-  document.querySelector(".sunrise-time").textContent = flag ? sunrise : formatAMPM(sunrise);
-  document.querySelector(".dhuhr-time").textContent = flag ? dhuhr : formatAMPM(dhuhr);
-  document.querySelector(".asr-time").textContent = flag ? asr : formatAMPM(asr);
-  document.querySelector(".maghrib-time").textContent = flag ? maghrib : formatAMPM(maghrib);
-  document.querySelector(".isha-time").textContent = flag ? isha : formatAMPM(isha);
-  document.querySelector(".fajr-caption").textContent = (flag ? "zora" : "fajr");
-  document.querySelector(".sunrise-caption").textContent = (flag ? "izlazak sunca" : "sunrise");
-  document.querySelector(".dhuhr-caption").textContent = (flag ? "podne" : "dhuhr");
-  document.querySelector(".asr-caption").textContent = (flag ? "ikindija" : "asr");
-  document.querySelector(".maghrib-caption").textContent = (flag ? "akšam" : "maghrib");
-  document.querySelector(".isha-caption").textContent = (flag ? "jacija" : "isha");
-  document.querySelector(".instructions").textContent = (flag ? bosnianInstruction : englishInstruction);
+
+  $(".hijri-date").text(hijriDate);
+  $(".gregorian-date").text(gregorianDate);
+  $(".fajr-time").text(flag ? fajr : formatAMPM(fajr));
+  $(".sunrise-time").text(flag ? sunrise : formatAMPM(sunrise));
+  $(".dhuhr-time").text(flag ? dhuhr : formatAMPM(dhuhr));
+  $(".asr-time").text(flag ? asr : formatAMPM(asr));
+  $(".maghrib-time").text(flag ? maghrib : formatAMPM(maghrib));
+  $(".isha-time").text(flag ? isha : formatAMPM(isha));
+
+  $(".fajr-caption").text(flag ? "zora" : "fajr");
+  $(".sunrise-caption").text(flag ? "izlazak sunca" : "sunrise");
+  $(".dhuhr-caption").text(flag ? "podne" : "dhuhr");
+  $(".asr-caption").text(flag ? "ikindija" : "asr");
+  $(".maghrib-caption").text(flag ? "akšam" : "maghrib");
+  $(".isha-caption").text(flag ? "jacija" : "isha");
+  $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
-  hours = fajr.substring(0, fajr.indexOf(":"));
-  minutes = fajr.substring(fajr.indexOf(":") + 1);
 
   removeActiveClass();
-  document.querySelector(".isha").classList.add("active");
+  $('.isha').addClass("active");
   upcomingPrayer();
-  $("#dark_theme").trigger('click');
   $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
-  /*
-  if (!document.querySelector('.active')) {
-    document.querySelector(".isha").classList.add("active");
-    $("#dark_theme").trigger('click');
-    $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
-  }*/
 
+  setTimeout(() => {
+    if ($('.isha').hasClass('active')) {
+      $("#dark_theme").trigger('click');
+      $('.local-time-wrapper').removeClass('day');
+
+    }
+  }, 1000);
+  hours = fajr.substring(0, fajr.indexOf(":"));
+  minutes = fajr.substring(fajr.indexOf(":") + 1);
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
-
   countDownTime = new Date(currentDateTime);
-
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
@@ -184,45 +185,40 @@ function setTimes() {
     setHours(sunrise);
     setMinutes(sunrise);
     removeActiveClass();
-    document.querySelector(".fajr").classList.add("active");
+    $('.fajr').addClass('active');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
     setHours(dhuhr);
     setMinutes(dhuhr);
     removeActiveClass();
-    document.querySelector(".sunrise").classList.add("active");
+    $('.sunrise').addClass('active');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
-
     setHours(asr);
     setMinutes(asr);
     removeActiveClass();
-    document.querySelector(".dhuhr").classList.add("active");
-
+    $('.dhuhr').addClass('active');
   }
 
-
   if (currentDateTime >= countDownTime.getTime()) {
-
     setHours(maghrib);
     setMinutes(maghrib);
     removeActiveClass();
-    document.querySelector(".asr").classList.add("active");
-
+    $('.asr').addClass('active');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
     setHours(isha);
     setMinutes(isha);
     removeActiveClass();
-    document.querySelector(".maghrib").classList.add("active");
+    $('.maghrib').addClass('active');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
     removeActiveClass();
-    document.querySelector(".isha").classList.add("active");
+    $('.isha').addClass('active');
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
     setMinutes(fajr);
@@ -232,11 +228,10 @@ function setTimes() {
 
   if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active')) {
     $("#dark_theme").trigger('click');
-
+    $('.local-time-wrapper').removeClass('day');
   }
   else {
     $("#light_theme").trigger('click');
-
   }
 
 }
@@ -244,6 +239,7 @@ function setTimes() {
 function upcomingPrayer() {
   $activeTime = $('.active');
   removeUpcomingPrayer();
+
   if ($activeTime.hasClass('fajr')) {
     $('.sunrise').find('.upcoming-prayer').text("upcoming");
     $('.sunrise').find('.upcoming-prayer').css({ visibility: 'visible' });
@@ -267,7 +263,6 @@ function upcomingPrayer() {
   }
   else if ($activeTime.hasClass('isha')) {
     $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
-    $('.local-time-wrapper').removeClass('day');
   }
 
 }
@@ -279,7 +274,6 @@ function removeUpcomingPrayer() {
   $('.asr').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.maghrib').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
-
 }
 
 var x = setInterval(function () {
@@ -288,9 +282,8 @@ var x = setInterval(function () {
     setTimes();
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
-
-  document.querySelector(".localTime").textContent = flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes());
-  document.querySelector(".localTimeCaption").textContent = (flag ? "Trenutno vrijeme " : "Current time ");
+  $('.localTime').text(flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes()));
+  $('.localTimeCaption').text(flag ? "Trenutno vrijeme " : "Current time ");
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();
@@ -304,15 +297,15 @@ var x = setInterval(function () {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   if (hours == 0 && minutes <= 9) {
-    document.querySelector(".countdown").classList.add("danger");
+    $('.countdown').addClass('danger');
   }
   else {
-    document.querySelector(".countdown").classList.remove("danger");
+    $('.countdown').removeClass('danger');
   }
 
   if (distance > 0) {
-    document.querySelector(".countdown").innerHTML = formatTime(hours) + ":"
-      + formatTime(minutes) + ":" + formatTime(seconds);
+    $('.countdown').html(formatTime(hours) + ":"
+      + formatTime(minutes) + ":" + formatTime(seconds));
   }
 }, 1000);
 
@@ -336,6 +329,8 @@ function formatAMPM(time) {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
+
+
 
 
 

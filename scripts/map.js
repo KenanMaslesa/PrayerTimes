@@ -12,17 +12,14 @@ function setupMap(center) {
 
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
-    document.querySelector("#dark_theme").style.display = 'none';
-    document.querySelector("#light_theme").style.display = 'block';
-    document.querySelector(".prayer-times-wrapper").style.background = '#0a0b0b';
+    $("#dark_theme").hide();
+    $("#light_theme").show();
   }
 
   function dayMap() {
     map.setStyle('mapbox://styles/mapbox/streets-v11');
-    document.querySelector("#dark_theme").style.display = 'block';
-    document.querySelector("#light_theme").style.display = 'none';
-    document.querySelector(".prayer-times-wrapper").style.background = '#0f1012';
-
+    $("#dark_theme").show();
+    $("#light_theme").hide();
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
