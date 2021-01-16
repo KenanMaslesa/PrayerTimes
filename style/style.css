@@ -272,13 +272,6 @@ html,
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1860px) {
-  #main .prayer-times-wrapper .local-time-wrapper {
-    top: 43%;
-    right: 3%;
-  }
-}
-
 #main .prayer-times-wrapper .local-time-wrapper .localTime {
   color: white;
   font-size: 25px;

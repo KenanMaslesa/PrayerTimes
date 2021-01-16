@@ -93,7 +93,7 @@ function GetCity(obj) {
     county = county.replace("County", "");
     county = county.replace("Village", "");
   }
-  
+
   document.querySelector(".country").textContent = country;
   document.querySelector(".city").textContent = county;
 }
@@ -130,14 +130,14 @@ function GetPrayerTimes(obj) {
   document.querySelector(".maghrib-caption").textContent = (flag ? "akšam" : "maghrib");
   document.querySelector(".isha-caption").textContent = (flag ? "jacija" : "isha");
   document.querySelector(".instructions").textContent = (flag ? bosnianInstruction : englishInstruction);
-  $('.upcoming-prayer').text(flag ?"nadolazeći namaz":"upcoming prayer");
+  $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   hours = fajr.substring(0, fajr.indexOf(":"));
   minutes = fajr.substring(fajr.indexOf(":") + 1);
 
   if (!document.querySelector('.active')) {
     document.querySelector(".isha").classList.add("active");
     $("#dark_theme").trigger('click');
-    $('.fajr').find('.upcoming-prayer').css({visibility:'visible'});
+    $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
   }
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
@@ -234,43 +234,37 @@ function setTimes() {
 
 }
 
-function upcomingPrayer(){
+function upcomingPrayer() {
   $activeTime = $('.active');
   removeUpcomingPrayer();
-  if($activeTime.hasClass('fajr'))
- {
-   $('.sunrise').find('.upcoming-prayer').css({visibility:'visible'});
- }
- else if($activeTime.hasClass('sunrise'))
- {
-   $('.dhuhr').find('.upcoming-prayer').css({visibility:'visible'});
- }
- else if($activeTime.hasClass('dhuhr'))
- {
-   $('.asr').find('.upcoming-prayer').css({visibility:'visible'});
- }
- else if($activeTime.hasClass('asr'))
- {
-   $('.maghrib').find('.upcoming-prayer').css({visibility:'visible'});
- }
- else if($activeTime.hasClass('maghrib'))
- {
-   $('.isha').find('.upcoming-prayer').css({visibility:'visible'});
- }
- else if($activeTime.hasClass('isha'))
- {
-   $('.fajr').find('.upcoming-prayer').css({visibility:'visible'});
- }
+  if ($activeTime.hasClass('fajr')) {
+    $('.sunrise').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
+  else if ($activeTime.hasClass('sunrise')) {
+    $('.dhuhr').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
+  else if ($activeTime.hasClass('dhuhr')) {
+    $('.asr').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
+  else if ($activeTime.hasClass('asr')) {
+    $('.maghrib').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
+  else if ($activeTime.hasClass('maghrib')) {
+    $('.isha').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
+  else if ($activeTime.hasClass('isha')) {
+    $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
+  }
 
 }
 
-function removeUpcomingPrayer(){
-  $('.fajr').find('.upcoming-prayer').css({visibility:'hidden'});
-  $('.sunrise').find('.upcoming-prayer').css({visibility:'hidden'});
-  $('.dhuhr').find('.upcoming-prayer').css({visibility:'hidden'});
-  $('.asr').find('.upcoming-prayer').css({visibility:'hidden'});
-  $('.maghrib').find('.upcoming-prayer').css({visibility:'hidden'});
-  $('.isha').find('.upcoming-prayer').css({visibility:'hidden'});
+function removeUpcomingPrayer() {
+  $('.fajr').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  $('.sunrise').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  $('.dhuhr').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  $('.asr').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  $('.maghrib').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
 
 }
 
