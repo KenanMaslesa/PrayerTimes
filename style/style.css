@@ -284,8 +284,10 @@ html,
 }
 
 #main .prayer-times-wrapper .local-time-wrapper.day {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(../images/day.jpg);
-  background-image: linear-gradient(#16031000), url(../images/day.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603106e)), url(../images/dhuhr.jpg);
+  background-image: linear-gradient(#1603106e), url(../images/dhuhr.jpg);
+  background-size: cover;
+  background-position: bottom;
 }
 
 @media (max-width: 768px) {

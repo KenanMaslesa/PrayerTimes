@@ -228,7 +228,9 @@ html,
       border-top-right-radius: 0px;
 
       &.day{
-      background-image: linear-gradient(#16031000), url(../images/day.jpg);
+      background-image: linear-gradient(#1603106e), url(../images/dhuhr.jpg);
+      background-size: cover;
+      background-position: bottom;
       }
 
       @media (max-width: 768px) {
