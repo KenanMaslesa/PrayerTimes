@@ -70,6 +70,12 @@ html,
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-logo{
       display: none !important;
     }
+    .mapboxgl-ctrl-geocoder{
+      width: 90%;
+      @media (max-width: 360px) {
+        width: 80%;
+      }
+    }
     .mapboxgl-marker{
       cursor: grab !important;
     }

@@ -89,6 +89,16 @@ html,
   display: none !important;
 }
 
+#main #map .mapboxgl-ctrl-geocoder {
+  width: 90%;
+}
+
+@media (max-width: 360px) {
+  #main #map .mapboxgl-ctrl-geocoder {
+    width: 80%;
+  }
+}
+
 #main #map .mapboxgl-marker {
   cursor: -webkit-grab !important;
   cursor: grab !important;
