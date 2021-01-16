@@ -130,7 +130,7 @@ function GetPrayerTimes(obj) {
   document.querySelector(".maghrib-caption").textContent = (flag ? "akšam" : "maghrib");
   document.querySelector(".isha-caption").textContent = (flag ? "jacija" : "isha");
   document.querySelector(".instructions").textContent = (flag ? bosnianInstruction : englishInstruction);
-
+  $('.upcoming-prayer').text(flag ?"nadolazeći namaz":"upcoming prayer");
   hours = fajr.substring(0, fajr.indexOf(":"));
   minutes = fajr.substring(fajr.indexOf(":") + 1);
 
