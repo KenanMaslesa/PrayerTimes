@@ -79,7 +79,7 @@ function GetCity(obj) {
     country = obj.countryName;
 
   if (obj.city != '') {
-    county = obj.city.replace("Metropolitan City of", "");;
+    county = obj.city.replace("Metropolitan City of", "");
   }
   else if (obj.locality != '') {
     county = obj.locality.replace("Municipality", "");
@@ -92,6 +92,7 @@ function GetCity(obj) {
     county = county.replace("Local community", "");
     county = county.replace("County", "");
     county = county.replace("Village", "");
+    county = county.replace("Grad", "");
   }
 
   document.querySelector(".country").textContent = country;
@@ -134,11 +135,17 @@ function GetPrayerTimes(obj) {
   hours = fajr.substring(0, fajr.indexOf(":"));
   minutes = fajr.substring(fajr.indexOf(":") + 1);
 
+  removeActiveClass();
+  document.querySelector(".isha").classList.add("active");
+  upcomingPrayer();
+  $("#dark_theme").trigger('click');
+  $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
+  /*
   if (!document.querySelector('.active')) {
     document.querySelector(".isha").classList.add("active");
     $("#dark_theme").trigger('click');
     $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
-  }
+  }*/
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
 
@@ -238,22 +245,29 @@ function upcomingPrayer() {
   $activeTime = $('.active');
   removeUpcomingPrayer();
   if ($activeTime.hasClass('fajr')) {
+    $('.sunrise').find('.upcoming-prayer').text("upcoming");
     $('.sunrise').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').removeClass('day');
   }
   else if ($activeTime.hasClass('sunrise')) {
     $('.dhuhr').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').addClass('day');
   }
   else if ($activeTime.hasClass('dhuhr')) {
     $('.asr').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').addClass('day');
   }
   else if ($activeTime.hasClass('asr')) {
     $('.maghrib').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').addClass('day');
   }
   else if ($activeTime.hasClass('maghrib')) {
     $('.isha').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').removeClass('day');
   }
   else if ($activeTime.hasClass('isha')) {
     $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
+    $('.local-time-wrapper').removeClass('day');
   }
 
 }

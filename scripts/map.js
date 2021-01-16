@@ -5,7 +5,7 @@ function setupMap(center) {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: center,
-    zoom: 14
+    zoom: 13
 
   });
 
@@ -41,7 +41,7 @@ function setupMap(center) {
   map.addControl(
     new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
-      zoom: 14,
+      zoom: 13,
       placeholder: 'Try: Sarajevo',
       mapboxgl: mapboxgl,
       autocomplete: true,

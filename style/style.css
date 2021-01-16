@@ -5,6 +5,10 @@ body,
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body,
@@ -193,7 +197,7 @@ html,
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-    top: -20px;
+    top: -18px;
   }
 }
 
@@ -265,7 +269,7 @@ html,
 
 #main .prayer-times-wrapper .local-time-wrapper {
   position: absolute;
-  top: 45%;
+  top: 44.9%;
   right: 0%;
   min-width: 140px;
   max-width: 140px;
@@ -276,6 +280,12 @@ html,
   border-radius: 10px;
   padding: 20px;
   word-break: break-word;
+  border-top-right-radius: 0px;
+}
+
+#main .prayer-times-wrapper .local-time-wrapper.day {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(../images/day.jpg);
+  background-image: linear-gradient(#16031000), url(../images/day.jpg);
 }
 
 @media (max-width: 768px) {
@@ -286,7 +296,7 @@ html,
 
 #main .prayer-times-wrapper .local-time-wrapper .localTime {
   color: white;
-  font-size: 25px;
+  font-size: 23px;
   padding-bottom: 10px;
 }
 
@@ -368,6 +378,8 @@ html,
   font-weight: bold;
   text-align: center;
   font-size: 15px;
+  -webkit-transition-delay: 1.5s;
+          transition-delay: 1.5s;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -433,6 +445,8 @@ html,
 #main .prayer-times-wrapper .cards-wrapper .card.active {
   -webkit-box-shadow: 0px 0px 12px 10px #888888;
           box-shadow: 0px 0px 12px 10px #888888;
+  -webkit-transition-delay: 1.5s;
+          transition-delay: 1.5s;
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card .prayer-name,
