@@ -29,7 +29,6 @@ function setupMap(center) {
   document.querySelector("#light_theme").onclick = dayMap;
 
   map.on('click', function (e) {
-
     latitude = e.lngLat.lat;
     longitude = e.lngLat.lng;
     marker.setLngLat([longitude, latitude]);

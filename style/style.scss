@@ -27,13 +27,16 @@ html,
 
   .dark-light-mode{
     font-size: 54px;
-    color: white;
+    color: black;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 20px;
+    position: absolute;
+    top: 2px;
+    left: 25px;
 
     #light_theme{
       display: none;
+      color: yellow;
     }
   }
 
@@ -107,7 +110,7 @@ html,
         font-size: 14px;
         line-height: 1.42857143;
         color: #fff;
-        background-color: rgba(34, 34, 34, 0.7);
+        background-color: rgb(10, 11, 11);
         background-image: none;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -201,7 +204,7 @@ html,
       max-width: 140px;
       height: auto;
       text-align: center;
-      background-image: linear-gradient(#16031000), url(globus.jpg);
+      background-image: linear-gradient(#16031000), url(../images/globus.jpg);
       border-radius: 10px;
       padding: 20px;
       word-break: break-word;
@@ -273,6 +276,17 @@ html,
         position: relative;
         transition: all 0.4s;
         cursor: pointer;
+        padding-top: 12px;
+
+        .upcoming-prayer{
+          color: #f99494;
+          text-transform: uppercase;
+          visibility: hidden;
+          display: block;
+          padding-bottom: 3px;
+          font-weight: bold;
+          text-align: center;
+        }
 
         @media (min-width: 768px) and (max-width: 1024px) {
           width: 45%;
@@ -286,27 +300,27 @@ html,
         }
         
         &.fajr{
-        background-image: (linear-gradient(#1603108f),url(fajr.jpg));
+        background-image: (linear-gradient(#1603108f),url(../images/fajr.jpg));
         background-position: center;
         }
         &.sunrise{
-        background-image: (linear-gradient(#1603108f),url(sunrise.jfif));
+        background-image: (linear-gradient(#1603108f),url(../images/sunrise.jfif));
         background-position: center;
           }
         &.dhuhr{
-          background-image: (linear-gradient(#1603108f),url(dhuhr.jpg));
+          background-image: (linear-gradient(#1603108f),url(../images/dhuhr.jpg));
           background-position: center;
           }
         &.asr{
-          background-image: (linear-gradient(#1603108f),url(asr.jpg));
+          background-image: (linear-gradient(#1603108f),url(../images/asr.jpg));
           background-position: center;
         }
         &.maghrib{
-          background-image: (linear-gradient(#1603108f),url(maghrib.jfif));
+          background-image: (linear-gradient(#1603108f),url(../images/maghrib.jfif));
           background-position: center;
         }
         &.isha{
-          background-image: (linear-gradient(#1603108f),url(isha.jfif));
+          background-image: (linear-gradient(#1603108f),url(../images/isha.jfif));
           background-position: center;
         }
       

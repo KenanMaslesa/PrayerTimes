@@ -17,24 +17,23 @@ document.querySelector(".autolocation").addEventListener('click', function () {
 });
 
 function successLocation(position) {
-    currentPosition = position;
-    latitude = position.coords.latitude,
+  currentPosition = position;
+  latitude = position.coords.latitude,
     longitude = position.coords.longitude,
     localStorage.setItem("latitude", latitude);
-    localStorage.setItem("longitude", longitude);
-    setupMap([longitude, latitude]);
-    showPosition();
+  localStorage.setItem("longitude", longitude);
+  setupMap([longitude, latitude]);
+  showPosition();
 
 }
 
 function errorLocation() {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-
 }
 
 
 //vaktija
-function getPoziv(funk, url) {
+function getRequest(funk, url) {
 
   var request = new XMLHttpRequest();
   request.onload = function () {
@@ -69,8 +68,8 @@ function showPosition() {
   urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode?latitude=' + latitude + '&longitude=' + longitude + '&key=2a1b056b085a47bfbe75c8452a37109c';
   currentTime = new Date();
   urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
-  getPoziv(GetCity, urlGetCity);
-  getPoziv(GetPrayerTimes, urlGetPrayerTimes);
+  getRequest(GetCity, urlGetCity);
+  getRequest(GetPrayerTimes, urlGetPrayerTimes);
 
 }
 
@@ -80,7 +79,7 @@ function GetCity(obj) {
     country = obj.countryName;
 
   if (obj.city != '') {
-    county = obj.city;
+    county = obj.city.replace("Metropolitan City of", "");;
   }
   else if (obj.locality != '') {
     county = obj.locality.replace("Municipality", "");
@@ -92,10 +91,9 @@ function GetCity(obj) {
     county = county.replace("City", "");
     county = county.replace("Local community", "");
     county = county.replace("County", "");
+    county = county.replace("Village", "");
   }
-  else if (obj.locality != '') {
-    county = obj.locality.replace("Village", "");
-  }
+  
   document.querySelector(".country").textContent = country;
   document.querySelector(".city").textContent = county;
 }
@@ -139,6 +137,7 @@ function GetPrayerTimes(obj) {
   if (!document.querySelector('.active')) {
     document.querySelector(".isha").classList.add("active");
     $("#dark_theme").trigger('click');
+    $('.fajr').find('.upcoming-prayer').css({visibility:'visible'});
   }
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
@@ -179,7 +178,6 @@ function setTimes() {
     setMinutes(sunrise);
     removeActiveClass();
     document.querySelector(".fajr").classList.add("active");
-    $("#dark_theme").trigger('click');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -187,8 +185,6 @@ function setTimes() {
     setMinutes(dhuhr);
     removeActiveClass();
     document.querySelector(".sunrise").classList.add("active");
-    $("#light_theme").trigger('click');
-
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -215,7 +211,6 @@ function setTimes() {
     setMinutes(isha);
     removeActiveClass();
     document.querySelector(".maghrib").classList.add("active");
-    $("#dark_theme").trigger('click');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -224,12 +219,65 @@ function setTimes() {
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
     setMinutes(fajr);
+  }
+
+  upcomingPrayer();
+
+  if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active')) {
     $("#dark_theme").trigger('click');
 
   }
+  else {
+    $("#light_theme").trigger('click');
+
+  }
+
+}
+
+function upcomingPrayer(){
+  $activeTime = $('.active');
+  removeUpcomingPrayer();
+  if($activeTime.hasClass('fajr'))
+ {
+   $('.sunrise').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+ else if($activeTime.hasClass('sunrise'))
+ {
+   $('.dhuhr').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+ else if($activeTime.hasClass('dhuhr'))
+ {
+   $('.asr').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+ else if($activeTime.hasClass('asr'))
+ {
+   $('.maghrib').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+ else if($activeTime.hasClass('maghrib'))
+ {
+   $('.isha').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+ else if($activeTime.hasClass('isha'))
+ {
+   $('.fajr').find('.upcoming-prayer').css({visibility:'visible'});
+ }
+
+}
+
+function removeUpcomingPrayer(){
+  $('.fajr').find('.upcoming-prayer').css({visibility:'hidden'});
+  $('.sunrise').find('.upcoming-prayer').css({visibility:'hidden'});
+  $('.dhuhr').find('.upcoming-prayer').css({visibility:'hidden'});
+  $('.asr').find('.upcoming-prayer').css({visibility:'hidden'});
+  $('.maghrib').find('.upcoming-prayer').css({visibility:'hidden'});
+  $('.isha').find('.upcoming-prayer').css({visibility:'hidden'});
+
 }
 
 var x = setInterval(function () {
+
+  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+    setTimes();
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
 
@@ -238,6 +286,7 @@ var x = setInterval(function () {
 
   var currentDateTimeMiliSeconds = currentDateTime.getTime();
   var countDownTimeMiliSeconds = countDownTime.getTime();
+
   if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
     setTimes();
 
@@ -251,13 +300,11 @@ var x = setInterval(function () {
   }
   else {
     document.querySelector(".countdown").classList.remove("danger");
-
   }
 
   if (distance > 0) {
     document.querySelector(".countdown").innerHTML = formatTime(hours) + ":"
       + formatTime(minutes) + ":" + formatTime(seconds);
-
   }
 }, 1000);
 
@@ -266,18 +313,8 @@ function GetLocation(selected) {
   localStorage.setItem("location", val);
   currentTime = new Date();
   urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + val;
-  getPoziv(GetPrayerTimes, urlGetPrayerTimes);
+  getRequest(GetPrayerTimes, urlGetPrayerTimes);
 }
-
-
-//gsap
-/*const timeline = gsap.timeline({defaults:{duration:1}})
-timeline 
-.from(".location-wrapper",{y:'-100%', ease:'bounce'})
-.from(".date-wrapper",{y:'-10%', ease:'bounce'})
-.from(".card",{opacity:0, stagger: .2})
-.from(".card",{x:'-100vw', ease:'power.in'})
-.from(".prayer-name",{opacity:0, stagger: .2})*/
 
 function formatAMPM(time) {
   var hours, minutes;
@@ -286,9 +323,13 @@ function formatAMPM(time) {
 
   var ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
+  hours = hours ? hours : 12;
   minutes = minutes < 10 ? '0' + minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
+
+
+
+
 

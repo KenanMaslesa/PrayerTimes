@@ -7,10 +7,10 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style/style.css">
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
-<script src="map.js" defer></script>
-<script src="script.js" defer></script>
+<script src="scripts/map.js" defer></script>
+<script src="scripts/script.js" defer></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,6 +19,10 @@
   <main id="main">
     <section id='map'></section>
     <div class="instructions">Click on the map wherever you want to see prayer times</div>
+    <div class="dark-light-mode">
+      <i class="ion-ios-moon" id="dark_theme"></i>
+      <i class="ion-ios-sunny-outline"  id="light_theme"></i>
+    </div>
     <section class="prayer-times-wrapper">
 
       <div class="calculation-methods">
@@ -61,39 +65,41 @@
 
       <div class="cards-wrapper">
         <div class="card fajr">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name fajr-caption">Zora</div>
           <div class="prayer-time fajr-time">5:43</div>
         </div>
 
         <div class="card sunrise">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name sunrise-caption">Izlazak sunca</div>
           <div class="prayer-time sunrise-time">5:43</div>
         </div>
 
         <div class="card dhuhr">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name dhuhr-caption">Podne</div>
           <div class="prayer-time dhuhr-time">5:43</div>
         </div>
 
         <div class="card asr">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name asr-caption">Ikindija</div>
           <div class="prayer-time asr-time">5:43</div>
         </div>
 
         <div class="card maghrib">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name maghrib-caption">Akšam</div>
           <div class="prayer-time maghrib-time">5:43</div>
         </div>
 
         <div class="card isha">
+          <span class="upcoming-prayer">Upcoming prayer</span>
           <div class="prayer-name isha-caption">Jacija</div>
           <div class="prayer-time isha-time">5:43</div>
         </div>
        
-      </div>
-      <div class="dark-light-mode">
-        <i class="ion-ios-moon" id="dark_theme"></i>
-        <i class="ion-ios-sunny-outline"  id="light_theme"></i>
       </div>
     </section>
   </main>
