@@ -53,7 +53,7 @@ html,
 
 @media (max-width: 768px) {
   #main .dark-light-mode {
-    top: 48%;
+    top: 48.2%;
     left: 50%;
     z-index: 9;
     -webkit-transform: translate(-50%, -50%);
@@ -122,15 +122,16 @@ html,
 }
 
 #main .local-time-wrapper.mobile {
-  top: 10px;
+  top: 0;
+  left: 0 !important;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
   padding: 0px;
   padding-top: 10px;
   z-index: 9;
   left: 10px;
   min-width: 100px;
   width: 110px;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0px;
   display: none;
 }
 
