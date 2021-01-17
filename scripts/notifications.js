@@ -1,3 +1,7 @@
+
+window.onload = function () {
+  notifyMe();
+};
 function notifyMe() {
   if (!("Notification" in window)) {
     alert("This browser does not support system notifications");
