@@ -156,12 +156,24 @@ html,
       display: none !important;
     }
     .mapboxgl-ctrl-geocoder {
-      width: 90%;
+      width: 100%;
+      max-width: 150%;
+
       @media (max-width: 425px) {
         width: auto;
         min-width: 40%;
         max-width: 65%;
       }
+
+      @media (max-width: 320px) {
+        min-width: 50%;
+        max-width: 57%;
+      }
+      @media (min-width: 360px) and (max-width: 420px) {
+        min-width: 65%;
+        max-width: 70%;
+      }
+     
     }
     .mapboxgl-marker {
       cursor: grab !important;
@@ -321,7 +333,6 @@ html,
         display: inline-block;
         height: 130px;
         background-color: white;
-        border: 1px solid black;
         margin: 10px;
         border-radius: 10px;
         padding: 30px;
@@ -384,7 +395,7 @@ html,
           margin: 10px 0px;
         }
         &.active {
-          box-shadow: 0px 0px 12px 10px #88888878;
+          box-shadow: 0px 0px 20px 7px #888888;
           transition-delay: 0.9s;
         }
 

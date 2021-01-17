@@ -38,7 +38,7 @@ function setupMap(center) {
   });
 
   //input
-  map.addControl(
+  /*map.addControl(
     new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       zoom: 13,
@@ -46,7 +46,35 @@ function setupMap(center) {
       mapboxgl: mapboxgl,
       autocomplete: true,
     })
-  );
+  );*/
+
+  var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: false, // Do not use the default marker style
+    placeholder: 'Search for places', // Placeholder text for the search bar
+  });
+
+  // Add the geocoder to the map
+  map.addControl(geocoder);
+
+  // After the map style has loaded on the page,
+  // add a source layer and default styling for a single point
+  map.on('load', function () {
+
+    // Listen for the `result` event from the Geocoder
+    // `result` event is triggered when a user makes a selection
+    // Add a marker at the result's coordinates
+    geocoder.on('result', function (ev) {
+      var temp = ev.result.center;
+      longitude = temp[0];
+      latitude = temp[1];
+      marker.setLngLat([longitude, latitude]);
+      showPosition();
+      localStorage.setItem("latitude", latitude);
+      localStorage.setItem("longitude", longitude);
+    });
+  });
 
   //navigation-control
   map.addControl(new mapboxgl.NavigationControl());

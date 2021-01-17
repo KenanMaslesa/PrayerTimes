@@ -144,6 +144,8 @@ function GetPrayerTimes(obj) {
   $(".isha-caption").text(flag ? "jacija" : "isha");
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
+  $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
+  $('.autolocation').text(flag? "Lociraj me":"Locate me");
 
   removeActiveClass();
   $('.isha').addClass("active");
@@ -351,7 +353,5 @@ function myFunction(x) {
 var x = window.matchMedia("(max-width: 888px)")
 myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
-
-
 
 

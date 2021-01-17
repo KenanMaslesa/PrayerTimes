@@ -195,7 +195,8 @@ html,
 }
 
 #main #map .mapboxgl-ctrl-geocoder {
-  width: 90%;
+  width: 100%;
+  max-width: 150%;
 }
 
 @media (max-width: 425px) {
@@ -203,6 +204,20 @@ html,
     width: auto;
     min-width: 40%;
     max-width: 65%;
+  }
+}
+
+@media (max-width: 320px) {
+  #main #map .mapboxgl-ctrl-geocoder {
+    min-width: 50%;
+    max-width: 57%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 420px) {
+  #main #map .mapboxgl-ctrl-geocoder {
+    min-width: 65%;
+    max-width: 70%;
   }
 }
 
@@ -404,7 +419,6 @@ html,
   display: inline-block;
   height: 130px;
   background-color: white;
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
   padding: 30px;
@@ -490,8 +504,8 @@ html,
 }
 
 #main .prayer-times-wrapper .cards-wrapper .card.active {
-  -webkit-box-shadow: 0px 0px 12px 10px #88888878;
-          box-shadow: 0px 0px 12px 10px #88888878;
+  -webkit-box-shadow: 0px 0px 20px 7px #888888;
+          box-shadow: 0px 0px 20px 7px #888888;
   -webkit-transition-delay: 0.9s;
           transition-delay: 0.9s;
 }
