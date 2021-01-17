@@ -255,25 +255,31 @@ function upcomingPrayer() {
     $('.sunrise').find('.upcoming-prayer').text("upcoming");
     $('.sunrise').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').removeClass('day');
+    fajrNotify();
   }
   else if ($activeTime.hasClass('sunrise')) {
     $('.dhuhr').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').addClass('day');
+    sunriseNotify();
   }
   else if ($activeTime.hasClass('dhuhr')) {
     $('.asr').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').addClass('day');
+    dhuhrNotify();
   }
   else if ($activeTime.hasClass('asr')) {
     $('.maghrib').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').addClass('day');
+    asrNotify();
   }
   else if ($activeTime.hasClass('maghrib')) {
     $('.isha').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').removeClass('day');
+    maghribNotify();
   }
   else if ($activeTime.hasClass('isha')) {
     $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
+    ishaNotify();
   }
 
 }
