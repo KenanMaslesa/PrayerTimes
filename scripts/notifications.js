@@ -1,3 +1,21 @@
+function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+  else if (Notification.permission === "granted") {
+  }
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+      }
+    })
+  }
+}
+
+function activeTimeNotify(func) {
+  func();
+}
+
 
 function fajrNotify() {
   var notification = new Notification("SABAH NAMAZ", {
