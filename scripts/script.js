@@ -237,7 +237,7 @@ function setTimes() {
 
   upcomingPrayer();
 
-  if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active')) {
+  if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active') || $('.fajr').hasClass('active')) {
     $("#dark_theme").trigger('click');
     $('.local-time-wrapper').removeClass('day');
   }

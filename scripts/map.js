@@ -37,16 +37,7 @@ function setupMap(center) {
     localStorage.setItem("longitude", longitude);
   });
 
-  //input
-  /*map.addControl(
-    new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      zoom: 13,
-      placeholder: 'Try: Sarajevo',
-      mapboxgl: mapboxgl,
-      autocomplete: true,
-    })
-  );*/
+  // geocoder (input)
 
   var geocoder = new MapboxGeocoder({ // Initialize the geocoder
     accessToken: mapboxgl.accessToken, // Set the access token
@@ -58,17 +49,15 @@ function setupMap(center) {
   // Add the geocoder to the map
   map.addControl(geocoder);
 
-  // After the map style has loaded on the page,
-  // add a source layer and default styling for a single point
   map.on('load', function () {
 
     // Listen for the `result` event from the Geocoder
     // `result` event is triggered when a user makes a selection
     // Add a marker at the result's coordinates
     geocoder.on('result', function (ev) {
-      var temp = ev.result.center;
-      longitude = temp[0];
-      latitude = temp[1];
+      var coordinates = ev.result.center;
+      longitude = coordinate[0];
+      latitude = coordinates[1];
       marker.setLngLat([longitude, latitude]);
       showPosition();
       localStorage.setItem("latitude", latitude);
