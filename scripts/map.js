@@ -56,7 +56,7 @@ function setupMap(center) {
     // Add a marker at the result's coordinates
     geocoder.on('result', function (ev) {
       var coordinates = ev.result.center;
-      longitude = coordinate[0];
+      longitude = coordinates[0];
       latitude = coordinates[1];
       marker.setLngLat([longitude, latitude]);
       showPosition();
