@@ -2,6 +2,7 @@ var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
 let latitude = localStorage.getItem("latitude");
 let longitude = localStorage.getItem("longitude");
+let method = localStorage.getItem("method");
 let currentTime, urlGetPrayerTimes, urlGetCity;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag;
@@ -10,8 +11,9 @@ if (latitude == null || longitude == null)
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 else {
   setupMap([longitude, latitude]);
-  showPosition();
+  showPosition(method);
 }
+
 document.querySelector(".autolocation").addEventListener('click', function () {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 });
@@ -23,7 +25,7 @@ function successLocation(position) {
     localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
-  showPosition();
+  showPosition(method);
 
 }
 
@@ -45,7 +47,7 @@ function getRequest(funk, url) {
       latitude = 43.869308818408456, longitude = 18.417377317154944;
       localStorage.setItem("latitude", latitude);
       localStorage.setItem("longitude", longitude);
-      showPosition();
+      showPosition(method);
       window.location.reload();
     }
   }
@@ -55,7 +57,7 @@ function getRequest(funk, url) {
     latitude = 43.869308818408456, longitude = 18.417377317154944;
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
-    showPosition();
+    showPosition(method);
   };
 
   request.open("GET", url, true);
@@ -63,11 +65,18 @@ function getRequest(funk, url) {
 }
 
 
-function showPosition() {
+function showPosition(method) {
+
+  currentTime = new Date();
+  if (method != null) {
+    $('#locations option[value=' + method + ']').prop('selected', true);
+    urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + method;
+  }
+  else {
+    urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
+  }
 
   urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode?latitude=' + latitude + '&longitude=' + longitude + '&key=2a1b056b085a47bfbe75c8452a37109c';
-  currentTime = new Date();
-  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
 
@@ -309,9 +318,9 @@ var x = setInterval(function () {
   }
 }, 1000);
 
-function GetLocation(selected) {
+function GetMethod(selected) {
   var val = selected.value;
-  localStorage.setItem("location", val);
+  localStorage.setItem("method", val);
   currentTime = new Date();
   urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + val;
   getRequest(GetPrayerTimes, urlGetPrayerTimes);

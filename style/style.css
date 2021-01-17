@@ -265,6 +265,8 @@ html,
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   margin-top: 33px;
   border: 1px solid gray;
+  text-align: center;
+  text-align-last: center;
 }
 
 @media (max-width: 768px) {
