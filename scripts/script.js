@@ -353,3 +353,29 @@ function myFunction(x) {
 var x = window.matchMedia("(max-width: 888px)")
 myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
+
+
+function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+  else if (Notification.permission === "granted") {
+    fajrNotify()
+  }
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        Notification.permission = permission;
+        fajrNotify();
+      }
+    })
+  }
+}
+
+function fajrNotify() {
+  var notification = new Notification("SABAH NAMAZ", {
+    body: "Vjernicima je propisano da u određeno vrijeme namaz obavljaju.",
+    image: '/images/fajr.jpg'
+  });
+}
+fajrNotify();
