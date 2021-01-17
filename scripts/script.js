@@ -145,7 +145,7 @@ function GetPrayerTimes(obj) {
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
-  $('.autolocation').text(flag? "Lociraj me":"Locate me");
+  $('.autolocation').text(flag ? "Lociraj me" : "Locate me");
 
   removeActiveClass();
   $('.isha').addClass("active");
@@ -355,3 +355,28 @@ myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
 
 
+function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+  else if (Notification.permission === "granted") {
+    notify()
+  }
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        Notification.permission = permission;
+        notify();
+      }
+    })
+  }
+}
+function notify() {
+  var notification = new Notification("Ikindija namaz", {
+    body: "Vjernicima je propisano da u određeno vrijeme namaz obavljaju.",
+    icon: 'dhuhr.jpg'
+  });
+}
+setInterval(() => {
+  notifyMe();
+}, 1000);
