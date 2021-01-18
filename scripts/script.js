@@ -167,7 +167,7 @@ function GetPrayerTimes(obj) {
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
-  urlCalendar = `http://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
   getRequest(getCalendar, urlCalendar);
 }
 function formatTime(h) {
