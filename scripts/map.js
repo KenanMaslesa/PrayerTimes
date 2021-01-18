@@ -14,15 +14,19 @@ function setupMap(center) {
     $("#dark_theme").hide();
     $("#light_theme").show();
     $(".prayer-times-wrapper").css({ backgroundColor: 'black' });
+    $(".calendar").css({ backgroundColor: 'black' });
     $('.local-time-wrapper').removeClass('day');
+    $("#table").css({ backgroundColor: 'rgb(8, 8, 8)' });
   }
 
   function dayMap() {
     map.setStyle('mapbox://styles/mapbox/streets-v11');
     $("#dark_theme").show();
     $("#light_theme").hide();
-    $(".prayer-times-wrapper").css({ backgroundColor: '#0f1012' });
+    $(".prayer-times-wrapper").css({ backgroundColor: 'rgb(27 28 32)' });
+    $(".calendar").css({ backgroundColor: 'rgb(27 28 32)' });
     $('.local-time-wrapper').addClass('day');
+    $("#table").css({ backgroundColor: 'rgb(22, 22, 24)' });
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;

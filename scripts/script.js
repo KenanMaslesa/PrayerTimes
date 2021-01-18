@@ -3,9 +3,9 @@ let currentPosition;
 let latitude = localStorage.getItem("latitude");
 let longitude = localStorage.getItem("longitude");
 let method = localStorage.getItem("method");
-let currentTime, urlGetPrayerTimes, urlGetCity;
+let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
-  hijriDate, country, county, flag;
+  hijriDate, country, county, flag, month;
 
 if (latitude == null || longitude == null)
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
@@ -70,13 +70,14 @@ function showPosition(method) {
   currentTime = new Date();
   if (method != null) {
     $('#locations option[value=' + method + ']').prop('selected', true);
-    urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + method;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
   }
   else {
-    urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=2';
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2`;
   }
 
-  urlGetCity = 'https://api.bigdatacloud.net/data/reverse-geocode?latitude=' + latitude + '&longitude=' + longitude + '&key=2a1b056b085a47bfbe75c8452a37109c';
+  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=2a1b056b085a47bfbe75c8452a37109c`;
+
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
 
@@ -113,7 +114,7 @@ function GetPrayerTimes(obj) {
   minute = obj.data.timings.Fajr.substring(obj.data.timings.Fajr.indexOf(":") + 1);
   hijriDate = obj.data.date.hijri.day + " " + obj.data.date.hijri.month.en + ", " + obj.data.date.hijri.year;
   gregorianDate = obj.data.date.gregorian.day + " " + obj.data.date.gregorian.month.en + ", " + obj.data.date.gregorian.year;
-
+  month = obj.data.date.gregorian.month.en;
   timeZone = obj.data.meta.timezone;
   var zone = ['Europe/Sarajevo', 'Europe/Zagreb', 'Europe/Belgrade', 'Europe/Podgorica', 'Europe/Skopje'];
   var bosnianInstruction = 'Kliknite na bilo koje mjesto na karti za koje želite vidjeti vrijeme namaza';
@@ -136,12 +137,12 @@ function GetPrayerTimes(obj) {
   $(".maghrib-time").text(flag ? maghrib : formatAMPM(maghrib));
   $(".isha-time").text(flag ? isha : formatAMPM(isha));
 
-  $(".fajr-caption").text(flag ? "zora" : "fajr");
-  $(".sunrise-caption").text(flag ? "izlazak sunca" : "sunrise");
-  $(".dhuhr-caption").text(flag ? "podne" : "dhuhr");
-  $(".asr-caption").text(flag ? "ikindija" : "asr");
-  $(".maghrib-caption").text(flag ? "akšam" : "maghrib");
-  $(".isha-caption").text(flag ? "jacija" : "isha");
+  $(".fajr-caption").text(flag ? "Zora" : "Fajr");
+  $(".sunrise-caption").text(flag ? "Izlazak sunca" : "Sunrise");
+  $(".dhuhr-caption").text(flag ? "Podne" : "Dhuhr");
+  $(".asr-caption").text(flag ? "Ikindija" : "Asr");
+  $(".maghrib-caption").text(flag ? "Akšam" : "Maghrib");
+  $(".isha-caption").text(flag ? "Jacija" : "Isha");
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
@@ -166,7 +167,8 @@ function GetPrayerTimes(obj) {
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
-
+  urlCalendar = `http://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+  getRequest(getCalendar, urlCalendar);
 }
 function formatTime(h) {
   return h < 10 ? "0" + h : h;
@@ -321,10 +323,10 @@ var x = setInterval(function () {
 }, 1000);
 
 function GetMethod(selected) {
-  var val = selected.value;
-  localStorage.setItem("method", val);
+  method = selected.value;
+  localStorage.setItem("method", method);
   currentTime = new Date();
-  urlGetPrayerTimes = 'https://api.aladhan.com/v1/timings/' + currentTime.getTime() / 1000 + '?latitude=' + latitude + '&longitude=' + longitude + '&method=' + val;
+  urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
 }
 
@@ -354,4 +356,93 @@ var x = window.matchMedia("(max-width: 888px)")
 myFunction(x) // Call listener function at run time
 x.addListener(myFunction) // Attach listener function on state changes
 
+function getCalendar(obj) {
+  document.querySelector("#table tbody").innerHTML = "";
+  for (var i = 0; i < obj.data.length; i++) {
+    document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
+  }
+  $('.date-caption').text(flag ? "Datum" : "Date");
+  $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().css({ backgroundColor: '#3fb1ce' });
+  $('#table .calendar-date:contains("fri")').parent().css({ backgroundColor: 'rgb(13 11 37 / 44%)' });
+  $('#table .calendar-date:contains("pet")').parent().css({ backgroundColor: 'rgb(13 11 37 / 44%)' });
+  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} - ${county}` : ` Prayer times for ${month} - ${county}`);
+}
 
+function Rows(obj) {
+  return `<tr>
+      <td class="calendar-date">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
+      <td>${obj.timings.Fajr.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Sunrise.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Dhuhr.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Asr.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Maghrib.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Isha.replace("(CET)", "").replace("(MST)", "")}</td>
+  </tr>`;
+}
+
+function getBosnianDays(day) {
+  if (day == "Monday")
+    return "pon";
+  else if (day == "Tuesday")
+    return "uto";
+  else if (day == "Wednesday")
+    return "sri";
+  else if (day == "Thursday")
+    return "čet";
+  else if (day == "Friday")
+    return "pet";
+  else if (day == "Saturday")
+    return "sub";
+  else if (day == "Sunday")
+    return "ned";
+}
+function getEnglishDays(day) {
+  if (day == "Monday")
+    return "mon";
+  else if (day == "Tuesday")
+    return "tue";
+  else if (day == "Wednesday")
+    return "wed";
+  else if (day == "Thursday")
+    return "thu";
+  else if (day == "Friday")
+    return "fri";
+  else if (day == "Saturday")
+    return "sat";
+  else if (day == "Sunday")
+    return "sun";
+}
+
+function getBosnianMonths(month) {
+  if (month == "January")
+    return "januar";
+  else if (month == "February")
+    return "februar";
+  else if (month == "March")
+    return "mart";
+  else if (month == "April")
+    return "april";
+  else if (month == "May")
+    return "maj";
+  else if (month == "June")
+    return "juni";
+  else if (month == "July")
+    return "juli";
+  else if (month == "August")
+    return "august";
+  else if (month == "September")
+    return "septembar";
+  else if (month == "October")
+    return "oktobar";
+  else if (month == "November")
+    return "novembar";
+  else if (month == "December")
+    return "decembar";
+}
+
+$('.print').on('click', function () {
+  w = window.open();
+  w.document.write($('.calendar').html());
+  w.print();
+  w.close();
+})
