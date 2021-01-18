@@ -38,11 +38,11 @@ function successLocation(position) {
 
 function errorLocation() {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-  /*latitude = 43.869308818408456, longitude = 18.417377317154944;
+  latitude = 43.869308818408456, longitude = 18.417377317154944;
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   showPosition(method);
-  window.location.reload();*/
+  window.location.reload();
 }
 
 
