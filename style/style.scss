@@ -430,6 +430,10 @@ html,
     text-align: center;
     padding-bottom: 40px;
     font-size: 30px;
+    @media (max-width: 767px) {
+      font-size: 20px;
+      padding-top: 20px;
+    }
   }
   #table {
     width: 60%;

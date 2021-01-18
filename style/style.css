@@ -537,6 +537,13 @@ html,
   font-size: 30px;
 }
 
+@media (max-width: 767px) {
+  .calendar .calendar-caption {
+    font-size: 20px;
+    padding-top: 20px;
+  }
+}
+
 .calendar #table {
   width: 60%;
   margin-left: auto;
