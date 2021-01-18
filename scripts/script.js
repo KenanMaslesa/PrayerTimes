@@ -375,7 +375,7 @@ function Rows(obj) {
       <td>${obj.timings.Sunrise.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
       <td>${obj.timings.Dhuhr.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
       <td>${obj.timings.Asr.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
-      <td>${obj.timings.Maghrib.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Maghrib.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
       <td>${obj.timings.Isha.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
   </tr>`;
 }
