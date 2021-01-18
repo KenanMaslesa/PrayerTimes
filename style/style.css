@@ -308,7 +308,9 @@ html,
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-    top: -18px;
+    top: -15px;
+    height: 27px;
+    padding: 0px 22px;
   }
 }
 

@@ -249,7 +249,9 @@ html,
       @media (max-width: 768px) {
         left: 50%;
         transform: translate(-50%, -50%);
-        top: -18px;
+        top: -15px;
+        height: 27px;
+        padding: 0px 22px;
       }
 
       &:focus {
