@@ -371,12 +371,12 @@ function getCalendar(obj) {
 function Rows(obj) {
   return `<tr>
       <td class="calendar-date">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
-      <td>${obj.timings.Fajr.replace("(CET)", "").replace("(MST)", "")}</td>
-      <td>${obj.timings.Sunrise.replace("(CET)", "").replace("(MST)", "")}</td>
-      <td>${obj.timings.Dhuhr.replace("(CET)", "").replace("(MST)", "")}</td>
-      <td>${obj.timings.Asr.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Fajr.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
+      <td>${obj.timings.Sunrise.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
+      <td>${obj.timings.Dhuhr.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
+      <td>${obj.timings.Asr.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
       <td>${obj.timings.Maghrib.replace("(CET)", "").replace("(MST)", "")}</td>
-      <td>${obj.timings.Isha.replace("(CET)", "").replace("(MST)", "")}</td>
+      <td>${obj.timings.Isha.replace("(CET)", "").replace("(MST)", "").replace("(EST)", "")}</td>
   </tr>`;
 }
 
