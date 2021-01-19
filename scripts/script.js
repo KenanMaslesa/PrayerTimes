@@ -165,6 +165,7 @@ function GetPrayerTimes(obj) {
 
     }
   }, 1000);
+
   hours = fajr.substring(0, fajr.indexOf(":"));
   minutes = fajr.substring(fajr.indexOf(":") + 1);
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
@@ -349,18 +350,12 @@ function formatAMPM(time) {
   return strTime;
 }
 
-
-function myFunction(x) {
-  if (x.matches) { // If media query matches
-    $('#map').click(function () {
-      $('.instructions').hide();
-    });
-  }
-}
-
-var x = window.matchMedia("(max-width: 888px)")
-myFunction(x) // Call listener function at run time
-x.addListener(myFunction) // Attach listener function on state changes
+setTimeout(() => {
+  $('.instructions.mobile').fadeIn();
+  setTimeout(() => {
+    $('.instructions.mobile').fadeOut();
+  }, 5000);
+}, 1500);
 
 function getCalendar(obj) {
   document.querySelector("#table tbody").innerHTML = "";
