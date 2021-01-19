@@ -30,7 +30,7 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  alert("You will be transferred to Sarajevo, allow location for use all the options on this page")
+  alert("You will be transferred to Sarajevo, please allow your location for this site on site settings for use all the options on site")
   latitude = 43.869308818408456, longitude = 18.417377317154944;
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
