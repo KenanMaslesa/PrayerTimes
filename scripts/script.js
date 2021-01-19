@@ -297,8 +297,10 @@ function removeUpcomingPrayer() {
 
 var x = setInterval(function () {
 
-  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-    setTimes();
+  if (currentDateTimeMiliSeconds != null & countDownTimeMiliSeconds != null) {
+    if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+      setTimes();
+  }
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
   $('.localTime').text(flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes()));
