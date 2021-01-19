@@ -58,7 +58,7 @@ function getRequest(funk, url) {
   }
 
   request.onerror = function () {
-    alert("Error, please allow location");
+    alert("Error, please allow your location for this site on site settings");
     latitude = 43.869308818408456, longitude = 18.417377317154944;
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
@@ -358,7 +358,7 @@ setTimeout(() => {
   setTimeout(() => {
     $('.instructions.mobile').fadeOut();
   }, 5000);
-}, 1500);
+}, 3000);
 
 function getCalendar(obj) {
   document.querySelector("#table tbody").innerHTML = "";
