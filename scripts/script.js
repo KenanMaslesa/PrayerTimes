@@ -30,12 +30,12 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-  /*latitude = 43.869308818408456, longitude = 18.417377317154944;
+  alert("You will be transferred to Sarajevo, allow location for use all the options on this page")
+  latitude = 43.869308818408456, longitude = 18.417377317154944;
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   showPosition(method);
-  window.location.reload();*/
+  window.location.reload();
 }
 
 
