@@ -58,7 +58,7 @@ function getRequest(funk, url) {
   }
 
   request.onerror = function () {
-    alert("Error");
+    alert("Request error, please refresh the page");
     latitude = 43.869308818408456, longitude = 18.417377317154944;
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
