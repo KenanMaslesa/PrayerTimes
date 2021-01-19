@@ -1,10 +1,3 @@
-var firstLoad = localStorage.getItem("firstLoad");
-
-if (firstLoad == null) {
-  $('#myModal').css({ display: 'block' });
-  localStorage.setItem("firstLoad", false);
-}
-
 var positionFromStorage = localStorage.getItem("currentPosition");
 let currentPosition;
 let latitude = localStorage.getItem("latitude");
@@ -300,40 +293,39 @@ function removeUpcomingPrayer() {
   $('.maghrib').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
 }
-if (firstLoad != null) {
-  var x = setInterval(function () {
 
-    if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-      setTimes();
+var x = setInterval(function () {
 
-    currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
-    $('.localTime').text(flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes()));
-    $('.localTimeCaption').text(flag ? "Trenutno vrijeme " : "Current time ");
+  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+    setTimes();
 
-    var currentDateTimeMiliSeconds = currentDateTime.getTime();
-    var countDownTimeMiliSeconds = countDownTime.getTime();
+  currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
+  $('.localTime').text(flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes()));
+  $('.localTimeCaption').text(flag ? "Trenutno vrijeme " : "Current time ");
 
-    if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-      setTimes();
+  var currentDateTimeMiliSeconds = currentDateTime.getTime();
+  var countDownTimeMiliSeconds = countDownTime.getTime();
 
-    var distance = countDownTimeMiliSeconds - currentDateTimeMiliSeconds;
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+    setTimes();
 
-    if (hours == 0 && minutes <= 9) {
-      $('.countdown').addClass('danger');
-    }
-    else {
-      $('.countdown').removeClass('danger');
-    }
+  var distance = countDownTimeMiliSeconds - currentDateTimeMiliSeconds;
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if (distance > 0) {
-      $('.countdown').html(formatTime(hours) + ":"
-        + formatTime(minutes) + ":" + formatTime(seconds));
-    }
-  }, 1000);
-}
+  if (hours == 0 && minutes <= 9) {
+    $('.countdown').addClass('danger');
+  }
+  else {
+    $('.countdown').removeClass('danger');
+  }
+
+  if (distance > 0) {
+    $('.countdown').html(formatTime(hours) + ":"
+      + formatTime(minutes) + ":" + formatTime(seconds));
+  }
+}, 1000);
 
 
 function GetMethod(selected) {
@@ -460,14 +452,3 @@ $('.print').on('click', function () {
   w.print();
   w.close();
 })
-
-
-if (firstLoad == null) {
-  var modal = document.getElementById("myModal");
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-}
