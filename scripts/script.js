@@ -31,11 +31,11 @@ function successLocation(position) {
 
 function errorLocation() {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-  latitude = 43.869308818408456, longitude = 18.417377317154944;
+  /*latitude = 43.869308818408456, longitude = 18.417377317154944;
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   showPosition(method);
-  window.location.reload();
+  window.location.reload();*/
 }
 
 
@@ -58,7 +58,7 @@ function getRequest(funk, url) {
   }
 
   request.onerror = function () {
-    alert("Request error, please refresh the page");
+    alert("Error, please allow location");
     latitude = 43.869308818408456, longitude = 18.417377317154944;
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
@@ -297,37 +297,38 @@ function removeUpcomingPrayer() {
 
 var x = setInterval(function () {
 
-  if (currentDateTimeMiliSeconds != null & countDownTimeMiliSeconds != null) {
-    if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-      setTimes();
-  }
+  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+    setTimes();
 
   currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
   $('.localTime').text(flag ? currentDateTime.toTimeString().split(" ")[0].replace(/(.*)\D\d+/, '$1') : formatAMPM(currentDateTime.getHours() + ":" + currentDateTime.getMinutes()));
   $('.localTimeCaption').text(flag ? "Trenutno vrijeme " : "Current time ");
 
-  var currentDateTimeMiliSeconds = currentDateTime.getTime();
-  var countDownTimeMiliSeconds = countDownTime.getTime();
+  if (countDownTime != null) {
+    var currentDateTimeMiliSeconds = currentDateTime.getTime();
+    var countDownTimeMiliSeconds = countDownTime.getTime();
 
-  if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
-    setTimes();
+    if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
+      setTimes();
 
-  var distance = countDownTimeMiliSeconds - currentDateTimeMiliSeconds;
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var distance = countDownTimeMiliSeconds - currentDateTimeMiliSeconds;
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  if (hours == 0 && minutes <= 9) {
-    $('.countdown').addClass('danger');
+    if (hours == 0 && minutes <= 9) {
+      $('.countdown').addClass('danger');
+    }
+    else {
+      $('.countdown').removeClass('danger');
+    }
+
+    if (distance > 0) {
+      $('.countdown').html(formatTime(hours) + ":"
+        + formatTime(minutes) + ":" + formatTime(seconds));
+    }
   }
-  else {
-    $('.countdown').removeClass('danger');
-  }
 
-  if (distance > 0) {
-    $('.countdown').html(formatTime(hours) + ":"
-      + formatTime(minutes) + ":" + formatTime(seconds));
-  }
 }, 1000);
 
 
