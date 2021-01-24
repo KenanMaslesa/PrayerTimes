@@ -460,7 +460,7 @@ html,
         min-height: 0.01%;
         overflow-x: auto;
         background: #0e313fd4;
-        border-radius: 15px;
+        border: 1px solid #0f3d49;
 
         @media (max-width: 767px) {
           width: 100%;
@@ -469,9 +469,7 @@ html,
           overflow-y: hidden;
           border: 1px solid #106a77;
         }
-        thead{
-          background:#106a77c2;
-        }
+     
         tr,
         th {
           text-align: center;
@@ -484,7 +482,7 @@ html,
         }
         tr {
           &.active{
-            background: rgb(16, 106, 119) !important;
+            background: #106a77a3 !important;
           }
           &.friday{
             background: #0e586447;

@@ -577,7 +577,7 @@ html,
   min-height: 0.01%;
   overflow-x: auto;
   background: #0e313fd4;
-  border-radius: 15px;
+  border: 1px solid #0f3d49;
 }
 
 @media (max-width: 767px) {
@@ -588,10 +588,6 @@ html,
     overflow-y: hidden;
     border: 1px solid #106a77;
   }
-}
-
-#main .main-section .calendar #table thead {
-  background: #106a77c2;
 }
 
 #main .main-section .calendar #table tr,
@@ -609,7 +605,7 @@ html,
 }
 
 #main .main-section .calendar #table tr.active {
-  background: #106a77 !important;
+  background: #106a77a3 !important;
 }
 
 #main .main-section .calendar #table tr.friday {
