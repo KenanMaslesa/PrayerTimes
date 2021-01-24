@@ -443,11 +443,6 @@ html,
       padding: 50px;
       text-align: center;
 
-      .sui-monthyearpicker{
-        margin: 20px 0px;
-      text-align: center;
-
-      }
       @media (max-width: 767px) {
         padding: 2px;
       }
@@ -455,6 +450,8 @@ html,
       .calendar-caption {
         text-align: center;
         font-size: 30px;
+        margin-bottom: 30px;
+
         @media (max-width: 767px) {
           font-size: 20px;
           padding-top: 20px;

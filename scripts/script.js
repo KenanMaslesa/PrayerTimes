@@ -467,21 +467,6 @@ function getBosnianMonths(month) {
     return "decembar";
 }
 
-$("#datepicker").shieldMonthYearPicker({
-  events: {
-    change: changeDate,
-  }
-});
-
-function changeDate(event) {
-  var date = $("#datepicker").swidget().value();
-  month = date.toLocaleString('default', { month: 'long' });
-  year = date.getFullYear();
-  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
-  getRequest(getCalendar, urlCalendar);
-}
-
-
 function iOS() {
   return [
     'iPad Simulator',

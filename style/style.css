@@ -552,11 +552,6 @@ html,
   text-align: center;
 }
 
-#main .main-section .calendar .sui-monthyearpicker {
-  margin: 20px 0px;
-  text-align: center;
-}
-
 @media (max-width: 767px) {
   #main .main-section .calendar {
     padding: 2px;
@@ -566,6 +561,7 @@ html,
 #main .main-section .calendar .calendar-caption {
   text-align: center;
   font-size: 30px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 767px) {
