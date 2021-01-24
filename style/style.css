@@ -568,6 +568,7 @@ html,
   #main .main-section .calendar .calendar-caption {
     font-size: 20px;
     padding-top: 20px;
+    padding-bottom: 20px;
     width: 80%;
     margin: 0 auto;
   }
