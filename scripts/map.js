@@ -23,7 +23,7 @@ function setupMap(center) {
     $("#dark_theme").show();
     $("#light_theme").hide();
     $('.local-time-wrapper').addClass('day');
-    $("#table").css({ backgroundColor: 'rgb(22, 22, 24)' });
+    $("#table").css({ backgroundColor: '#0e313fd4' });
     $('.main-section').removeClass("dark");
   }
 
