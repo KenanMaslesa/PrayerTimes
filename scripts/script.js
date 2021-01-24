@@ -392,7 +392,7 @@ function getCalendar(obj) {
   $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
   $('#table .calendar-date:contains("pet")').parent().addClass("friday");
-  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} ${year} - ${county}` : ` Prayer times for ${month} ${year} - ${county}`);
+  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} - ${county}` : ` Prayer times for ${month} - ${county}`);
 }
 
 function Rows(obj) {
