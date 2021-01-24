@@ -13,20 +13,18 @@ function setupMap(center) {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
     $("#dark_theme").hide();
     $("#light_theme").show();
-    $(".prayer-times-wrapper").css({ backgroundColor: 'black' });
-    $(".calendar").css({ backgroundColor: 'black' });
     $('.local-time-wrapper').removeClass('day');
     $("#table").css({ backgroundColor: 'rgb(8, 8, 8)' });
+    $('.main-section').addClass("dark");
   }
 
   function dayMap() {
     map.setStyle('mapbox://styles/mapbox/streets-v11');
     $("#dark_theme").show();
     $("#light_theme").hide();
-    $(".prayer-times-wrapper").css({ backgroundColor: 'rgb(4, 4, 4)' });
-    $(".calendar").css({ backgroundColor: 'rgb(4, 4, 4)' });
     $('.local-time-wrapper').addClass('day');
     $("#table").css({ backgroundColor: 'rgb(22, 22, 24)' });
+    $('.main-section').removeClass("dark");
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;

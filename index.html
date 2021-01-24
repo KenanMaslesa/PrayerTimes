@@ -39,106 +39,108 @@
       </div>
       <div class="localTime"></div>
     </div>
-
-    <section class="prayer-times-wrapper">
-      <a href="calendar.html" class="btn btn-info"></a>
-      <div class="calculation-methods">
-        <select class="form-control" id="locations" onchange="GetMethod(this.options[this.selectedIndex])"
-          type="submit">
-          <option value="3">Muslim World League</option>
-          <option value="16">Islamska Zajednica (IZ)</option>
-          <option value="2">Islamic Society of North America (ISNA)</option>
-          <option value="4">Umm Al-Qura University, Makkah</option>
-          <option value="5">Egyptian General Authority of Survey</option>
-          <option value="1">University of Islamic Sciences, Karachi</option>
-          <option value="7">Institute of Geophysics, University of Tehran</option>
-          <option value="0">Shia Ithna-Ashari, Leva Institute, Qum</option>
-          <option value="8">Gulf Region</option>
-          <option value="9">Kuwait</option>
-          <option value="10">Qatar</option>
-          <option value="11">Majlis Ugama Islam Singapura, Singapore</option>
-          <option value="12">Union Organization Islamic de France</option>
-          <option value="13">Diyanet İşleri Başkanlığı, Turkey</option>
-          <option value="14">Spiritual Administration of Muslims of Russia</option>
-          <option value="15">Moonsighting Committee Worldwide</option>
-        </select>
-      </div>
-      <button class="autolocation">Autolocation</button>
-      <div class="location-wrapper">
-        <div class="country"></div>
-        <div class="city"></div>
-      </div>
-      <div class="date-wrapper">
-        <span class="gregorian-date">
-        </span>
-        <span>/</span>
-        <span class="hijri-date"></span>
-      </div>
-      <div class="countdown"></div>
-      <div class="local-time-wrapper">
-        <div class="localTimeCaption">
+    <section class="main-section">
+      <section class="prayer-times-wrapper">
+        <a href="calendar.html" class="btn btn-info"></a>
+        <div class="calculation-methods">
+          <select class="form-control" id="locations" onchange="GetMethod(this.options[this.selectedIndex])"
+            type="submit">
+            <option value="3">Muslim World League</option>
+            <option value="16">Islamska Zajednica (IZ)</option>
+            <option value="2">Islamic Society of North America (ISNA)</option>
+            <option value="4">Umm Al-Qura University, Makkah</option>
+            <option value="5">Egyptian General Authority of Survey</option>
+            <option value="1">University of Islamic Sciences, Karachi</option>
+            <option value="7">Institute of Geophysics, University of Tehran</option>
+            <option value="0">Shia Ithna-Ashari, Leva Institute, Qum</option>
+            <option value="8">Gulf Region</option>
+            <option value="9">Kuwait</option>
+            <option value="10">Qatar</option>
+            <option value="11">Majlis Ugama Islam Singapura, Singapore</option>
+            <option value="12">Union Organization Islamic de France</option>
+            <option value="13">Diyanet İşleri Başkanlığı, Turkey</option>
+            <option value="14">Spiritual Administration of Muslims of Russia</option>
+            <option value="15">Moonsighting Committee Worldwide</option>
+          </select>
         </div>
-        <div class="localTime"></div>
-      </div>
-
-      <div class="cards-wrapper">
-        <div class="card fajr">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name fajr-caption">Zora</div>
-          <div class="prayer-time fajr-time">--:--</div>
+        <button class="autolocation">Autolocation</button>
+        <div class="location-wrapper">
+          <div class="country"></div>
+          <div class="city"></div>
+        </div>
+        <div class="date-wrapper">
+          <span class="gregorian-date">
+          </span>
+          <span>/</span>
+          <span class="hijri-date"></span>
+        </div>
+        <div class="countdown"></div>
+        <div class="local-time-wrapper">
+          <div class="localTimeCaption">
+          </div>
+          <div class="localTime"></div>
         </div>
 
-        <div class="card sunrise">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name sunrise-caption">Izlazak sunca</div>
-          <div class="prayer-time sunrise-time">--:--</div>
-        </div>
+        <div class="cards-wrapper">
+          <div class="card fajr">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name fajr-caption">Zora</div>
+            <div class="prayer-time fajr-time">--:--</div>
+          </div>
 
-        <div class="card dhuhr">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name dhuhr-caption">Podne</div>
-          <div class="prayer-time dhuhr-time">--:--</div>
-        </div>
+          <div class="card sunrise">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name sunrise-caption">Izlazak sunca</div>
+            <div class="prayer-time sunrise-time">--:--</div>
+          </div>
 
-        <div class="card asr">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name asr-caption">Ikindija</div>
-          <div class="prayer-time asr-time">--:--</div>
-        </div>
+          <div class="card dhuhr">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name dhuhr-caption">Podne</div>
+            <div class="prayer-time dhuhr-time">--:--</div>
+          </div>
 
-        <div class="card maghrib">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name maghrib-caption">Akšam</div>
-          <div class="prayer-time maghrib-time">-:--</div>
-        </div>
+          <div class="card asr">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name asr-caption">Ikindija</div>
+            <div class="prayer-time asr-time">--:--</div>
+          </div>
 
-        <div class="card isha">
-          <span class="upcoming-prayer">Upcoming prayer</span>
-          <div class="prayer-name isha-caption">Jacija</div>
-          <div class="prayer-time isha-time">--:--</div>
-        </div>
+          <div class="card maghrib">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name maghrib-caption">Akšam</div>
+            <div class="prayer-time maghrib-time">-:--</div>
+          </div>
 
-      </div>
+          <div class="card isha">
+            <span class="upcoming-prayer">Upcoming prayer</span>
+            <div class="prayer-name isha-caption">Jacija</div>
+            <div class="prayer-time isha-time">--:--</div>
+          </div>
+
+        </div>
+      </section>
+      <section class="calendar">
+        <div class="calendar-caption"></div>
+        <table id="table" class="table table-dark table-responsive">
+          <thead>
+            <tr>
+              <th class="date-caption">Datum</th>
+              <th class="fajr-caption">Zora</th>
+              <th class="sunrise-caption">Izlazak sunca</th>
+              <th class="dhuhr-caption">Podne</th>
+              <th class="asr-caption">Ikindija</th>
+              <th class="maghrib-caption">Aksam</th>
+              <th class="isha-caption">Jacija</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </section>
     </section>
-    <section class="calendar">
-      <div class="calendar-caption"></div>
-      <table id="table" class="table table-dark table-responsive">
-        <thead>
-          <tr>
-            <th class="date-caption">Datum</th>
-            <th class="fajr-caption">Zora</th>
-            <th class="sunrise-caption">Izlazak sunca</th>
-            <th class="dhuhr-caption">Podne</th>
-            <th class="asr-caption">Ikindija</th>
-            <th class="maghrib-caption">Aksam</th>
-            <th class="isha-caption">Jacija</th>
-          </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-      </table>
-    </section>
   </main>
 
 

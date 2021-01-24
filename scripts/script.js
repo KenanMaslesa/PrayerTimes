@@ -381,9 +381,9 @@ function getCalendar(obj) {
     document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
   }
   $('.date-caption').text(flag ? "Datum" : "Date");
-  $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().css({ backgroundColor: '#3fb1ce' });
-  $('#table .calendar-date:contains("fri")').parent().css({ backgroundColor: 'rgb(13 11 37 / 44%)' });
-  $('#table .calendar-date:contains("pet")').parent().css({ backgroundColor: 'rgb(13 11 37 / 44%)' });
+  $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
+  $('#table .calendar-date:contains("fri")').parent().addClass("friday");
+  $('#table .calendar-date:contains("pet")').parent().addClass("friday");
   $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} - ${county}` : ` Prayer times for ${month} - ${county}`);
 }
 

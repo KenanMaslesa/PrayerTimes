@@ -63,7 +63,7 @@ html,
     @media (max-width: 888px) {
       display: none;
     }
-    &.mobile{
+    &.mobile {
       display: none;
     }
 
@@ -80,7 +80,7 @@ html,
   }
   .local-time-wrapper {
     position: absolute;
-    top: 44.9%;
+    top: 45%;
     right: 0%;
     min-width: 140px;
     max-width: 140px;
@@ -183,306 +183,320 @@ html,
     }
   }
 
-  .prayer-times-wrapper {
-    height: 55%;
-    width: 100%;
-    background-color: rgb(4, 4, 4);
-    padding: 40px 40px;
-    display: table;
-    padding-bottom: 10px;
+  .main-section {
+    background-image: linear-gradient(#42a76638), url(../images/6.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 
-    @media (max-width: 768px) {
-      height: auto;
-      padding: 0px;
-      position: relative;
+    &.dark{
+    background-image: linear-gradient(#060606), url(../images/6.png);
     }
 
-    .calculation-methods {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
+    .prayer-times-wrapper {
+      height: 55%;
+      width: 100%;
+      padding: 40px 40px;
+      display: table;
+      padding-bottom: 10px;
 
       @media (max-width: 768px) {
-        left: 50%;
-        transform: translate(-50%, -50%);
-        top: 50px;
+        height: auto;
+        padding: 0px;
+        position: relative;
       }
 
-      .form-control {
-        width: auto;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #fff;
-        background-color: rgb(10, 11, 11);
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        margin-top: 33px;
-        border: 1px solid gray;
+      .calculation-methods {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        text-align-last: center;
 
         @media (max-width: 768px) {
-          width: 250px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          top: 50px;
         }
+
+        .form-control {
+          width: auto;
+          height: 34px;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.42857143;
+          color: #fff;
+          background-color: rgb(10, 11, 11);
+          background-image: none;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          margin-top: 33px;
+          border: 1px solid gray;
+          text-align: center;
+          text-align-last: center;
+
+          @media (max-width: 768px) {
+            width: 250px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .calc-meth-text {
+          color: white;
+          padding-bottom: 10px;
+        }
+      }
+      .autolocation {
+        position: absolute;
+        top: 50px;
+        right: 68px;
+        background: white;
+        height: 36px;
+        padding: 6px 35px;
+        border: 0;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        border-radius: 5px;
+
+        @media (max-width: 768px) {
+          left: 50%;
+          transform: translate(-50%, -50%);
+          top: -15px;
+          height: 27px;
+          padding: 0px 22px;
+        }
+
         &:focus {
           outline: none;
         }
       }
-
-      .calc-meth-text {
-        color: white;
-        padding-bottom: 10px;
-      }
-    }
-    .autolocation {
-      position: absolute;
-      top: 50px;
-      right: 68px;
-      background: white;
-      height: 36px;
-      padding: 6px 35px;
-      border: 0;
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-      border-radius: 5px;
-
-      @media (max-width: 768px) {
-        left: 50%;
-        transform: translate(-50%, -50%);
-        top: -15px;
-        height: 27px;
-        padding: 0px 22px;
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-    .location-wrapper {
-      text-align: center;
-
-      @media (max-width: 768px) {
-        padding-top: 80px;
-      }
-
-      .country {
-        color: rosybrown;
-        font-size: 48px;
-        padding: 15px 0px 10px;
+      .location-wrapper {
+        text-align: center;
 
         @media (max-width: 768px) {
-          font-size: 27px;
+          padding-top: 80px;
+        }
+
+        .country {
+          color: rosybrown;
+          font-size: 48px;
+          padding: 15px 0px 10px;
+
+          @media (max-width: 768px) {
+            font-size: 27px;
+          }
+        }
+        .city {
+          color: floralwhite;
+          font-size: 35px;
+          margin-bottom: 15px;
+
+          @media (max-width: 768px) {
+            font-size: 24px;
+          }
         }
       }
-      .city {
+
+      .date-wrapper {
+        text-align: center;
+        color: navajowhite;
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+
+      .countdown {
         color: floralwhite;
-        font-size: 35px;
-        margin-bottom: 15px;
+        text-align: center;
+        font-size: 70px;
+        padding: 20px;
 
         @media (max-width: 768px) {
-          font-size: 24px;
+          font-size: 57px;
+        }
+
+        &.danger {
+          color: red;
         }
       }
-    }
 
-    .date-wrapper {
-      text-align: center;
-      color: navajowhite;
+      .cards-wrapper {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
 
-      @media (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
-
-    .countdown {
-      color: floralwhite;
-      text-align: center;
-      font-size: 70px;
-      padding: 20px;
-
-      @media (max-width: 768px) {
-        font-size: 57px;
-      }
-
-      &.danger {
-        color: red;
-      }
-    }
-
-    .cards-wrapper {
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-
-      @media (max-width: 768px) {
-        flex-direction: column;
-      }
-      @media (min-width: 2260px) {
-        width: 70%;
-      }
-
-      .card:last-child {
         @media (max-width: 768px) {
-          margin-bottom: 40px;
+          flex-direction: column;
+        }
+        @media (min-width: 2260px) {
+          width: 70%;
+        }
+
+        .card:last-child {
+          @media (max-width: 768px) {
+            margin-bottom: 40px;
+          }
+        }
+
+        .card {
+          width: 15%;
+          display: inline-block;
+          height: 130px;
+          background-color: white;
+          margin: 10px;
+          border-radius: 10px;
+          padding: 30px;
+          background-size: cover;
+          position: relative;
+          transition: all 0.4s;
+          cursor: pointer;
+          padding-top: 12px;
+          border: 1px solid #00000059;
+
+          .upcoming-prayer {
+            color: #f99494;
+            text-transform: uppercase;
+            visibility: hidden;
+            display: block;
+            padding-bottom: 3px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            transition-delay: 1.5s;
+          }
+
+          @media (min-width: 768px) and (max-width: 1024px) {
+            width: 45%;
+          }
+          @media (min-width: 1024px) and (max-width: 1860px) {
+            width: 30%;
+          }
+
+          &:hover {
+            transform: translateY(-10px);
+          }
+
+          &.fajr {
+            background-image: (linear-gradient(#1603108f), url(../images/fajr.jpg));
+            background-position: center;
+          }
+          &.sunrise {
+            background-image: (linear-gradient(#1603108f), url(../images/sunrise.jfif));
+            background-position: center;
+          }
+          &.dhuhr {
+            background-image: (linear-gradient(#1603108f), url(../images/dhuhr.jpg));
+            background-position: center;
+          }
+          &.asr {
+            background-image: (linear-gradient(#1603108f), url(../images/asr.jpg));
+            background-position: center;
+          }
+          &.maghrib {
+            background-image: (linear-gradient(#1603108f), url(../images/maghrib.jfif));
+            background-position: center;
+          }
+          &.isha {
+            background-image: (linear-gradient(#1603108f), url(../images/isha.jfif));
+            background-position: center;
+          }
+
+          @media (max-width: 767px) {
+            width: 100%;
+            margin: 10px 0px;
+          }
+          &.active {
+            box-shadow: 0px 2px 20px 6px #dcd3d394;
+            transition-delay: 0.9s;
+          }
+
+          .prayer-name,
+          .prayer-time {
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            padding: 5px;
+            text-transform: uppercase;
+            //background-color: rgba(0,0,0,0.3);
+          }
+
+          .prayer-name {
+            font-size: 16px;
+          }
+          .prayer-time {
+            font-size: 30px;
+          }
         }
       }
+    }
 
-      .card {
-        width: 15%;
-        display: inline-block;
-        height: 130px;
-        background-color: white;
-        margin: 10px;
-        border-radius: 10px;
-        padding: 30px;
-        background-size: cover;
-        position: relative;
-        transition: all 0.4s;
-        cursor: pointer;
-        padding-top: 12px;
-        border: 1px solid #00000059;
+    .calendar {
+      color: #fff !important;
+      padding: 50px;
+      @media (max-width: 767px) {
+        padding: 2px;
+      }
 
-        .upcoming-prayer {
-          color: #f99494;
-          text-transform: uppercase;
-          visibility: hidden;
-          display: block;
-          padding-bottom: 3px;
-          font-weight: bold;
-          text-align: center;
-          font-size: 15px;
-          transition-delay: 1.5s;
+      .calendar-caption {
+        text-align: center;
+        padding-bottom: 40px;
+        font-size: 30px;
+        @media (max-width: 767px) {
+          font-size: 20px;
+          padding-top: 20px;
+          width: 80%;
+          margin: 0 auto;
         }
-
-        @media (min-width: 768px) and (max-width: 1024px) {
-          width: 45%;
-        }
-        @media (min-width: 1024px) and (max-width: 1860px) {
-          width: 30%;
-        }
-
-        &:hover {
-          transform: translateY(-10px);
-        }
-
-        &.fajr {
-          background-image: (linear-gradient(#1603108f), url(../images/fajr.jpg));
-          background-position: center;
-        }
-        &.sunrise {
-          background-image: (linear-gradient(#1603108f), url(../images/sunrise.jfif));
-          background-position: center;
-        }
-        &.dhuhr {
-          background-image: (linear-gradient(#1603108f), url(../images/dhuhr.jpg));
-          background-position: center;
-        }
-        &.asr {
-          background-image: (linear-gradient(#1603108f), url(../images/asr.jpg));
-          background-position: center;
-        }
-        &.maghrib {
-          background-image: (linear-gradient(#1603108f), url(../images/maghrib.jfif));
-          background-position: center;
-        }
-        &.isha {
-          background-image: (linear-gradient(#1603108f), url(../images/isha.jfif));
-          background-position: center;
-        }
+      }
+      #table {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        min-height: 0.01%;
+        overflow-x: auto;
+        background: rgb(22, 22, 24);
+        border-radius: 15px;
 
         @media (max-width: 767px) {
           width: 100%;
-          margin: 10px 0px;
+          margin-bottom: 15px;
+          overflow-y: hidden;
+          border: 1px solid #2f2b2b;
         }
-        &.active {
-          box-shadow: 0px 2px 20px 6px #dcd3d394;
-          transition-delay: 0.9s;
-        }
-
-        .prayer-name,
-        .prayer-time {
+        tr,
+        th {
           text-align: center;
-          color: white;
-          font-weight: 700;
-          padding: 5px;
-          text-transform: uppercase;
-          //background-color: rgba(0,0,0,0.3);
+          padding: 15px;
+
+          @media (max-width: 767px) {
+            padding: 2px;
+            font-size: 10px;
+          }
+        }
+        tr {
+          &.active{
+            background: rgb(16, 106, 119) !important;
+          }
+          &.friday{
+            background: #0f35434a;
+          }
+          td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #2f2b2b;
+          }
         }
 
-        .prayer-name {
-          font-size: 16px;
-        }
-        .prayer-time {
-          font-size: 30px;
+        .calendar-date {
+          text-align: center;
         }
       }
-    }
-  }
-}
-
-.calendar {
-  color: #fff !important;
-  background-color: black;
-  padding: 50px;
-  @media (max-width: 767px) {
-    padding: 2px;
-  }
-
-  .calendar-caption {
-    text-align: center;
-    padding-bottom: 40px;
-    font-size: 30px;
-    @media (max-width: 767px) {
-      font-size: 20px;
-      padding-top: 20px;
-      width: 80%;
-      margin: 0 auto;
-    }
-  }
-  #table {
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-    min-height: 0.01%;
-    overflow-x: auto;
-    background: rgb(22, 22, 24);
-    border-radius: 15px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      margin-bottom: 15px;
-      overflow-y: hidden;
-      border: 1px solid #2f2b2b;
-    }
-    tr,
-    th {
-      text-align: center;
-      padding: 15px;
-
-      @media (max-width: 767px) {
-        padding: 2px;
-        font-size: 10px;
-      }
-    }
-    tr {
-      td {
-        padding: 8px;
-        line-height: 1.42857143;
-        vertical-align: top;
-        border-top: 1px solid #2f2b2b;
-      }
-    }
-
-    .calendar-date {
-      text-align: center;
     }
   }
 }
