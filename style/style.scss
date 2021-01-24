@@ -464,9 +464,10 @@ html,
 
         @media (max-width: 767px) {
           width: 100%;
+          border-radius: 0;
           margin-bottom: 15px;
           overflow-y: hidden;
-          border: 1px solid #0a1f22;
+          border: 1px solid #106a77;
         }
         thead{
           background:#106a77c2;
