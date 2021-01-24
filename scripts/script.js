@@ -75,7 +75,12 @@ function showPosition(method) {
   currentTime = new Date();
   if (method != null) {
     $('#locations option[value=' + method + ']').prop('selected', true);
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+    if (method == 16) {
+      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3`;
+    }
+    else {
+      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+    }
   }
   else {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3`;
@@ -173,7 +178,12 @@ function GetPrayerTimes(obj) {
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
-  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+  if (method == 16) {
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+  }
+  else {
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+  }
   getRequest(getCalendar, urlCalendar);
 }
 function formatTime(h) {
@@ -336,7 +346,12 @@ function GetMethod(selected) {
   method = selected.value;
   localStorage.setItem("method", method);
   currentTime = new Date();
-  urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+  if (method == 16) {
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3`;
+  }
+  else {
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+  }
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
 }
 
