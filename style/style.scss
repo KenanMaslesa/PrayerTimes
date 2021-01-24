@@ -466,7 +466,10 @@ html,
           width: 100%;
           margin-bottom: 15px;
           overflow-y: hidden;
-          border: 1px solid #2f2b2b;
+          border: 1px solid #0a1f22;
+        }
+        thead{
+          background:#106a77c2;
         }
         tr,
         th {
@@ -474,7 +477,7 @@ html,
           padding: 15px;
 
           @media (max-width: 767px) {
-            padding: 2px;
+            padding: 12px 0px;
             font-size: 10px;
           }
         }
@@ -487,9 +490,9 @@ html,
           }
           td {
             padding: 8px;
-            line-height: 1.42857143;
+            line-height: 1.5;
             vertical-align: top;
-            border-top: 1px solid #2f2b2b;
+            border-top: 1px solid #0a1f22;
           }
         }
 

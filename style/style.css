@@ -585,8 +585,12 @@ html,
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
-    border: 1px solid #2f2b2b;
+    border: 1px solid #0a1f22;
   }
+}
+
+#main .main-section .calendar #table thead {
+  background: #106a77c2;
 }
 
 #main .main-section .calendar #table tr,
@@ -598,7 +602,7 @@ html,
 @media (max-width: 767px) {
   #main .main-section .calendar #table tr,
   #main .main-section .calendar #table th {
-    padding: 2px;
+    padding: 12px 0px;
     font-size: 10px;
   }
 }
@@ -613,9 +617,9 @@ html,
 
 #main .main-section .calendar #table tr td {
   padding: 8px;
-  line-height: 1.42857143;
+  line-height: 1.5;
   vertical-align: top;
-  border-top: 1px solid #2f2b2b;
+  border-top: 1px solid #0a1f22;
 }
 
 #main .main-section .calendar #table .calendar-date {
