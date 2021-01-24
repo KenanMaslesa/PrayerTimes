@@ -5,7 +5,7 @@ let longitude = localStorage.getItem("longitude");
 let method = localStorage.getItem("method");
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
-  hijriDate, country, county, flag, month;
+  hijriDate, country, county, flag, month, year;
 
 if (latitude == null || longitude == null)
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
@@ -126,6 +126,8 @@ function GetPrayerTimes(obj) {
   gregorianDate = obj.data.date.gregorian.day + " " + obj.data.date.gregorian.month.en + ", " + obj.data.date.gregorian.year;
   month = obj.data.date.gregorian.month.en;
   timeZone = obj.data.meta.timezone;
+  year = new Date().getFullYear();
+
   var zone = ['Europe/Sarajevo', 'Europe/Zagreb', 'Europe/Belgrade', 'Europe/Podgorica', 'Europe/Skopje'];
   var bosnianInstruction = 'Kliknite na bilo koje mjesto na karti za koje želite vidjeti vrijeme namaza';
   var englishInstruction = 'Click anywhere on the map where you want to see prayer times';
@@ -369,10 +371,14 @@ function formatAMPM(time) {
 }
 
 setTimeout(() => {
-  $('.instructions.mobile').fadeIn();
-  setTimeout(() => {
-    $('.instructions.mobile').fadeOut();
-  }, 5000);
+  var isMobile = $('.instructions.mobile').css('display') == 'block';
+  if (isMobile) {
+    $('.instructions.mobile').fadeIn();
+    setTimeout(() => {
+      $('.instructions.mobile').fadeOut();
+    }, 5000);
+  }
+
 }, 3000);
 
 function getCalendar(obj) {
@@ -380,11 +386,13 @@ function getCalendar(obj) {
   for (var i = 0; i < obj.data.length; i++) {
     document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
   }
+
+  $('#datepicker').attr('value','December 2020');
   $('.date-caption').text(flag ? "Datum" : "Date");
   $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
   $('#table .calendar-date:contains("pet")').parent().addClass("friday");
-  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} - ${county}` : ` Prayer times for ${month} - ${county}`);
+  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} ${year} - ${county}` : ` Prayer times for ${month} ${year} - ${county}`);
 }
 
 function Rows(obj) {
@@ -459,12 +467,19 @@ function getBosnianMonths(month) {
     return "decembar";
 }
 
-$('.print').on('click', function () {
-  w = window.open();
-  w.document.write($('.calendar').html());
-  w.print();
-  w.close();
-})
+$("#datepicker").shieldMonthYearPicker({
+  events: {
+    change: changeDate,
+  }
+});
+
+function changeDate(event) {
+  var date = $("#datepicker").swidget().value();
+  month = date.toLocaleString('default', { month: 'long' });
+  year = date.getFullYear();
+  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+  getRequest(getCalendar, urlCalendar);
+}
 
 
 function iOS() {

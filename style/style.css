@@ -61,7 +61,7 @@ html,
   margin: 30px auto;
   max-width: 650px;
   width: 100%;
-  background-color: rgba(34, 34, 34, 0.7);
+  background-color: rgba(34, 34, 34, 0.55);
   border-radius: 20px;
   color: #fff;
   font-size: 19px;
@@ -235,8 +235,8 @@ html,
 }
 
 #main .main-section.dark {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#060606)), url(../images/6.png);
-  background-image: linear-gradient(#060606), url(../images/6.png);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0606068c)), url(../images/6.png);
+  background-image: linear-gradient(#0606068c), url(../images/6.png);
 }
 
 #main .main-section .prayer-times-wrapper {
@@ -280,7 +280,7 @@ html,
   font-size: 14px;
   line-height: 1.42857143;
   color: #fff;
-  background-color: #0a0b0b;
+  background-color: #030c1d;
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -294,6 +294,10 @@ html,
   border: 1px solid gray;
   text-align: center;
   text-align-last: center;
+}
+
+#main .main-section .prayer-times-wrapper .calculation-methods .form-control.light {
+  background-color: #104755;
 }
 
 @media (max-width: 768px) {
@@ -545,6 +549,12 @@ html,
 #main .main-section .calendar {
   color: #fff !important;
   padding: 50px;
+  text-align: center;
+}
+
+#main .main-section .calendar .sui-monthyearpicker {
+  margin: 20px 0px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -555,7 +565,6 @@ html,
 
 #main .main-section .calendar .calendar-caption {
   text-align: center;
-  padding-bottom: 40px;
   font-size: 30px;
 }
 
@@ -586,7 +595,6 @@ html,
     border-radius: 0;
     margin-bottom: 15px;
     overflow-y: hidden;
-    border: 1px solid #106a77;
   }
 }
 

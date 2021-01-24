@@ -6,6 +6,7 @@ body,
   font-family: "Montserrat", sans-serif;
   user-select: none;
 }
+
 body,
 html,
 #main {
@@ -50,7 +51,7 @@ html,
     margin: 30px auto;
     max-width: 650px;
     width: 100%;
-    background-color: rgba(34, 34, 34, 0.7);
+    background-color: rgba(34, 34, 34, 0.55);
     border-radius: 20px;
     color: #fff;
     font-size: 19px;
@@ -189,7 +190,7 @@ html,
     background-repeat: no-repeat;
 
     &.dark{
-    background-image: linear-gradient(#060606), url(../images/6.png);
+    background-image: linear-gradient(#0606068c), url(../images/6.png);
     }
 
     .prayer-times-wrapper {
@@ -225,7 +226,7 @@ html,
           font-size: 14px;
           line-height: 1.42857143;
           color: #fff;
-          background-color: rgb(10, 11, 11);
+          background-color: #030c1d;
           background-image: none;
           border: 1px solid #ccc;
           border-radius: 4px;
@@ -235,6 +236,10 @@ html,
           border: 1px solid gray;
           text-align: center;
           text-align-last: center;
+
+          &.light{
+            background-color: #104755;
+          }
 
           @media (max-width: 768px) {
             width: 250px;
@@ -436,13 +441,19 @@ html,
     .calendar {
       color: #fff !important;
       padding: 50px;
+      text-align: center;
+
+      .sui-monthyearpicker{
+        margin: 20px 0px;
+      text-align: center;
+
+      }
       @media (max-width: 767px) {
         padding: 2px;
       }
 
       .calendar-caption {
         text-align: center;
-        padding-bottom: 40px;
         font-size: 30px;
         @media (max-width: 767px) {
           font-size: 20px;
@@ -467,7 +478,6 @@ html,
           border-radius: 0;
           margin-bottom: 15px;
           overflow-y: hidden;
-          border: 1px solid #106a77;
         }
      
         tr,

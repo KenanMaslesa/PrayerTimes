@@ -14,8 +14,10 @@ function setupMap(center) {
     $("#dark_theme").hide();
     $("#light_theme").show();
     $('.local-time-wrapper').removeClass('day');
-    $("#table").css({ backgroundColor: 'rgb(8, 8, 8)' });
+    $("#table").css({ backgroundColor: '#040d1d' });
     $('.main-section').addClass("dark");
+    $('.form-control').removeClass("light");
+
   }
 
   function dayMap() {
@@ -25,6 +27,7 @@ function setupMap(center) {
     $('.local-time-wrapper').addClass('day');
     $("#table").css({ backgroundColor: '#0e313fd4' });
     $('.main-section').removeClass("dark");
+    $('.form-control').addClass("light");
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
