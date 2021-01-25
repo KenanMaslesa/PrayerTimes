@@ -1,0 +1,20 @@
+{
+  "name": "Prayer Times",
+  "short_name": "Prayer Times",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Prayer times for all world.",
+  "icons": [
+    {
+      "src": "images/6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "images/6.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
