@@ -485,11 +485,3 @@ window.onload = function () {
     $('.mapboxgl-ctrl-geocoder').hide();
   };
 }
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js").then(registration => {
-    console.log("Register");
-  }).catch(error => {
-    console.log("Service Worker Registration Failed");
-  })
-}
