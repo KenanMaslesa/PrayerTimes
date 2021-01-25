@@ -387,7 +387,7 @@ function getCalendar(obj) {
     document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
   }
 
-  $('#datepicker').attr('value','December 2020');
+  $('#datepicker').attr('value', 'December 2020');
   $('.date-caption').text(flag ? "Datum" : "Date");
   $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
@@ -484,4 +484,12 @@ window.onload = function () {
   if (iOS()) {
     $('.mapboxgl-ctrl-geocoder').hide();
   };
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").then(registration => {
+    console.log("Register");
+  }).catch(error => {
+    console.log("Service Worker Registration Failed");
+  })
 }
