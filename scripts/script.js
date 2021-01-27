@@ -485,3 +485,13 @@ window.onload = function () {
     $('.mapboxgl-ctrl-geocoder').hide();
   };
 }
+
+
+$('.city').click(function () {
+  $('#map').slideToggle();
+  $('.prayer-times-wrapper').css({ 'z-index': '9999' });
+  $('.autolocation').hide();
+  $('.instructions').hide();
+  //$('.local-time-wrapper').css({'top':'0'});
+  $('#locations').css({ 'margin-top': '80px' });
+})
