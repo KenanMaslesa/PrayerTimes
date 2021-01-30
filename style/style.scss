@@ -422,15 +422,15 @@ html,
             background-position: center;
           }
           &.sunrise {
-            background-image: (linear-gradient(#1603108f), url(../images/sunrise.jpg));
+            background-image: (linear-gradient(#1603104f), url(../images/sunrise.jpg));
             background-position: center;
           }
           &.dhuhr {
-            background-image: (linear-gradient(#1603108f), url(../images/dhuhr2.jpg));
+            background-image: (linear-gradient(#16031036), url(../images/dhuhr2.jpg));
             background-position: center;
           }
           &.asr {
-            background-image: (linear-gradient(#1603108f), url(../images/asr.jpg));
+            background-image: (linear-gradient(#16031070), url(../images/asr.jpg));
             background-position: center;
           }
           &.maghrib {
@@ -480,19 +480,33 @@ html,
         padding: 2px;
       }
 
-      .calendar-caption {
-        text-align: center;
-        font-size: 30px;
+      .calendar-arrows{
         margin-bottom: 30px;
+        i{
+          font-size: 30px;
+          padding-left: 10px;
+          padding-right: 10px;
+          cursor: pointer;
 
-        @media (max-width: 767px) {
-          font-size: 20px;
-          padding-top: 20px;
-          padding-bottom: 20px;
-          width: 80%;
-          margin: 0 auto;
+          &:active{
+            color: #0a5888;
+          }
+        }
+        .calendar-caption {
+          text-align: center;
+          font-size: 30px;
+          display: inline;
+  
+          @media (max-width: 767px) {
+            font-size: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 80%;
+            margin: 0 auto;
+          }
         }
       }
+     
       #table {
         width: 60%;
         margin-left: auto;

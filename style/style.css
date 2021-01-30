@@ -521,20 +521,20 @@ html,
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.sunrise {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/sunrise.jpg);
-  background-image: linear-gradient(#1603108f), url(../images/sunrise.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603104f)), url(../images/sunrise.jpg);
+  background-image: linear-gradient(#1603104f), url(../images/sunrise.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.dhuhr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/dhuhr2.jpg);
-  background-image: linear-gradient(#1603108f), url(../images/dhuhr2.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031036)), url(../images/dhuhr2.jpg);
+  background-image: linear-gradient(#16031036), url(../images/dhuhr2.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.asr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/asr.jpg);
-  background-image: linear-gradient(#1603108f), url(../images/asr.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031070)), url(../images/asr.jpg);
+  background-image: linear-gradient(#16031070), url(../images/asr.jpg);
   background-position: center;
 }
 
@@ -593,14 +593,29 @@ html,
   }
 }
 
-#main .main-section .calendar .calendar-caption {
-  text-align: center;
-  font-size: 30px;
+#main .main-section .calendar .calendar-arrows {
   margin-bottom: 30px;
 }
 
+#main .main-section .calendar .calendar-arrows i {
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+#main .main-section .calendar .calendar-arrows i:active {
+  color: #0a5888;
+}
+
+#main .main-section .calendar .calendar-arrows .calendar-caption {
+  text-align: center;
+  font-size: 30px;
+  display: inline;
+}
+
 @media (max-width: 767px) {
-  #main .main-section .calendar .calendar-caption {
+  #main .main-section .calendar .calendar-arrows .calendar-caption {
     font-size: 20px;
     padding-top: 20px;
     padding-bottom: 20px;

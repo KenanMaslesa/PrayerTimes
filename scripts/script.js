@@ -6,6 +6,15 @@ let method = localStorage.getItem("method");
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag, month, year;
+let tempMonth = new Date().getMonth() + 1, tempYear = new Date().getFullYear(), calendarFlag = false;
+
+const monthNames = ["", "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+const monthNamesBosnian = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni",
+  "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"
+];
 
 if (latitude == null || longitude == null)
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
@@ -189,7 +198,34 @@ function GetPrayerTimes(obj) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
   }
   getRequest(getCalendar, urlCalendar);
+
 }
+
+$('#plus').on('click', function () {
+  calendarFlag = true;
+  if (tempMonth >= 12) {
+    tempYear++;
+    tempMonth = 1;
+  }
+  else {
+    tempMonth++;
+  }
+  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+  getRequest(getCalendar, urlCalendar);
+});
+$('#minus').on('click', function () {
+  calendarFlag = true;
+  if (tempMonth <= 1) {
+    tempYear--;
+    tempMonth = 12;
+  }
+  else {
+    tempMonth--;
+  }
+  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+  getRequest(getCalendar, urlCalendar);
+});
+
 function formatTime(h) {
   return h < 10 ? "0" + h : h;
 }
@@ -383,18 +419,22 @@ setTimeout(() => {
 
 }, 3000);
 
+
+
 function getCalendar(obj) {
   document.querySelector("#table tbody").innerHTML = "";
   for (var i = 0; i < obj.data.length; i++) {
     document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
   }
 
-  $('#datepicker').attr('value', 'December 2020');
   $('.date-caption').text(flag ? "Datum" : "Date");
   $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
   $('#table .calendar-date:contains("pet")').parent().addClass("friday");
-  $('.calendar-caption').text(flag ? `Vaktija za ${getBosnianMonths(month)} - ${county}` : ` Prayer times for ${month} - ${county}`);
+  if (!calendarFlag)
+    $('.calendar-caption').text(flag ? getBosnianMonths(month) + ' ' + tempYear : month + ' ' + tempYear);
+  else
+    $('.calendar-caption').text(flag ? monthNamesBosnian[tempMonth] + ' ' + tempYear : monthNames[tempMonth] + ' ' + tempYear);
 }
 
 function Rows(obj) {
@@ -444,29 +484,29 @@ function getEnglishDays(day) {
 
 function getBosnianMonths(month) {
   if (month == "January")
-    return "januar";
+    return "Januar";
   else if (month == "February")
-    return "februar";
+    return "Februar";
   else if (month == "March")
-    return "mart";
+    return "Mart";
   else if (month == "April")
-    return "april";
+    return "April";
   else if (month == "May")
-    return "maj";
+    return "Maj";
   else if (month == "June")
-    return "juni";
+    return "Juni";
   else if (month == "July")
-    return "juli";
+    return "Juli";
   else if (month == "August")
-    return "august";
+    return "August";
   else if (month == "September")
-    return "septembar";
+    return "Septembar";
   else if (month == "October")
-    return "oktobar";
+    return "Oktobar";
   else if (month == "November")
-    return "novembar";
+    return "Novembar";
   else if (month == "December")
-    return "decembar";
+    return "Decembar";
 }
 
 function iOS() {
@@ -499,15 +539,12 @@ $('#toggle-icon').click(function () {
   $('.local-time-wrapper').toggleClass('toggle');
   $('.calculation-methods').toggleClass('toggle');
 
-  if(isMobile.matches)
-   {
+  if (isMobile.matches) {
     $('.local-time-wrapper.mobile').toggle(300);
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
-   } 
-  if(!isMobile.matches)
-  $('.instructions.toggle').toggle(1000);
+  }
+  if (!isMobile.matches)
+    $('.instructions.toggle').toggle(1000);
 
-
-   
 })
