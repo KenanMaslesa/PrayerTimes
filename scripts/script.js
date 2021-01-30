@@ -489,12 +489,25 @@ window.onload = function () {
 }
 
 
-$('#toggle').click(function () {
+$('#toggle-icon').click(function () {
+  var isMobile = window.matchMedia("(max-width: 700px)");
+
   $(this).toggleClass('ion-chevron-up ion-chevron-down')
   $('#map').slideToggle();
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
-    $('.autolocation').toggle('slow');
-    $('.instructions.toggle').toggle(1000);
-    $('.local-time-wrapper').toggleClass('toggle');
-    $('.calculation-methods').toggleClass('toggle');
+  $('.autolocation').toggle('slow');
+  $('.local-time-wrapper').toggleClass('toggle');
+  $('.calculation-methods').toggleClass('toggle');
+
+  if(isMobile.matches)
+   {
+    $('.local-time-wrapper.mobile').toggle();
+    $(this).toggleClass('toggle');
+    $('.dark-light-mode').toggleClass('toggle');
+   } 
+  if(!isMobile.matches)
+  $('.instructions.toggle').toggle(1000);
+
+
+   
 })

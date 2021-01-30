@@ -33,6 +33,11 @@ html,
     top: 2px;
     left: 25px;
 
+    &.toggle{
+      top: 65px;
+      z-index: 999999;
+    }
+
     @media (max-width: 768px) {
       top: 48.2%;
       left: 50%;
@@ -226,13 +231,22 @@ html,
           top: 50px;
         }
 
-        #toggle{
+        #toggle-icon{
           color: white;
           position: absolute;
-          bottom: -25px;
-          left: 50%;
+          top: 43px;
+          left: -90px;
           cursor: pointer;
+
+          @media (max-width: 768px) {
+            top: 0;
+            left: 112%;
+
+            &.toggle{
+              top: 40px;
+            }
         }
+      }
 
         &.toggle {
           top: 0;

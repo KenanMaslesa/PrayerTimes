@@ -41,6 +41,11 @@ html,
   left: 25px;
 }
 
+#main .dark-light-mode.toggle {
+  top: 65px;
+  z-index: 999999;
+}
+
 @media (max-width: 768px) {
   #main .dark-light-mode {
     top: 48.2%;
@@ -281,12 +286,22 @@ html,
   }
 }
 
-#main .main-section .prayer-times-wrapper .calculation-methods #toggle {
+#main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon {
   color: white;
   position: absolute;
-  bottom: -25px;
-  left: 50%;
+  top: 43px;
+  left: -90px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon {
+    top: 0;
+    left: 112%;
+  }
+  #main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon.toggle {
+    top: 40px;
+  }
 }
 
 #main .main-section .prayer-times-wrapper .calculation-methods.toggle {
