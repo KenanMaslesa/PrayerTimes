@@ -492,7 +492,7 @@ window.onload = function () {
 $('#toggle-icon').click(function () {
   var isMobile = window.matchMedia("(max-width: 700px)");
 
-  $(this).toggleClass('ion-chevron-up ion-chevron-down')
+  $(this).toggleClass('ion-arrow-up-a ion-arrow-down-a')
   $('#map').slideToggle();
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
   $('.autolocation').toggle('slow');
@@ -501,7 +501,7 @@ $('#toggle-icon').click(function () {
 
   if(isMobile.matches)
    {
-    $('.local-time-wrapper.mobile').toggle();
+    $('.local-time-wrapper.mobile').toggle(300);
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
    } 
