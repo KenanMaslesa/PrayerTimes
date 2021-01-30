@@ -515,20 +515,20 @@ html,
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.fajr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/fajr.jpg);
-  background-image: linear-gradient(#1603108f), url(../images/fajr.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/fajr3.jpg);
+  background-image: linear-gradient(#1603108f), url(../images/fajr3.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.sunrise {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/sunrise.jfif);
-  background-image: linear-gradient(#1603108f), url(../images/sunrise.jfif);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/sunrise.jpg);
+  background-image: linear-gradient(#1603108f), url(../images/sunrise.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.dhuhr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/dhuhr.jpg);
-  background-image: linear-gradient(#1603108f), url(../images/dhuhr.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/dhuhr2.jpg);
+  background-image: linear-gradient(#1603108f), url(../images/dhuhr2.jpg);
   background-position: center;
 }
 
@@ -539,14 +539,14 @@ html,
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.maghrib {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/maghrib.jfif);
-  background-image: linear-gradient(#1603108f), url(../images/maghrib.jfif);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/maghrib.jpg);
+  background-image: linear-gradient(#1603108f), url(../images/maghrib.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.isha {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/isha.jfif);
-  background-image: linear-gradient(#1603108f), url(../images/isha.jfif);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/fajr2.jpg);
+  background-image: linear-gradient(#1603108f), url(../images/fajr2.jpg);
   background-position: center;
 }
 
