@@ -41,7 +41,7 @@ html,
     @media (max-width: 768px) {
       top: 48.2%;
       left: 50%;
-      z-index: 9;
+      z-index: 999999;
       transform: translate(-50%, -50%);
       color: yellow;
     }

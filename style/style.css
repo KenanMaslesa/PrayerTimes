@@ -50,7 +50,7 @@ html,
   #main .dark-light-mode {
     top: 48.2%;
     left: 50%;
-    z-index: 9;
+    z-index: 999999;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     color: yellow;
