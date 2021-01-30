@@ -114,12 +114,18 @@ html,
   padding: 20px;
   word-break: break-word;
   border-top-right-radius: 0px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 @media (max-width: 768px) {
   #main .local-time-wrapper {
     display: none;
   }
+}
+
+#main .local-time-wrapper.toggle {
+  top: 0;
 }
 
 #main .local-time-wrapper.mobile {
@@ -262,6 +268,8 @@ html,
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   text-align: center;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
 }
 
 @media (max-width: 768px) {
@@ -271,6 +279,18 @@ html,
             transform: translate(-50%, -50%);
     top: 50px;
   }
+}
+
+#main .main-section .prayer-times-wrapper .calculation-methods #toggle {
+  color: white;
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  cursor: pointer;
+}
+
+#main .main-section .prayer-times-wrapper .calculation-methods.toggle {
+  top: 0;
 }
 
 #main .main-section .prayer-times-wrapper .calculation-methods .form-control {

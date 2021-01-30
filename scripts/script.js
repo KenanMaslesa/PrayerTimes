@@ -97,6 +97,8 @@ function showPosition(method) {
 function GetCity(obj) {
   if (obj.countryName != '')
     country = obj.countryName;
+  else
+    country = '';
 
   if (obj.city != '') {
     county = obj.city.replace("Metropolitan City of", "");
@@ -487,11 +489,12 @@ window.onload = function () {
 }
 
 
-$('.city').click(function () {
+$('#toggle').click(function () {
+  $(this).toggleClass('ion-chevron-up ion-chevron-down')
   $('#map').slideToggle();
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
-  $('.autolocation').hide();
-  $('.instructions').hide();
-  //$('.local-time-wrapper').css({'top':'0'});
-  $('#locations').css({ 'margin-top': '80px' });
+    $('.autolocation').toggle('slow');
+    $('.instructions.toggle').toggle(1000);
+    $('.local-time-wrapper').toggleClass('toggle');
+    $('.calculation-methods').toggleClass('toggle');
 })

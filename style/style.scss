@@ -92,8 +92,14 @@ html,
     padding: 20px;
     word-break: break-word;
     border-top-right-radius: 0px;
+    transition: all 0.5s;
+
     @media (max-width: 768px) {
       display: none;
+    }
+
+    &.toggle {
+      top: 0;
     }
 
     &.mobile {
@@ -189,8 +195,8 @@ html,
     background-size: cover;
     background-repeat: no-repeat;
 
-    &.dark{
-    background-image: linear-gradient(#0606068c), url(../images/6.png);
+    &.dark {
+      background-image: linear-gradient(#0606068c), url(../images/6.png);
     }
 
     .prayer-times-wrapper {
@@ -212,11 +218,24 @@ html,
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        transition: all 0.6s;
 
         @media (max-width: 768px) {
           left: 50%;
           transform: translate(-50%, -50%);
           top: 50px;
+        }
+
+        #toggle{
+          color: white;
+          position: absolute;
+          bottom: -25px;
+          left: 50%;
+          cursor: pointer;
+        }
+
+        &.toggle {
+          top: 0;
         }
 
         .form-control {
@@ -237,7 +256,7 @@ html,
           text-align: center;
           text-align-last: center;
 
-          &.light{
+          &.light {
             background-color: #104755;
           }
 
@@ -477,7 +496,7 @@ html,
           margin-bottom: 15px;
           overflow-y: hidden;
         }
-     
+
         tr,
         th {
           text-align: center;
@@ -489,10 +508,10 @@ html,
           }
         }
         tr {
-          &.active{
-            background:#104755 !important;
+          &.active {
+            background: #104755 !important;
           }
-          &.friday{
+          &.friday {
             background: #0e586417;
           }
           td {
