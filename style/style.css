@@ -481,7 +481,6 @@ html,
   transition: all 0.4s;
   cursor: pointer;
   padding-top: 12px;
-  border: 1px solid #00000059;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card .upcoming-prayer {
@@ -512,6 +511,17 @@ html,
 #main .main-section .prayer-times-wrapper .cards-wrapper .card:hover {
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
+  -webkit-box-shadow: 0 18px 26px 0 #fdfeff14;
+          box-shadow: 0 18px 26px 0 #fdfeff14;
+}
+
+@media (max-width: 767px) {
+  #main .main-section .prayer-times-wrapper .cards-wrapper .card:hover {
+    -webkit-transform: none;
+            transform: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.fajr {
@@ -521,14 +531,14 @@ html,
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.sunrise {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603104f)), url(../images/sunrise.jpg);
-  background-image: linear-gradient(#1603104f), url(../images/sunrise.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031061)), url(../images/sunrise.jpg);
+  background-image: linear-gradient(#16031061), url(../images/sunrise.jpg);
   background-position: center;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.dhuhr {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031036)), url(../images/dhuhr2.jpg);
-  background-image: linear-gradient(#16031036), url(../images/dhuhr2.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031070)), url(../images/dhuhr2.jpg);
+  background-image: linear-gradient(#16031070), url(../images/dhuhr2.jpg);
   background-position: center;
 }
 
@@ -598,10 +608,16 @@ html,
 }
 
 #main .main-section .calendar .calendar-arrows i {
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  #main .main-section .calendar .calendar-arrows i {
+    font-size: 20px;
+  }
 }
 
 #main .main-section .calendar .calendar-arrows i:active {
