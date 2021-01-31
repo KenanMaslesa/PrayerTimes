@@ -718,10 +718,20 @@ html,
     border: 1px solid #e4e8e9 !important;
   }
   .calendar #table thead {
-    background-color: #e4e8e9 !important;
+    -webkit-print-color-adjust: exact;
+    background-color: #9999993a !important;
+    border-radius: 10px !important;
+  }
+  .calendar #table thead th {
+    color: black !important;
+    font-weight: bold;
   }
   .calendar #table tr.friday {
-    font-weight: bold;
+    background-color: #99999921 !important;
+    -webkit-print-color-adjust: exact;
+  }
+  .calendar #table tr.friday td {
+    color: black !important;
   }
   .calendar #table tr td {
     color: gray;

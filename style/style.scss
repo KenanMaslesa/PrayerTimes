@@ -588,16 +588,30 @@ html,
     display: none !important;
   }
   .calendar {
+
     #table {
       width: 90% !important;
       border: 1px solid #e4e8e9 !important;
       thead{
-        background-color: #e4e8e9 !important;
+      -webkit-print-color-adjust: exact;
+        background-color: #9999993a !important;
+        border-radius: 10px !important;
+
+        th{
+          color: black !important;
+        font-weight: bold;
+        }
       }
 
       tr {
         &.friday {
-          font-weight: bold;
+        background-color: #99999921 !important;
+        -webkit-print-color-adjust: exact;
+
+        td{
+          color: black !important;
+        }
+
         }
         td {
           color: gray;
