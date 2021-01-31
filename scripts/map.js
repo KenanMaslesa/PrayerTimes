@@ -29,7 +29,7 @@ function setupMap(center) {
     $("#table").css({ backgroundColor: '#0e313fd4' });
     $('.main-section').removeClass("dark");
     $('.form-control').addClass("light");
-    $("meta[name='theme-color']").attr('content', '#104755');
+    $("meta[name='theme-color']").attr('content', '#0e3443');
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
