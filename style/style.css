@@ -604,7 +604,7 @@ html,
 }
 
 #main .main-section .calendar .calendar-arrows {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 #main .main-section .calendar .calendar-arrows i {
@@ -612,6 +612,11 @@ html,
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
+}
+
+#main .main-section .calendar .calendar-arrows i.print {
+  display: block;
+  margin-top: 10px;
 }
 
 @media (max-width: 767px) {
@@ -692,5 +697,53 @@ html,
 
 #main .main-section .calendar #table .calendar-date {
   text-align: center;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+  .prayer-times-wrapper,
+  #map,
+  .instructions,
+  .dark-light-mode,
+  .local-time-wrapper,
+  #minus,
+  #plus,
+  .print {
+    display: none !important;
+  }
+  .calendar #table {
+    width: 90% !important;
+    border: 1px solid #e4e8e9 !important;
+  }
+  .calendar #table thead {
+    background-color: #e4e8e9 !important;
+  }
+  .calendar #table tr.friday {
+    font-weight: bold;
+  }
+  .calendar #table tr td {
+    color: gray;
+    padding: 4px !important;
+    line-height: 1.5 !important;
+    border-top: 1px solid #e4e8e9 !important;
+    font-size: 14px !important;
+  }
+  .calendar #table tr th {
+    color: gray;
+    font-weight: bold;
+    font-size: 14px !important;
+  }
+  .calendar #table tr th.sunrise-caption {
+    width: 100px !important;
+  }
+  .calendar .calendar-arrows {
+    margin-bottom: 10px !important;
+    margin-top: 15px !important;
+  }
+  .calendar .calendar-arrows .calendar-caption {
+    color: gray;
+  }
 }
 /*# sourceMappingURL=style.css.map */

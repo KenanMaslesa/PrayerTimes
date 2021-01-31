@@ -548,3 +548,7 @@ $('#toggle-icon').click(function () {
     $('.instructions.toggle').toggle(1000);
 
 })
+
+$('.print').on('click', function(){
+  window.print();
+})

@@ -33,7 +33,7 @@ html,
     top: 2px;
     left: 25px;
 
-    &.toggle{
+    &.toggle {
       top: 65px;
       z-index: 999999;
     }
@@ -231,7 +231,7 @@ html,
           top: 50px;
         }
 
-        #toggle-icon{
+        #toggle-icon {
           color: white;
           position: absolute;
           top: 43px;
@@ -242,11 +242,11 @@ html,
             top: 0;
             left: 112%;
 
-            &.toggle{
+            &.toggle {
               top: 40px;
             }
+          }
         }
-      }
 
         &.toggle {
           top: 0;
@@ -463,7 +463,6 @@ html,
             font-weight: 700;
             padding: 5px;
             text-transform: uppercase;
-            //background-color: rgba(0,0,0,0.3);
           }
 
           .prayer-name {
@@ -485,19 +484,23 @@ html,
         padding: 2px;
       }
 
-      .calendar-arrows{
-        margin-bottom: 30px;
-        i{
+      .calendar-arrows {
+        margin-bottom: 10px;
+        i {
           font-size: 25px;
           padding-left: 10px;
           padding-right: 10px;
           cursor: pointer;
+          &.print {
+            display: block;
+            margin-top: 10px;
+          }
 
           @media (max-width: 767px) {
             font-size: 20px;
           }
 
-          &:active{
+          &:active {
             color: #0a5888;
           }
         }
@@ -505,7 +508,7 @@ html,
           text-align: center;
           font-size: 30px;
           display: inline;
-  
+
           @media (max-width: 767px) {
             font-size: 20px;
             padding-top: 20px;
@@ -515,7 +518,7 @@ html,
           }
         }
       }
-     
+
       #table {
         width: 60%;
         margin-left: auto;
@@ -562,6 +565,65 @@ html,
         .calendar-date {
           text-align: center;
         }
+      }
+    }
+  }
+}
+
+
+@media print {
+  
+  @page {
+    margin: 0;
+
+  }
+  .prayer-times-wrapper,
+  #map,
+  .instructions,
+  .dark-light-mode,
+  .local-time-wrapper,
+  #minus,
+  #plus,
+  .print {
+    display: none !important;
+  }
+  .calendar {
+    #table {
+      width: 90% !important;
+      border: 1px solid #e4e8e9 !important;
+      thead{
+        background-color: #e4e8e9 !important;
+      }
+
+      tr {
+        &.friday {
+          font-weight: bold;
+        }
+        td {
+          color: gray;
+          padding: 4px !important;
+          line-height: 1.5 !important;
+          border-top: 1px solid #e4e8e9 !important;
+          font-size: 14px !important;
+        }
+        th {
+          color: gray;
+          font-weight: bold;
+          font-size: 14px !important;
+
+          &.sunrise-caption {
+            width: 100px !important;
+          }
+        }
+      }
+    }
+
+    .calendar-arrows {
+      margin-bottom: 10px !important;
+      margin-top: 15px !important;
+
+      .calendar-caption {
+        color: gray;
       }
     }
   }
