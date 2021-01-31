@@ -210,7 +210,12 @@ $('#plus').on('click', function () {
   else {
     tempMonth++;
   }
+
+  if (method == 16) 
+  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
+  else
   urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+
   getRequest(getCalendar, urlCalendar);
 });
 $('#minus').on('click', function () {
@@ -222,7 +227,12 @@ $('#minus').on('click', function () {
   else {
     tempMonth--;
   }
+
+  if (method == 16) 
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
+  else
   urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+
   getRequest(getCalendar, urlCalendar);
 });
 
@@ -549,6 +559,6 @@ $('#toggle-icon').click(function () {
 
 })
 
-$('.print').on('click', function(){
+$('.print').on('click', function () {
   window.print();
 })

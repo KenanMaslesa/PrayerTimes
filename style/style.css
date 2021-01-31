@@ -732,6 +732,7 @@ html,
   }
   .calendar #table tr.friday td {
     color: black !important;
+    font-weight: bold;
   }
   .calendar #table tr td {
     color: gray;
