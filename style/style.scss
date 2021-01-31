@@ -12,6 +12,9 @@ html,
 #main {
   height: 100%;
 }
+body{
+  background: #0e3443;
+}
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -32,6 +35,9 @@ html,
     position: absolute;
     top: 2px;
     left: 25px;
+    animation: fade 1s;
+    animation-delay: 7s;
+    animation-fill-mode: backwards;
 
     &.toggle {
       top: 65px;
@@ -66,6 +72,9 @@ html,
     top: 0px;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: moveDownInstructions 1.5s;
+    animation-fill-mode: backwards; 
+    animation-delay: 5s;
     @media (max-width: 888px) {
       display: none;
     }
@@ -98,7 +107,9 @@ html,
     word-break: break-word;
     border-top-right-radius: 0px;
     transition: all 0.5s;
-
+    animation: fade 3s;
+    animation-delay: 3.5s;
+    animation-fill-mode: backwards;
     @media (max-width: 768px) {
       display: none;
     }
@@ -166,6 +177,10 @@ html,
   #map {
     height: 45%;
     width: 100%;
+    animation: fade 1s;
+    animation-delay: 4s;
+    animation-fill-mode: backwards;
+    animation-iteration-count: 1;
 
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib,
     .mapboxgl-ctrl-logo {
@@ -224,6 +239,9 @@ html,
         transform: translate(-50%, -50%);
         text-align: center;
         transition: all 0.6s;
+        animation: fade 2s;
+          animation-delay: 3s;
+          animation-fill-mode: backwards;
 
         @media (max-width: 768px) {
           left: 50%;
@@ -235,8 +253,14 @@ html,
           color: white;
           position: absolute;
           top: 43px;
-          left: -90px;
+          padding-left: 20px;
+          padding-right: 20px;
+          left: -185%;
           cursor: pointer;
+          animation-fill-mode: backwards;
+          animation: moveToggleIcon 1s;
+          animation-iteration-count: 10;
+          animation-delay: 8s;
 
           @media (max-width: 768px) {
             top: 0;
@@ -297,6 +321,9 @@ html,
         border: 0;
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
         border-radius: 5px;
+        animation: fade 1s;
+        animation-delay: 6s;
+        animation-fill-mode: backwards;
 
         @media (max-width: 768px) {
           left: 50%;
@@ -321,6 +348,7 @@ html,
           color: rosybrown;
           font-size: 48px;
           padding: 15px 0px 10px;
+        animation: moveInLeft 2s;
 
           @media (max-width: 768px) {
             font-size: 27px;
@@ -330,6 +358,8 @@ html,
           color: floralwhite;
           font-size: 35px;
           margin-bottom: 15px;
+        animation: moveInRight 2s;
+
 
           @media (max-width: 768px) {
             font-size: 24px;
@@ -340,7 +370,9 @@ html,
       .date-wrapper {
         text-align: center;
         color: navajowhite;
-
+        animation: moveUp 2s;
+        animation-delay: 1s;
+        animation-fill-mode: backwards; 
         @media (max-width: 768px) {
           font-size: 14px;
         }
@@ -351,7 +383,8 @@ html,
         text-align: center;
         font-size: 70px;
         padding: 20px;
-
+        animation: moveUp 2s;
+        animation-delay: 1.5s;
         @media (max-width: 768px) {
           font-size: 57px;
         }
@@ -392,6 +425,9 @@ html,
           transition: all 0.4s;
           cursor: pointer;
           padding-top: 12px;
+          animation: moveUp 2s;
+          animation-delay: 2s;
+          animation-fill-mode: backwards;
 
           .upcoming-prayer {
             color: #f99494;
@@ -479,7 +515,9 @@ html,
       color: #fff !important;
       padding: 50px;
       text-align: center;
-
+      animation: moveUp 2s;
+      animation-delay: 3s;
+      animation-fill-mode: backwards;
       @media (max-width: 767px) {
         padding: 2px;
       }
@@ -570,12 +608,10 @@ html,
   }
 }
 
-
+//PRINT
 @media print {
-  
   @page {
     margin: 0;
-
   }
   .prayer-times-wrapper,
   #map,
@@ -588,31 +624,29 @@ html,
     display: none !important;
   }
   .calendar {
-
     #table {
       width: 90% !important;
       border: 1px solid #e4e8e9 !important;
-      thead{
-      -webkit-print-color-adjust: exact;
+      thead {
+        -webkit-print-color-adjust: exact;
         background-color: #9999993a !important;
         border-radius: 10px !important;
 
-        th{
+        th {
           color: black !important;
-        font-weight: bold;
+          font-weight: bold;
         }
       }
 
       tr {
         &.friday {
-        background-color: #99999921 !important;
-        -webkit-print-color-adjust: exact;
+          background-color: #99999921 !important;
+          -webkit-print-color-adjust: exact;
 
-        td{
-          color: black !important;
-          font-weight: bold;
-        }
-
+          td {
+            color: black !important;
+            font-weight: bold;
+          }
         }
         td {
           color: gray;
@@ -642,4 +676,75 @@ html,
       }
     }
   }
+}
+
+//ANIMATIONS
+@keyframes moveUp {
+  0% {
+    transform: translateY(400px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveDownInstructions {
+  0% {
+    top: -200px;
+  }
+  70% {
+    top: 5px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes moveInLeft {
+  0% {
+    transform: translateX(-700px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    transform: translateX(700px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes moveToggleIcon {
+  0% {
+    transform: translate(0);
+    
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+  
 }

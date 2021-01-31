@@ -544,6 +544,8 @@ $('#toggle-icon').click(function () {
 
   $(this).toggleClass('ion-arrow-up-a ion-arrow-down-a')
   $('#map').slideToggle();
+  $('#map').css({'animation':'none'});
+  $('.instructions').css({'animation':'none'});
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
   $('.autolocation').toggle('slow');
   $('.local-time-wrapper').toggleClass('toggle');
@@ -559,17 +561,18 @@ $('#toggle-icon').click(function () {
 
 })
 
+//PRINT
 $('.print').on('click', function () {
   window.print();
 })
 
 
-//service worker
+//SERVICE WORKER
 if("serviceWorker" in navigator)
 {
   navigator.serviceWorker.register("/sw.js")
   .then(registration => {
     console.log(registration);
   })
-  .catch(error => console.error(error));
+  .catch(error => console.log(error));
 }

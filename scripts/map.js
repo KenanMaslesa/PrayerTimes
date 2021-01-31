@@ -18,7 +18,7 @@ function setupMap(center) {
     $('.main-section').addClass("dark");
     $('.form-control').removeClass("light");
     $("meta[name='theme-color']").attr('content', '#030c1d');
-
+    $("body").css({'background':'#030c1d'});
   }
 
   function dayMap() {
@@ -30,6 +30,7 @@ function setupMap(center) {
     $('.main-section').removeClass("dark");
     $('.form-control').addClass("light");
     $("meta[name='theme-color']").attr('content', '#0e3443');
+    $("body").css({'background':'#0e3443'});
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
