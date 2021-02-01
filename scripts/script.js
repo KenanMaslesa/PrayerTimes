@@ -192,10 +192,10 @@ function GetPrayerTimes(obj) {
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
   if (method == 16) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth()+1}&year=${currentDateTime.getFullYear()}`;
   }
   else {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()+1}&year=${currentDateTime.getFullYear()}`;
   }
   getRequest(getCalendar, urlCalendar);
 
@@ -211,10 +211,10 @@ $('#plus').on('click', function () {
     tempMonth++;
   }
 
-  if (method == 16) 
-  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
+  if (method == 16)
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
   else
-  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
 
   getRequest(getCalendar, urlCalendar);
 });
@@ -228,10 +228,10 @@ $('#minus').on('click', function () {
     tempMonth--;
   }
 
-  if (method == 16) 
+  if (method == 16)
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
   else
-  urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
 
   getRequest(getCalendar, urlCalendar);
 });
@@ -430,7 +430,9 @@ setTimeout(() => {
 }, 3000);
 
 
-
+function dayofMonth(d) {
+  return (d.getDate() < 10 ? '0' : '') + d.getDate();
+}
 function getCalendar(obj) {
   document.querySelector("#table tbody").innerHTML = "";
   for (var i = 0; i < obj.data.length; i++) {
@@ -438,7 +440,7 @@ function getCalendar(obj) {
   }
 
   $('.date-caption').text(flag ? "Datum" : "Date");
-  $(`#table .calendar-date:contains(${new Date().getDate()})`).parent().addClass("active");
+  $(`td[data-day="${dayofMonth(new Date)+(new Date().getMonth()+1)}"]`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
   $('#table .calendar-date:contains("pet")').parent().addClass("friday");
   if (!calendarFlag)
@@ -449,7 +451,7 @@ function getCalendar(obj) {
 
 function Rows(obj) {
   return `<tr>
-      <td class="calendar-date">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
+      <td class="calendar-date" data-day="${obj.date.gregorian.day + tempMonth}">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
       <td>${obj.timings.Fajr.substring(0, obj.timings.Fajr.indexOf(" "))}</td>
       <td>${obj.timings.Sunrise.substring(0, obj.timings.Sunrise.indexOf(" "))}</td>
       <td>${obj.timings.Dhuhr.substring(0, obj.timings.Dhuhr.indexOf(" "))}</td>
@@ -544,8 +546,8 @@ $('#toggle-icon').click(function () {
 
   $(this).toggleClass('ion-arrow-up-a ion-arrow-down-a')
   $('#map').slideToggle();
-  $('#map').css({'animation':'none'});
-  $('.instructions').css({'animation':'none'});
+  $('#map').css({ 'animation': 'none' });
+  $('.instructions').css({ 'animation': 'none' });
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
   $('.autolocation').toggle('slow');
   $('.local-time-wrapper').toggleClass('toggle');
@@ -568,11 +570,10 @@ $('.print').on('click', function () {
 
 
 //SERVICE WORKER
-if("serviceWorker" in navigator)
-{
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js")
-  .then(registration => {
-    console.log(registration);
-  })
-  .catch(error => console.log(error));
+    .then(registration => {
+      console.log(registration);
+    })
+    .catch(error => console.log(error));
 }
