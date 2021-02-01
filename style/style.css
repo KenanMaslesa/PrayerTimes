@@ -444,6 +444,7 @@ body {
   color: rosybrown;
   font-size: 48px;
   padding: 15px 0px 10px;
+  font-weight: normal;
   -webkit-animation: moveInLeft 2s;
           animation: moveInLeft 2s;
 }
@@ -458,6 +459,7 @@ body {
   color: floralwhite;
   font-size: 35px;
   margin-bottom: 15px;
+  font-weight: normal;
   -webkit-animation: moveInRight 2s;
           animation: moveInRight 2s;
 }
