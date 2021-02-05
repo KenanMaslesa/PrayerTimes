@@ -392,8 +392,8 @@ var x = setInterval(function () {
 }, 1000);
 
 
-function GetMethod(selected) {
-  method = selected.value;
+$('#locations').change(function(){
+  method = $(this).val();
   localStorage.setItem("method", method);
   currentTime = new Date();
   if (method == 16) {
@@ -403,7 +403,8 @@ function GetMethod(selected) {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
   }
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
-}
+  
+});
 
 function formatAMPM(time) {
   var hours, minutes;
