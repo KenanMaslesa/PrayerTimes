@@ -376,6 +376,7 @@ body {
   border-top-left-radius: 0;
   text-align: center;
   text-align-last: center;
+  cursor: pointer;
 }
 
 #main .main-section .prayer-times-wrapper .calculation-methods .form-control.light {
