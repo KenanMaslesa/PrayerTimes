@@ -326,6 +326,7 @@ body {
         animation: fade 1s;
         animation-delay: 6s;
         animation-fill-mode: backwards;
+        cursor: pointer;
 
         @media (max-width: 768px) {
           left: 50%;

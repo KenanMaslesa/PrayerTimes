@@ -119,6 +119,7 @@ function GetCity(obj) {
     county = county.replace("City of", "");
     county = county.replace("Naselje", "");
     county = county.replace("Town of", "");
+    county = county.replace("Town", "");
     county = county.replace("City", "");
     county = county.replace("Local community", "");
     county = county.replace("County", "");

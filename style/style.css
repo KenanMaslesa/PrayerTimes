@@ -415,6 +415,7 @@ body {
           animation-delay: 6s;
   -webkit-animation-fill-mode: backwards;
           animation-fill-mode: backwards;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
