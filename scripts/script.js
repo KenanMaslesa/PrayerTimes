@@ -39,19 +39,13 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  locationByIPAddress();
+  latitude = 43.869308818408456, longitude = 18.417377317154944;
+  localStorage.setItem("latitude", latitude);
+  localStorage.setItem("longitude", longitude);
+  showPosition(method);
+  window.location.reload();
 }
 
-function locationByIPAddress(){
-  $.getJSON('https://api.ipdata.co/?api-key=aa05d607607426d1d15ebefd1d5344fd64dfd02e8362659fdf6681bd', function(data) {
-      latitude =  data.latitude;
-      longitude =  data.longitude;
-      localStorage.setItem("latitude", latitude);
-      localStorage.setItem("longitude", longitude);
-      setupMap([longitude, latitude]);
-      showPosition(method);
-    });
-}
 
 function getRequest(funk, url) {
 
@@ -61,12 +55,20 @@ function getRequest(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      locationByIPAddress();
+      alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the Sarajevo");
+      latitude = 43.869308818408456, longitude = 18.417377317154944;
+      localStorage.setItem("latitude", latitude);
+      localStorage.setItem("longitude", longitude);
+      showPosition(method);
+      window.location.reload();
     }
   }
 
   request.onerror = function () {
-    locationByIPAddress();
+    latitude = 43.869308818408456, longitude = 18.417377317154944;
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
+    showPosition(method);
   };
 
   request.open("GET", url, true);
