@@ -39,11 +39,10 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-  //locationByIPAddress();
+  locationByIPAddress();
 }
 
-/*function locationByIPAddress(){
+function locationByIPAddress(){
   $.getJSON('https://api.ipdata.co/?api-key=aa05d607607426d1d15ebefd1d5344fd64dfd02e8362659fdf6681bd', function(data) {
       latitude =  data.latitude;
       longitude =  data.longitude;
@@ -52,7 +51,7 @@ function errorLocation() {
       setupMap([longitude, latitude]);
       showPosition(method);
     });
-}*/
+}
 
 function getRequest(funk, url) {
 
@@ -62,12 +61,12 @@ function getRequest(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      //locationByIPAddress();
+      locationByIPAddress();
     }
   }
 
   request.onerror = function () {
-    //locationByIPAddress();
+    locationByIPAddress();
   };
 
   request.open("GET", url, true);
