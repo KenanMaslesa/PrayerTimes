@@ -383,8 +383,6 @@ var x = setInterval(function () {
     if (distance > 0) {
       $('.countdown').html(formatTime(hours) + ":"
         + formatTime(minutes) + ":" + formatTime(seconds));
-        $("#main").show();
-        $(".loader").hide();
     }
   }
 
@@ -567,3 +565,7 @@ $('.print').on('click', function () {
   window.print();
 })
 
+setTimeout(() => {
+  $("#main").show();
+  $(".loader").hide();
+}, 2000);
