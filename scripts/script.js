@@ -385,7 +385,7 @@ var x = setInterval(function () {
         + formatTime(minutes) + ":" + formatTime(seconds));
       setTimeout(() => {
         $(".loader").hide();
-      }, 1000);
+      }, 5000);
     }
   }
 
