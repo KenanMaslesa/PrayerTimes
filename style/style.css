@@ -781,6 +781,17 @@ body {
   z-index: 999999;
 }
 
+.loader span {
+  color: #104755;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 120px;
+  text-align: center;
+}
+
 .orbit-spinner,
 .orbit-spinner * {
   -webkit-box-sizing: border-box;
@@ -788,8 +799,8 @@ body {
 }
 
 .orbit-spinner {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   -webkit-perspective: 800px;
           perspective: 800px;
