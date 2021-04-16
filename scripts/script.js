@@ -190,13 +190,12 @@ function GetPrayerTimes(obj) {
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
   if (method == 16) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth()+1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   }
   else {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth()+1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   }
   getRequest(getCalendar, urlCalendar);
-
 }
 
 $('#plus').on('click', function () {
@@ -384,13 +383,15 @@ var x = setInterval(function () {
     if (distance > 0) {
       $('.countdown').html(formatTime(hours) + ":"
         + formatTime(minutes) + ":" + formatTime(seconds));
+      $(".loader").hide();
+
     }
   }
 
 }, 1000);
 
 
-$('#locations').change(function(){
+$('#locations').change(function () {
   method = $(this).val();
   localStorage.setItem("method", method);
   currentTime = new Date();
@@ -401,7 +402,7 @@ $('#locations').change(function(){
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
   }
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
-  
+
 });
 
 function formatAMPM(time) {
@@ -439,7 +440,7 @@ function getCalendar(obj) {
   }
 
   $('.date-caption').text(flag ? "Datum" : "Date");
-  $(`td[data-day="${dayofMonth(new Date)+(new Date().getMonth()+1)}"]`).parent().addClass("active");
+  $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
   $('#table .calendar-date:contains("fri")').parent().addClass("friday");
   $('#table .calendar-date:contains("pet")').parent().addClass("friday");
   if (!calendarFlag)
@@ -534,6 +535,7 @@ function iOS() {
 }
 
 window.onload = function () {
+  $("#toggle-icon").trigger("click");
   if (iOS()) {
     $('.mapboxgl-ctrl-geocoder').hide();
   };
@@ -542,8 +544,6 @@ window.onload = function () {
 
 $('#toggle-icon').click(function () {
   var isMobile = window.matchMedia("(max-width: 700px)");
-
-  $(this).toggleClass('ion-arrow-up-a ion-arrow-down-a')
   $('#map').slideToggle();
   $('#map').css({ 'animation': 'none' });
   $('.instructions').css({ 'animation': 'none' });
