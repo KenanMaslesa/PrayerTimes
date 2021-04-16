@@ -35,7 +35,6 @@ function successLocation(position) {
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
-
 }
 
 function errorLocation() {
@@ -445,6 +444,10 @@ function getCalendar(obj) {
     $('.calendar-caption').text(flag ? getBosnianMonths(month) + ' ' + tempYear : month + ' ' + tempYear);
   else
     $('.calendar-caption').text(flag ? monthNamesBosnian[tempMonth] + ' ' + tempYear : monthNames[tempMonth] + ' ' + tempYear);
+
+  setTimeout(() => {
+    $(".loader").hide();
+  }, 2000);
 }
 
 function Rows(obj) {
@@ -564,7 +567,3 @@ $('#toggle-icon').click(function () {
 $('.print').on('click', function () {
   window.print();
 })
-
-setTimeout(() => {
-  $(".loader").hide();
-}, 2000);
