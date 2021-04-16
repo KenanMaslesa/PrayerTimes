@@ -245,11 +245,12 @@ body {
           left: -100%;
 
           @media (max-width: 768px) {
-            top: 0;
-            left: 112%;
+            left: 50%;
+            top: -10px;
+            transform: translate(-50%);
 
             &.toggle {
-              top: 40px;
+              top: 82px;
             }
           }
         }
@@ -660,7 +661,7 @@ body {
   height: 100%;
   z-index: 999999;
 
-  span{
+  span {
     color: #104755;
     position: absolute;
     top: 50%;
@@ -715,7 +716,6 @@ body {
     }
   }
 }
-
 
 @keyframes orbit-spinner-orbit-one-animation {
   0% {

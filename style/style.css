@@ -304,11 +304,13 @@ body {
 
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon {
-    top: 0;
-    left: 112%;
+    left: 50%;
+    top: -10px;
+    -webkit-transform: translate(-50%);
+            transform: translate(-50%);
   }
   #main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon.toggle {
-    top: 40px;
+    top: 82px;
   }
 }
 
