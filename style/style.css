@@ -21,10 +21,6 @@ body {
   background: #0e3443;
 }
 
-#main {
-  display: none;
-}
-
 ::-webkit-scrollbar {
   width: 5px;
 }

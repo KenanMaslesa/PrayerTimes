@@ -566,6 +566,5 @@ $('.print').on('click', function () {
 })
 
 setTimeout(() => {
-  $("#main").show();
   $(".loader").hide();
 }, 2000);
