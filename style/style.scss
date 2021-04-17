@@ -242,7 +242,7 @@ body {
           padding-right: 20px;
           cursor: pointer;
           font-size: 35px;
-          left: -100%;
+          left: -95%;
 
           @media (max-width: 768px) {
             left: 50%;
@@ -745,14 +745,22 @@ body {
 }
 
 //clock
-.clock-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  top: 10px;
-  right: 30px;
+.clock-wrapper {
+  position: relative;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .clock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+  }
 }
 
 .clock {

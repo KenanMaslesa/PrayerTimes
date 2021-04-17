@@ -299,7 +299,7 @@ body {
   padding-right: 20px;
   cursor: pointer;
   font-size: 35px;
-  left: -100%;
+  left: -95%;
 }
 
 @media (max-width: 768px) {
@@ -913,7 +913,17 @@ body {
   }
 }
 
-.clock-container {
+.clock-wrapper {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .clock-wrapper {
+    display: none;
+  }
+}
+
+.clock-wrapper .clock-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
