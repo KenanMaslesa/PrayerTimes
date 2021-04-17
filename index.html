@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prayer Times</title>
   <meta data-meta="1" data-mid="image_url" itemprop="image" property="og:image" name="twitter:image"
-  content="../images/globus.jpg">
+    content="../images/globus.jpg">
   <meta name="theme-color" content="#0e3443">
   <meta content="Prayer times for the whole world" name="description">
-  <meta content="prayer times, vaktija, takvim, prayertimes, islam, salah, fajr, sunrise, dhuhr, asr, maghrib, isha, sabah, podne, ikindija, aksam, jacija, vaktija za, prayer times for" name="keywords">
+  <meta
+    content="prayer times, vaktija, takvim, prayertimes, islam, salah, fajr, sunrise, dhuhr, asr, maghrib, isha, sabah, podne, ikindija, aksam, jacija, vaktija za, prayer times for"
+    name="keywords">
 
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
@@ -34,7 +36,7 @@
       <div class="orbit"></div>
       <div class="orbit"></div>
     </div>
-    </div>
+  </div>
   <main id="main">
     <h1 style="display: none;">Prayer times for the whole world</h1>
     <section id='map'></section>
@@ -47,17 +49,14 @@
       <i class="ion-ios-sunny-outline" id="light_theme"></i>
     </div>
 
-    <div class="local-time-wrapper mobile">
-      <div class="localTimeCaption">
-      </div>
-      <div class="localTime"></div>
-    </div>
+
     <section class="main-section">
       <section class="prayer-times-wrapper">
         <div class="calculation-methods">
           <select class="form-control" id="locations" type="submit">
+            <option value="17">14.6 angle for fajr and isha</option>
             <option value="3">Muslim World League</option>
-            <option value="16">Islamska Zajednica (IZ)</option>
+            <!--<option value="16">Islamska Zajednica (IZ)</option>-->
             <option value="2">Islamic Society of North America (ISNA)</option>
             <option value="4">Umm Al-Qura University, Makkah</option>
             <option value="5">Egyptian General Authority of Survey</option>
@@ -75,6 +74,17 @@
           </select>
           <i class="ion-android-pin" id="toggle-icon"></i>
         </div>
+        <div class="clock-container">
+          <div class="clock">
+            <div class="needle hour"></div>
+            <div class="needle minute"></div>
+            <div class="needle second"></div>
+            <div class="center-point"></div>
+          </div>
+
+          <div class="time"></div>
+          <div class="date"></div>
+        </div>
         <button class="autolocation">Autolocation</button>
         <div class="location-wrapper">
           <div class="country"></div>
@@ -87,12 +97,6 @@
           <span class="hijri-date"></span>
         </div>
         <div class="countdown"></div>
-
-        <div class="local-time-wrapper">
-          <div class="localTimeCaption">
-          </div>
-          <div class="localTime"></div>
-        </div>
 
         <div class="cards-wrapper">
           <div class="card fajr">
