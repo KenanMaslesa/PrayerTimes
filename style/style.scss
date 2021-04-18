@@ -512,7 +512,7 @@ body {
       }
 
       #table {
-        width: 60%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         border-collapse: collapse;
@@ -522,7 +522,7 @@ body {
         background: #0e313fd4;
         border: 1px solid transparent;
 
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
           width: 100%;
           border-radius: 0;
           margin-bottom: 15px;

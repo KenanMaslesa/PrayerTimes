@@ -634,7 +634,7 @@ body {
 }
 
 #main .main-section .calendar #table {
-  width: 60%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
@@ -645,7 +645,7 @@ body {
   border: 1px solid transparent;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #main .main-section .calendar #table {
     width: 100%;
     border-radius: 0;
