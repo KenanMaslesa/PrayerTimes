@@ -329,7 +329,7 @@ function upcomingPrayer() {
   removeUpcomingPrayer();
 
   if ($activeTime.hasClass('fajr')) {
-    $('.sunrise').find('.upcoming-prayer').text("upcoming");
+    $('.sunrise').find('.upcoming-prayer').text(flag ? "slijedi" : "upcoming");
     $('.sunrise').find('.upcoming-prayer').css({ visibility: 'visible' });
     $('.local-time-wrapper').removeClass('day');
   }
