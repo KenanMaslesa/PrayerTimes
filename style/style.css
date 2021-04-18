@@ -969,8 +969,6 @@ body {
   width: 3px;
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
-  -webkit-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
 }
 
 .needle.hour {
