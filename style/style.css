@@ -760,7 +760,7 @@ body {
 }
 
 .loader {
-  background: #191d30;
+  background: #000000;
   position: fixed;
   bottom: 0;
   left: 0;
