@@ -190,6 +190,7 @@ body {
 #main #map {
   height: 45%;
   width: 100%;
+  min-height: 400px;
 }
 
 #main #map .mapboxgl-ctrl.mapboxgl-ctrl-attrib,

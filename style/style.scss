@@ -162,6 +162,7 @@ body {
   #map {
     height: 45%;
     width: 100%;
+    min-height: 400px;
 
     .mapboxgl-ctrl.mapboxgl-ctrl-attrib,
     .mapboxgl-ctrl-logo {
