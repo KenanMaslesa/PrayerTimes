@@ -80,7 +80,7 @@ body {
           transform: translate(-50%, -50%);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
   #main .instructions {
     display: none;
   }
