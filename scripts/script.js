@@ -555,7 +555,8 @@ $('#toggle-icon').click(function () {
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
   }
-
+  if (!isMobile.matches)
+    $('.instructions.toggle').toggle(1000);
 })
 
 //PRINT
