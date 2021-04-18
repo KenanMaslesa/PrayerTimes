@@ -544,6 +544,9 @@ $('#toggle-icon').click(function () {
     $('.local-time-wrapper.mobile').toggle(300);
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
+  }
+
+  if (window.matchMedia("(max-width: 900px)").matches) {
     setTimeout(() => {
       $('.instructions').remove();
     }, 3000);
