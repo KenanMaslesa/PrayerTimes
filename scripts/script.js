@@ -462,7 +462,7 @@ function getCalendar(obj) {
 
   setTimeout(() => {
     $(".loader").hide();
-  }, 2000);
+  }, 700);
 }
 
 function Rows(obj) {
