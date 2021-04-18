@@ -650,9 +650,17 @@ body {
 }
 
 //ANIMATIONS
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .loader {
-  background: black;
+  background: #191d30;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -660,6 +668,21 @@ body {
   width: 100%;
   height: 100%;
   z-index: 999999;
+
+  #globe {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+  }
+
+  #globe-title {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%);
+  }
 
   span {
     color: #104755;
