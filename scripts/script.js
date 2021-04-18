@@ -549,7 +549,7 @@ $('#toggle-icon').click(function () {
   if (window.matchMedia("(max-width: 900px)").matches) {
     setTimeout(() => {
       $('.instructions').remove();
-    }, 3000);
+    }, 8000);
   }
 })
 
