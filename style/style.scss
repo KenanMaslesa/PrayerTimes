@@ -175,22 +175,6 @@ body {
     }
     .mapboxgl-ctrl-geocoder {
       width: 100%;
-      max-width: 150%;
-
-      @media (max-width: 425px) {
-        width: auto;
-        min-width: 40%;
-        max-width: 65%;
-      }
-
-      @media (max-width: 320px) {
-        min-width: 50%;
-        max-width: 57%;
-      }
-      @media (min-width: 360px) and (max-width: 420px) {
-        min-width: 65%;
-        max-width: 70%;
-      }
     }
     .mapboxgl-marker {
       cursor: grab !important;
