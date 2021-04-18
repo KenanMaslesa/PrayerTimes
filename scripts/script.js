@@ -430,17 +430,6 @@ function formatAMPM(time) {
   return strTime;
 }
 
-setTimeout(() => {
-  var isMobile = $('.instructions.mobile').css('display') == 'block';
-  if (isMobile) {
-    $('.instructions.mobile').fadeIn();
-    setTimeout(() => {
-      $('.instructions.mobile').fadeOut();
-    }, 5000);
-  }
-
-}, 3000);
-
 
 function dayofMonth(d) {
   return (d.getDate() < 10 ? '0' : '') + d.getDate();
@@ -549,13 +538,16 @@ $('#toggle-icon').click(function () {
   $('.autolocation').toggle('slow');
   $('.local-time-wrapper').toggleClass('toggle');
   $('.calculation-methods').toggleClass('toggle');
+  $('.instructions').toggle(1000);
 
   if (isMobile.matches) {
     $('.local-time-wrapper.mobile').toggle(300);
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
+    setTimeout(() => {
+      $('.instructions').remove();
+    }, 3000);
   }
-
 })
 
 //PRINT

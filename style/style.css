@@ -80,16 +80,6 @@ body {
           transform: translate(-50%, -50%);
 }
 
-@media (max-width: 900px) {
-  #main .instructions {
-    display: none;
-  }
-}
-
-#main .instructions.mobile {
-  display: none;
-}
-
 @media (min-width: 888px) and (max-width: 1180px) {
   #main .instructions {
     max-width: 365px;
