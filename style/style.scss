@@ -69,7 +69,8 @@ body {
     top: 0px;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (max-width: 800px) {
+    display: none;
+    @media (max-width: 900px) {
       display: none;
     }
     &.mobile {
