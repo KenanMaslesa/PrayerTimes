@@ -772,12 +772,12 @@ body {
 
 .loader #globe {
   position: absolute;
-  top: 45%;
+  top: 47%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 9;
-  height: 140px;
+  height: 110px;
 }
 
 .loader #globe-title {
