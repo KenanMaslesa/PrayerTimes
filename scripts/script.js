@@ -92,7 +92,7 @@ function showPosition(method) {
   }
   else {
     //default method
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=17`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
   }
 
   urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=2a1b056b085a47bfbe75c8452a37109c`;
