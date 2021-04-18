@@ -278,7 +278,7 @@ body {
           text-align: center;
           text-align-last: center;
           cursor: pointer;
-
+          -webkit-appearance: none;
           &.light {
             background-color: #104755;
           }
