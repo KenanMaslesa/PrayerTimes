@@ -554,6 +554,7 @@ window.onload = function () {
   $("#toggle-icon").trigger("click");
   if (iOS()) {
     $('.mapboxgl-ctrl-geocoder').hide();
+    $('.form-control.light').css('background', 'transparent');
   };
 }
 
