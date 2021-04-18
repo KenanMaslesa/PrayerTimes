@@ -355,15 +355,13 @@ body {
       }
 
       .cards-wrapper {
-        width: 80%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
 
         @media (max-width: 768px) {
           flex-direction: column;
-        }
-        @media (min-width: 2260px) {
-          width: 70%;
+          width: 85%;
         }
 
         .card:last-child {

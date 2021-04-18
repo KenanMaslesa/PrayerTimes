@@ -430,7 +430,7 @@ body {
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper {
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -441,12 +441,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-}
-
-@media (min-width: 2260px) {
-  #main .main-section .prayer-times-wrapper .cards-wrapper {
-    width: 70%;
+    width: 85%;
   }
 }
 
