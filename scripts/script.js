@@ -99,10 +99,13 @@ function showPosition(method) {
 
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
-  
+
   setTimeout(() => {
     $(".loader").hide();
-  }, 500);
+    setTimeout(() => {
+      $("#toggle-icon").trigger("click");
+    }, 3500);
+  }, 700);
 
 }
 
@@ -527,11 +530,6 @@ function getBosnianMonths(month) {
     return "Decembar";
 }
 
-window.onload = function () {
-  $("#toggle-icon").trigger("click");
-}
-
-
 $('#toggle-icon').click(function () {
   var isMobile = window.matchMedia("(max-width: 700px)");
   $('#map').slideToggle();
@@ -571,29 +569,29 @@ const bosnianDays = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak"
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function setTime(time = null) {
-  if(time != null){
-  const month = time.getMonth()
-  const day = time.getDay()
-  const date = time.getDate()
-  const hours = time.getHours()
-  const hoursForClock = hours >= 13 ? hours % 12 : hours;
-  const minutes = time.getMinutes()
-  const seconds = time.getSeconds()
-  const ampm = hours >= 12 ? 'PM' : 'AM'
+  if (time != null) {
+    const month = time.getMonth()
+    const day = time.getDay()
+    const date = time.getDate()
+    const hours = time.getHours()
+    const hoursForClock = hours >= 13 ? hours % 12 : hours;
+    const minutes = time.getMinutes()
+    const seconds = time.getSeconds()
+    const ampm = hours >= 12 ? 'PM' : 'AM'
 
-  hourEl.style.transform = `translate(-50%, -100%) rotate(${scale(hoursForClock, 0, 11, 0, 360)}deg)`
-  minuteEl.style.transform = `translate(-50%, -100%) rotate(${scale(minutes, 0, 59, 0, 360)}deg)`
-  secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`
+    hourEl.style.transform = `translate(-50%, -100%) rotate(${scale(hoursForClock, 0, 11, 0, 360)}deg)`
+    minuteEl.style.transform = `translate(-50%, -100%) rotate(${scale(minutes, 0, 59, 0, 360)}deg)`
+    secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`
 
-  if (flag) {
-    timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
-    dateEl.innerHTML = `${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`
+    if (flag) {
+      timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+      dateEl.innerHTML = `${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`
+    }
+    else {
+      timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`;
+      dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
+    }
   }
-  else {
-    timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`;
-    dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
-  }
-}
 }
 
 const scale = (num, in_min, in_max, out_min, out_max) => {
