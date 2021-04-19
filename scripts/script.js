@@ -105,7 +105,7 @@ function showPosition(method) {
     setTimeout(() => {
       $('html, body').animate({ scrollTop: 0 }, 300);
     }, 3500);
-  }, 900);
+  }, 1200);
 
 }
 
