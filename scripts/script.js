@@ -104,6 +104,7 @@ function showPosition(method) {
     $(".loader").hide();
     setTimeout(() => {
       $("#toggle-icon").trigger("click");
+      $('html, body').animate({ scrollTop: 0}, 300);
     }, 3500);
   }, 700);
 
