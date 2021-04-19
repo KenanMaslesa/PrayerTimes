@@ -160,7 +160,7 @@ function GetPrayerTimes(obj) {
   isha = obj.data.timings.Isha;
 
   $(".hijri-date").text(hijriDate);
-  $(".gregorian-date").text(gregorianDate);
+  $(".gregorian-date").text(gregorianDate + " / ");
   $(".fajr-time").text(flag ? fajr : formatAMPM(fajr));
   $(".sunrise-time").text(flag ? sunrise : formatAMPM(sunrise));
   $(".dhuhr-time").text(flag ? dhuhr : formatAMPM(dhuhr));
@@ -456,6 +456,7 @@ function getCalendar(obj) {
   else
     $('.calendar-caption').text(flag ? monthNamesBosnian[tempMonth] + ' ' + tempYear : monthNames[tempMonth] + ' ' + tempYear);
 
+  $('.calendar').addClass('show');
 }
 
 function Rows(obj) {

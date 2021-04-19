@@ -465,12 +465,14 @@ body {
 
     .calendar {
       color: #fff !important;
+      display: none;
       padding: 50px;
       text-align: center;
       @media (max-width: 767px) {
         padding: 2px;
       }
-
+      &.show {
+      display: block;}
       .calendar-arrows {
         margin-bottom: 10px;
         i {
@@ -654,10 +656,10 @@ body {
     transform: translate(-50%, -50%);
     z-index: 9;
     height: 130px;
-    
-    @media(max-width:768px){
+
+    @media (max-width: 768px) {
       height: 110px;
-      }
+    }
   }
 
   #globe-title {
@@ -855,7 +857,8 @@ body {
 }
 
 //spin loader
-.looping-rhombuses-spinner, .looping-rhombuses-spinner * {
+.looping-rhombuses-spinner,
+.looping-rhombuses-spinner * {
   box-sizing: border-box;
 }
 

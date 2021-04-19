@@ -572,6 +572,7 @@ body {
 
 #main .main-section .calendar {
   color: #fff !important;
+  display: none;
   padding: 50px;
   text-align: center;
 }
@@ -580,6 +581,10 @@ body {
   #main .main-section .calendar {
     padding: 2px;
   }
+}
+
+#main .main-section .calendar.show {
+  display: block;
 }
 
 #main .main-section .calendar .calendar-arrows {
@@ -1051,7 +1056,8 @@ body {
   font-size: 12px;
 }
 
-.looping-rhombuses-spinner, .looping-rhombuses-spinner * {
+.looping-rhombuses-spinner,
+.looping-rhombuses-spinner * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
