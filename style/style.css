@@ -422,7 +422,7 @@ body {
 }
 
 #main .main-section .prayer-times-wrapper .countdown.danger {
-  color: red;
+  color: #e41515;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper {
