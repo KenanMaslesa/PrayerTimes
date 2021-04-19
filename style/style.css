@@ -1051,108 +1051,74 @@ body {
   font-size: 12px;
 }
 
-.fingerprint-spinner, .fingerprint-spinner * {
+.looping-rhombuses-spinner, .looping-rhombuses-spinner * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-.fingerprint-spinner {
-  height: 64px;
-  width: 64px;
-  padding: 2px;
-  overflow: hidden;
+.looping-rhombuses-spinner {
+  width: calc(15px * 4);
+  height: 15px;
   position: relative;
   margin: 0 auto;
 }
 
-.fingerprint-spinner .spinner-ring {
+.looping-rhombuses-spinner .rhombus {
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  left: calc(15px * 4);
   position: absolute;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  border-top-color: #ffffff;
-  -webkit-animation: fingerprint-spinner-animation 1500ms cubic-bezier(0.68, -0.75, 0.265, 1.75) infinite forwards;
-          animation: fingerprint-spinner-animation 1500ms cubic-bezier(0.68, -0.75, 0.265, 1.75) infinite forwards;
-  margin: auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
+  margin: 0 auto;
+  border-radius: 2px;
+  -webkit-transform: translateY(0) rotate(45deg) scale(0);
+          transform: translateY(0) rotate(45deg) scale(0);
+  -webkit-animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
+          animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
 }
 
-.fingerprint-spinner .spinner-ring:nth-child(1) {
-  height: calc(60px / 9 + 0 * 60px / 9);
-  width: calc(60px / 9 + 0 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 1);
-          animation-delay: calc(50ms * 1);
+.looping-rhombuses-spinner .rhombus:nth-child(1) {
+  -webkit-animation-delay: calc(2500ms * 1 / -1.5);
+          animation-delay: calc(2500ms * 1 / -1.5);
 }
 
-.fingerprint-spinner .spinner-ring:nth-child(2) {
-  height: calc(60px / 9 + 1 * 60px / 9);
-  width: calc(60px / 9 + 1 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 2);
-          animation-delay: calc(50ms * 2);
+.looping-rhombuses-spinner .rhombus:nth-child(2) {
+  -webkit-animation-delay: calc(2500ms * 2 / -1.5);
+          animation-delay: calc(2500ms * 2 / -1.5);
 }
 
-.fingerprint-spinner .spinner-ring:nth-child(3) {
-  height: calc(60px / 9 + 2 * 60px / 9);
-  width: calc(60px / 9 + 2 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 3);
-          animation-delay: calc(50ms * 3);
+.looping-rhombuses-spinner .rhombus:nth-child(3) {
+  -webkit-animation-delay: calc(2500ms * 3 / -1.5);
+          animation-delay: calc(2500ms * 3 / -1.5);
 }
 
-.fingerprint-spinner .spinner-ring:nth-child(4) {
-  height: calc(60px / 9 + 3 * 60px / 9);
-  width: calc(60px / 9 + 3 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 4);
-          animation-delay: calc(50ms * 4);
-}
-
-.fingerprint-spinner .spinner-ring:nth-child(5) {
-  height: calc(60px / 9 + 4 * 60px / 9);
-  width: calc(60px / 9 + 4 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 5);
-          animation-delay: calc(50ms * 5);
-}
-
-.fingerprint-spinner .spinner-ring:nth-child(6) {
-  height: calc(60px / 9 + 5 * 60px / 9);
-  width: calc(60px / 9 + 5 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 6);
-          animation-delay: calc(50ms * 6);
-}
-
-.fingerprint-spinner .spinner-ring:nth-child(7) {
-  height: calc(60px / 9 + 6 * 60px / 9);
-  width: calc(60px / 9 + 6 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 7);
-          animation-delay: calc(50ms * 7);
-}
-
-.fingerprint-spinner .spinner-ring:nth-child(8) {
-  height: calc(60px / 9 + 7 * 60px / 9);
-  width: calc(60px / 9 + 7 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 8);
-          animation-delay: calc(50ms * 8);
-}
-
-.fingerprint-spinner .spinner-ring:nth-child(9) {
-  height: calc(60px / 9 + 8 * 60px / 9);
-  width: calc(60px / 9 + 8 * 60px / 9);
-  -webkit-animation-delay: calc(50ms * 9);
-          animation-delay: calc(50ms * 9);
-}
-
-@-webkit-keyframes fingerprint-spinner-animation {
+@-webkit-keyframes looping-rhombuses-spinner-animation {
+  0% {
+    -webkit-transform: translateX(0) rotate(45deg) scale(0);
+            transform: translateX(0) rotate(45deg) scale(0);
+  }
+  50% {
+    -webkit-transform: translateX(-233%) rotate(45deg) scale(1);
+            transform: translateX(-233%) rotate(45deg) scale(1);
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: translateX(-466%) rotate(45deg) scale(0);
+            transform: translateX(-466%) rotate(45deg) scale(0);
   }
 }
 
-@keyframes fingerprint-spinner-animation {
+@keyframes looping-rhombuses-spinner-animation {
+  0% {
+    -webkit-transform: translateX(0) rotate(45deg) scale(0);
+            transform: translateX(0) rotate(45deg) scale(0);
+  }
+  50% {
+    -webkit-transform: translateX(-233%) rotate(45deg) scale(1);
+            transform: translateX(-233%) rotate(45deg) scale(1);
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: translateX(-466%) rotate(45deg) scale(0);
+            transform: translateX(-466%) rotate(45deg) scale(0);
   }
 }
 /*# sourceMappingURL=style.css.map */
