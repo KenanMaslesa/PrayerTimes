@@ -566,6 +566,7 @@ const timeEl = document.querySelector('.time')
 const dateEl = document.querySelector('.date')
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const bosnianDays = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function setTime(time) {
@@ -583,12 +584,13 @@ function setTime(time) {
   secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`
 
   if (flag) {
-    timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`
+    timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+    dateEl.innerHTML = `${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`
   }
   else {
-    timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`
+    timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`;
+    dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
   }
-  dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
 }
 
 const scale = (num, in_min, in_max, out_min, out_max) => {
