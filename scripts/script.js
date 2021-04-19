@@ -106,7 +106,7 @@ function showPosition(method) {
       $("#toggle-icon").trigger("click");
       $('html, body').animate({ scrollTop: 0}, 300);
     }, 3500);
-  }, 700);
+  }, 900);
 
 }
 
