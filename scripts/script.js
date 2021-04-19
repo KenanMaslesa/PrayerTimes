@@ -449,9 +449,6 @@ function getCalendar(obj) {
   else
     $('.calendar-caption').text(flag ? monthNamesBosnian[tempMonth] + ' ' + tempYear : monthNames[tempMonth] + ' ' + tempYear);
 
-  setTimeout(() => {
-    $(".loader").hide();
-  }, 700);
 }
 
 function Rows(obj) {
@@ -528,6 +525,9 @@ function getBosnianMonths(month) {
 
 window.onload = function () {
   $("#toggle-icon").trigger("click");
+  setTimeout(() => {
+    $(".loader").hide();
+  }, 1700);
 }
 
 
