@@ -99,6 +99,10 @@ function showPosition(method) {
 
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
+  
+  setTimeout(() => {
+    $(".loader").hide();
+  }, 500);
 
 }
 
@@ -525,9 +529,6 @@ function getBosnianMonths(month) {
 
 window.onload = function () {
   $("#toggle-icon").trigger("click");
-  setTimeout(() => {
-    $(".loader").hide();
-  }, 500);
 }
 
 
