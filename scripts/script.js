@@ -103,8 +103,7 @@ function showPosition(method) {
   setTimeout(() => {
     $(".loader").hide();
     setTimeout(() => {
-      $("#toggle-icon").trigger("click");
-      $('html, body').animate({ scrollTop: 0}, 300);
+      $('html, body').animate({ scrollTop: 0 }, 300);
     }, 3500);
   }, 900);
 
@@ -558,6 +557,11 @@ $('.print').on('click', function () {
   window.print();
 })
 
+window.onload = function () {
+  setTimeout(() => {
+    $("#toggle-icon").trigger("click");
+  }, 5000);
+}
 //clock
 const hourEl = document.querySelector('.hour')
 const minuteEl = document.querySelector('.minute')
