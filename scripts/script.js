@@ -527,7 +527,7 @@ window.onload = function () {
   $("#toggle-icon").trigger("click");
   setTimeout(() => {
     $(".loader").hide();
-  }, 1200);
+  }, 500);
 }
 
 
