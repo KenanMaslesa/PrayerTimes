@@ -569,7 +569,8 @@ const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 const bosnianDays = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function setTime(time) {
+function setTime(time = null) {
+  if(time != null){
   const month = time.getMonth()
   const day = time.getDay()
   const date = time.getDate()
@@ -591,6 +592,7 @@ function setTime(time) {
     timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`;
     dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
   }
+}
 }
 
 const scale = (num, in_min, in_max, out_min, out_max) => {
