@@ -558,7 +558,6 @@ $('.print').on('click', function () {
 window.onload = function () {
   setTimeout(() => {
     $("#toggle-icon").trigger("click");
-    $('html, body').animate({ scrollTop: 0 }, 1000);
   }, 5000);
 }
 //clock
