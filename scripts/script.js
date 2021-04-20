@@ -102,9 +102,6 @@ function showPosition(method) {
 
   setTimeout(() => {
     $(".loader").hide();
-    setTimeout(() => {
-      $('html, body').animate({ scrollTop: 0 }, 300);
-    }, 3500);
   }, 1200);
 
 }
@@ -561,6 +558,7 @@ $('.print').on('click', function () {
 window.onload = function () {
   setTimeout(() => {
     $("#toggle-icon").trigger("click");
+    $('html, body').animate({ scrollTop: 0 }, 1000);
   }, 5000);
 }
 //clock
