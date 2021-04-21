@@ -40,6 +40,7 @@ function setupMap(center) {
     showPosition();
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
+    $('.instructions').hide();
   });
 
   // geocoder (input)
