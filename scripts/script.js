@@ -129,7 +129,7 @@ function showPosition(method) {
   }
   else {
     //default method
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2`;
   }
 
   urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=2a1b056b085a47bfbe75c8452a37109c`;
@@ -235,7 +235,7 @@ function GetPrayerTimes(obj) {
   countDownTime.setSeconds(0);
 
   if (method == null)//default calendar method
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   }
