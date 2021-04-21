@@ -955,3 +955,97 @@ body {
     font-size: 42px;
   }
 }
+
+
+/*SHARE ICONS*/
+
+.share-icon {
+  font-size: 18px;
+  display: inline-block;
+  color: #eee;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+  position: fixed;
+  left: 0px;
+  top: 42%;
+  z-index: 9999;
+  transform: translateY(-50%);
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+#share-icon-index {
+  font-size: 18px;
+  display: flex;
+  position: fixed;
+  right: 4px;
+  top: 10px;
+  z-index: 9999;
+
+  @media (max-width: 1000px) {
+    display: none !important;
+  }
+}
+
+#facebook {
+  font-size: 14px;
+  display: block;
+  background: #1877f2;
+  color: #eee;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+
+  &:hover {
+    color: white;
+    opacity: 0.8;
+  }
+}
+
+#mail {
+  font-size: 14px;
+  display: block;
+  background: gray;
+  color: #eee;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+
+  &:hover {
+    color: white;
+    opacity: 0.8;
+  }
+}
+
+#twitter {
+  font-size: 14px;
+  display: block;
+  background: #2ebfdf;
+  color: white;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+
+  &:hover {
+    color: white;
+    opacity: 0.8;
+  }
+}
