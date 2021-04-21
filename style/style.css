@@ -217,6 +217,7 @@ body {
   background-image: linear-gradient(#42a76638), url(../images/6.png);
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100%;
 }
 
 #main .main-section.dark {
@@ -238,6 +239,36 @@ body {
     padding: 0px;
     position: relative;
   }
+}
+
+#main .main-section .prayer-times-wrapper #locationsIZ {
+  display: none;
+  width: auto;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: white;
+  background-color: #030c1d;
+  background-image: none;
+  border-radius: 0px 0px 4px 4px;
+  margin-top: 5px;
+  border: 1px solid gray;
+  text-align: center;
+  text-align-last: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+#main .main-section .prayer-times-wrapper #locationsIZ.light {
+  background-color: #104755;
+}
+
+#main .main-section .prayer-times-wrapper #locationsIZ.animate {
+  -webkit-animation: changeBackground 2s infinite;
+          animation: changeBackground 2s infinite;
 }
 
 #main .main-section .prayer-times-wrapper .calculation-methods {
@@ -269,6 +300,11 @@ body {
   cursor: pointer;
   font-size: 35px;
   left: -95%;
+}
+
+#main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon.animate {
+  -webkit-animation: changeColor 1.2s infinite;
+          animation: changeColor 1.2s infinite;
 }
 
 @media (max-width: 768px) {
@@ -572,7 +608,6 @@ body {
 
 #main .main-section .calendar {
   color: #fff !important;
-  display: none;
   padding: 50px;
   text-align: center;
 }
@@ -583,8 +618,8 @@ body {
   }
 }
 
-#main .main-section .calendar.show {
-  display: block;
+#main .main-section .calendar.hide {
+  visibility: hidden;
 }
 
 #main .main-section .calendar .calendar-arrows {
@@ -1125,6 +1160,36 @@ body {
   100% {
     -webkit-transform: translateX(-466%) rotate(45deg) scale(0);
             transform: translateX(-466%) rotate(45deg) scale(0);
+  }
+}
+
+@-webkit-keyframes changeBackground {
+  0% {
+  }
+  100% {
+    background: #e74c3c;
+  }
+}
+
+@keyframes changeBackground {
+  0% {
+  }
+  100% {
+    background: #e74c3c;
+  }
+}
+
+@-webkit-keyframes changeColor {
+  100% {
+    color: red;
+    font-size: 42px;
+  }
+}
+
+@keyframes changeColor {
+  100% {
+    color: red;
+    font-size: 42px;
   }
 }
 /*# sourceMappingURL=style.css.map */

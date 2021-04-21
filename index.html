@@ -55,10 +55,10 @@
       <section class="prayer-times-wrapper">
         <div class="calculation-methods">
           <select class="form-control" id="locations" type="submit">
-            <option value="17">14.6 angle for fajr and isha</option>
             <option value="3">Muslim World League</option>
-            <!--<option value="16">Islamska Zajednica (IZ)</option>-->
+            <option value="16">Islamska Zajednica (IZ)</option>
             <option value="2">Islamic Society of North America (ISNA)</option>
+            <option value="17">Angle 14.6°</option>
             <option value="4">Umm Al-Qura University, Makkah</option>
             <option value="5">Egyptian General Authority of Survey</option>
             <option value="1">University of Islamic Sciences, Karachi</option>
@@ -72,12 +72,134 @@
             <option value="13">Diyanet İşleri Başkanlığı, Turkey</option>
             <option value="14">Spiritual Administration of Muslims of Russia</option>
             <option value="15">Moonsighting Committee Worldwide</option>
-          </select>
+          </select>   
           <i class="ion-android-pin" id="toggle-icon"></i>
         </div>
 
+
         <button class="autolocation">Autolocation</button>
         <div class="location-wrapper">
+          <select class="form-control" id="locationsIZ" type="submit">
+            <option value="-1">Odaberite grad</option>
+            <option value="0">Banovići</option>
+            <option value="1">Banja Luka</option>
+            <option value="2">Bihać</option>
+            <option value="3">Bijeljina</option>
+            <option value="4">Bileća</option>
+            <option value="5">Bosanski Brod</option>
+            <option value="6">Bosanska Dubica</option>
+            <option value="7">Bosanska Gradiška</option>
+            <option value="8">Bosansko Grahovo</option>
+            <option value="9">Bosanska Krupa</option>
+            <option value="10">Bosanski Novi</option>
+            <option value="11">Bosanski Petrovac</option>
+            <option value="12">Bosanski Šamac</option>
+            <option value="13">Bratunac</option>
+            <option value="14">Brčko</option>
+            <option value="15">Breza</option>
+            <option value="16">Bugojno</option>
+            <option value="17">Busovača</option>
+            <option value="18">Bužim</option>
+            <option value="19">Cazin</option>
+            <option value="20">Čajniče</option>
+            <option value="21">Čapljina</option>
+            <option value="22">Čelić</option>
+            <option value="23">Čelinac</option>
+            <option value="24">Čitluk</option>
+            <option value="25">Derventa</option>
+            <option value="26">Doboj</option>
+            <option value="27">Donji Vakuf</option>
+            <option value="28">Drvar</option>
+            <option value="29">Foča</option>
+            <option value="30">Fojnica</option>
+            <option value="31">Gacko</option>
+            <option value="32">Glamoč</option>
+            <option value="33">Goražde</option>
+            <option value="34">Gornji Vakuf</option>
+            <option value="35">Gračanica</option>
+            <option value="36">Gradačac</option>
+            <option value="37">Grude</option>
+            <option value="38">Hadžići</option>
+            <option value="39">Han-Pijesak</option>
+            <option value="41">Ilijaš</option>
+            <option value="42">Jablanica</option>
+            <option value="43">Jajce</option>
+            <option value="44">Kakanj</option>
+            <option value="45">Kalesija</option>
+            <option value="46">Kalinovik</option>
+            <option value="47">Kiseljak</option>
+            <option value="48">Kladanj</option>
+            <option value="49">Ključ</option>
+            <option value="50">Konjic</option>
+            <option value="51">Kotor-Varoš</option>
+            <option value="52">Kreševo</option>
+            <option value="53">Kupres</option>
+            <option value="54">Laktaši</option>
+            <option value="40">Livno</option>
+            <option value="55">Lopare</option>
+            <option value="56">Lukavac</option>
+            <option value="57">Ljubinje</option>
+            <option value="58">Ljubuški</option>
+            <option value="59">Maglaj</option>
+            <option value="60">Modriča</option>
+            <option value="61">Mostar</option>
+            <option value="62">Mrkonjić-Grad</option>
+            <option value="63">Neum</option>
+            <option value="64">Nevesinje</option>
+            <option value="65">Novi Travnik</option>
+            <option value="66">Odžak</option>
+            <option value="67">Olovo</option>
+            <option value="68">Orašje</option>
+            <option value="69">Pale</option>
+            <option value="70">Posušje</option>
+            <option value="71">Prijedor</option>
+            <option value="72">Prnjavor</option>
+            <option value="73">Prozor</option>
+            <option value="74">Rogatica</option>
+            <option value="75">Rudo</option>
+            <option value="76">Sanski Most</option>
+            <option value="77">Sarajevo</option>
+            <option value="78">Skender-Vakuf</option>
+            <option value="79">Sokolac</option>
+            <option value="80">Srbac</option>
+            <option value="81">Srebrenica</option>
+            <option value="82">Srebrenik</option>
+            <option value="83">Stolac</option>
+            <option value="84">Šekovići</option>
+            <option value="85">Šipovo</option>
+            <option value="86">Široki Brijeg</option>
+            <option value="87">Teslić</option>
+            <option value="88">Tešanj</option>
+            <option value="89">Tomislav-Grad</option>
+            <option value="90">Travnik</option>
+            <option value="91">Trebinje</option>
+            <option value="92">Trnovo</option>
+            <option value="93">Tuzla</option>
+            <option value="94">Ugljevik</option>
+            <option value="95">Vareš</option>
+            <option value="96">Velika Kladuša</option>
+            <option value="97">Visoko</option>
+            <option value="98">Višegrad</option>
+            <option value="99">Vitez</option>
+            <option value="100">Vlasenica</option>
+            <option value="101">Zavidovići</option>
+            <option value="102">Zenica</option>
+            <option value="103">Zvornik</option>
+            <option value="104">Žepa</option>
+            <option value="105">Žepče</option>
+            <option value="106">Živinice</option>
+            <option value="107">Bijelo Polje</option>
+            <option value="108">Gusinje</option>
+            <option value="109">Nova Varoš</option>
+            <option value="110">Novi Pazar</option>
+            <option value="111">Plav</option>
+            <option value="112">Pljevlja</option>
+            <option value="113">Priboj</option>
+            <option value="114">Prijepolje</option>
+            <option value="115">Rožaje</option>
+            <option value="116">Sjenica</option>
+            <option value="117">Tutin</option>
+          </select>
           <div class="country"></div>
           <div class="city"></div>
         </div>
@@ -87,72 +209,56 @@
           <span class="hijri-date"></span>
         </div>
         <div class="countdown">
-          <div class="looping-rhombuses-spinner" style="padding: 40px;">
-            <div class="rhombus"></div>
-            <div class="rhombus"></div>
-            <div class="rhombus"></div>
-          </div>
+          <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
         </div>
 
         <div class="cards-wrapper">
           <div class="card fajr">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name fajr-caption">Zora</div>
-            <div class="prayer-time fajr-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time fajr-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
           <div class="card sunrise">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name sunrise-caption">Izlazak sunca</div>
-            <div class="prayer-time sunrise-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time sunrise-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
           <div class="card dhuhr">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name dhuhr-caption">Podne</div>
-            <div class="prayer-time dhuhr-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time dhuhr-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
           <div class="card asr">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name asr-caption">Ikindija</div>
-            <div class="prayer-time asr-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time asr-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
           <div class="card maghrib">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name maghrib-caption">Akšam</div>
-            <div class="prayer-time maghrib-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time maghrib-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
           <div class="card isha">
             <span class="upcoming-prayer">Upcoming prayer</span>
             <div class="prayer-name isha-caption">Jacija</div>
-            <div class="prayer-time isha-time"> <div class="looping-rhombuses-spinner">
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-              <div class="rhombus"></div>
-            </div></div>
+            <div class="prayer-time isha-time">
+              <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
+            </div>
           </div>
 
         </div>

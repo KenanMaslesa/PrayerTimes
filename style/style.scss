@@ -182,6 +182,7 @@ body {
     background-image: linear-gradient(#42a76638), url(../images/6.png);
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 100%;
 
     &.dark {
       background-image: linear-gradient(#0606068c), url(../images/6.png);
@@ -198,6 +199,31 @@ body {
         height: auto;
         padding: 0px;
         position: relative;
+      }
+
+      #locationsIZ {
+        display: none;
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: rgb(255, 255, 255);
+        background-color: rgb(3, 12, 29);
+        background-image: none;
+        border-radius: 0px 0px 4px 4px;
+        margin-top: 5px;
+        border: 1px solid gray;
+        text-align: center;
+        text-align-last: center;
+        cursor: pointer;
+        appearance: none;
+        &.light {
+          background-color: #104755;
+        }
+        &.animate {
+          animation: changeBackground 2s infinite;
+        }
       }
 
       .calculation-methods {
@@ -223,6 +249,10 @@ body {
           cursor: pointer;
           font-size: 35px;
           left: -95%;
+
+          &.animate {
+            animation: changeColor 1.2s infinite;
+          }
 
           @media (max-width: 768px) {
             left: 50%;
@@ -465,14 +495,14 @@ body {
 
     .calendar {
       color: #fff !important;
-      display: none;
       padding: 50px;
       text-align: center;
       @media (max-width: 767px) {
         padding: 2px;
       }
-      &.show {
-      display: block;}
+      &.hide {
+        visibility: hidden;
+      }
       .calendar-arrows {
         margin-bottom: 10px;
         i {
@@ -902,5 +932,20 @@ body {
   }
   100% {
     transform: translateX(-466%) rotate(45deg) scale(0);
+  }
+}
+
+@keyframes changeBackground {
+  0% {
+  }
+  100% {
+    background: #e74c3c;
+  }
+}
+
+@keyframes changeColor {
+  100% {
+    color: red;
+    font-size: 42px;
   }
 }

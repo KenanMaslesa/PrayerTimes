@@ -3,9 +3,10 @@ let currentPosition;
 let latitude = localStorage.getItem("latitude");
 let longitude = localStorage.getItem("longitude");
 let method = localStorage.getItem("method");
+let cityID = localStorage.getItem("cityID");
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
-  hijriDate, country, county, flag, month, year;
+  hijriDate, country, county, flag = true, month, year;
 let tempMonth = new Date().getMonth() + 1, tempYear = new Date().getFullYear(), calendarFlag = false;
 
 const monthNames = ["", "January", "February", "March", "April", "May", "June",
@@ -15,13 +16,48 @@ const monthNames = ["", "January", "February", "March", "April", "May", "June",
 const monthNamesBosnian = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni",
   "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"
 ];
+window.onload = function () {
+  if (method != 16) {
+    if (latitude == null || longitude == null)
+      navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
+    else {
+      setupMap([longitude, latitude]);
+      showPosition(method);
+    }
 
-if (latitude == null || longitude == null)
-  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-else {
-  setupMap([longitude, latitude]);
-  showPosition(method);
+    setTimeout(() => {
+      setTimeout(() => {
+        if (method != 16) {
+          $("#toggle-icon").trigger("click");
+        }
+        setTimeout(() => {
+          $("#toggle-icon").removeClass("animate");
+        }, 5000);
+      }, 2000);
+      $("#toggle-icon").addClass("animate");
+    }, 8000);
+
+  }
+  else {
+    cityID = localStorage.getItem("cityID");
+    if (cityID == 'null') {
+      $('#locationsIZ').show();
+      $('#locationsIZ').addClass('animate');
+    }
+    else {
+      getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+    }
+
+    hideMap();
+
+    setTimeout(() => {
+      $(".loader").hide();
+    }, 300);
+  }
+  $('html, body').animate({ scrollTop: 0 }, 1000);
+
 }
+
 
 document.querySelector(".autolocation").addEventListener('click', function () {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
@@ -41,8 +77,9 @@ function errorLocation() {
   latitude = 43.869308818408456, longitude = 18.417377317154944;
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
+  setupMap([longitude, latitude]);
   showPosition(method);
-  window.location.reload();
+  //window.location.reload();
 }
 
 
@@ -54,12 +91,11 @@ function getRequest(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      alert("Invalid coordinates. expecting latitude in (+/- 90) and longitude in (+/- 180) range values. You will be transferred to the Sarajevo");
       latitude = 43.869308818408456, longitude = 18.417377317154944;
       localStorage.setItem("latitude", latitude);
       localStorage.setItem("longitude", longitude);
       showPosition(method);
-      window.location.reload();
+      //window.location.reload();
     }
   }
 
@@ -81,18 +117,19 @@ function showPosition(method) {
   if (method != null) {
     $('#locations option[value=' + method + ']').prop('selected', true);
     if (method == 16) {
-      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3`;
+      $('#locationsIZ').show();
+      return;
     }
     else if (method == 17) {
       urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
     }
     else {
-      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
+      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
     }
   }
   else {
     //default method
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3`;
   }
 
   urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=2a1b056b085a47bfbe75c8452a37109c`;
@@ -183,9 +220,9 @@ function GetPrayerTimes(obj) {
 
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
+      Night();
       $("#dark_theme").trigger('click');
       $('.local-time-wrapper').removeClass('day');
-
     }
   }, 1000);
 
@@ -196,16 +233,18 @@ function GetPrayerTimes(obj) {
   countDownTime.setHours(hours);
   countDownTime.setMinutes(minutes);
   countDownTime.setSeconds(0);
-  if (method == 16) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
-  }
+
+  if (method == null)//default calendar method
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   }
   else {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
   }
-  getRequest(getCalendar, urlCalendar);
+  if (method != 16) {
+    getRequest(getCalendar, urlCalendar);
+  }
 }
 
 $('#plus').on('click', function () {
@@ -218,8 +257,11 @@ $('#plus').on('click', function () {
     tempMonth++;
   }
 
-  if (method == 16)
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
+  if (method == 16) {
+    var cityID = localStorage.getItem('cityID');
+    var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${tempYear}/${tempMonth}`;
+    getRequest(CalendarRows, calendarIZurl)
+  }
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
   }
@@ -238,8 +280,11 @@ $('#minus').on('click', function () {
     tempMonth--;
   }
 
-  if (method == 16)
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3&month=${tempMonth}&year=${tempYear}`;
+  if (method == 16) {
+    var cityID = localStorage.getItem('cityID');
+    var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${tempYear}/${tempMonth}`;
+    getRequest(CalendarRows, calendarIZurl)
+  }
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
   }
@@ -252,13 +297,17 @@ $('#minus').on('click', function () {
 function formatTime(h) {
   return h < 10 ? "0" + h : h;
 }
-function setHours(h) {
-  hours = h.substring(0, h.indexOf(":"));
-  countDownTime.setHours(hours);
+function setHours(h = null) {
+  if (h != null) {
+    hours = h.substring(0, h.indexOf(":"));
+    countDownTime.setHours(hours);
+  }
 }
-function setMinutes(m) {
-  minutes = m.substring(m.indexOf(":") + 1);
-  countDownTime.setMinutes(minutes);
+function setMinutes(m = null) {
+  if (m != null) {
+    minutes = m.substring(m.indexOf(":") + 1);
+    countDownTime.setMinutes(minutes);
+  }
 }
 
 function removeActiveClass() {
@@ -324,6 +373,7 @@ function setTimes() {
   }
   else {
     $("#light_theme").trigger('click');
+    Day();
   }
 
 }
@@ -407,19 +457,192 @@ var x = setInterval(function () {
 $('#locations').change(function () {
   method = $(this).val();
   localStorage.setItem("method", method);
+  localStorage.setItem('cityID', null);
   currentTime = new Date();
+
   if (method == 16) {
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=3&tune=0,-4,-5,1,0,5,0,-1,-3`;
+    localStorage.setItem('IZ', true);
+    $('#locationsIZ').show();
+    hideMap();
+    $('.fajr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.sunrise-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.dhuhr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.asr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.maghrib-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.isha-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.countdown').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.city').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+    $('.calendar').addClass('hide');
+    $('.card').removeClass('active');
+    $('.upcoming-prayer').html('');
+    $('.country').html('');
+    $('.countdown').hide();
+    $('#locationsIZ').addClass('animate');
   }
-  else if (method == 17) {
+  else {
+    $('#locationsIZ').hide();
+    var isIZ = localStorage.getItem('IZ');
+    $('#locationsIZ option[value=-1]').prop('selected', true);
+    if (isIZ == 'true') {
+      showMap();
+      setTimeout(() => {
+        setupMap([longitude, latitude]);
+      }, 500);
+      localStorage.setItem('IZ', false);
+    }
+    //showMap();
+  }
+  if (method == 17) {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
   }
   else {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
   }
-  getRequest(GetPrayerTimes, urlGetPrayerTimes);
+  showPosition(method);
+  setupMap([longitude, latitude]);
 
 });
+// IZ
+$('#locationsIZ').click(function () {
+  $('#locationsIZ').removeClass('animate');
+});
+
+$('#locationsIZ').change(function () {
+  cityID = $(this).val();
+  localStorage.setItem("cityID", cityID);
+  $('.countdown').show();
+
+  getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+
+});
+function loadDataIZ(obj) {
+  if (method != null) {
+    $('#locations option[value=' + method + ']').prop('selected', true);
+    $('#locationsIZ').show();
+  }
+
+  debugger
+  var cityID = localStorage.getItem("cityID");
+  if (cityID != null) {
+    $('#locationsIZ option[value=' + cityID + ']').prop('selected', true);
+  }
+
+  fajr = obj.vakat[0];
+  sunrise = obj.vakat[1];
+  dhuhr = obj.vakat[2];
+  asr = obj.vakat[3];
+  maghrib = obj.vakat[4];
+  isha = obj.vakat[5];
+
+  $(".hijri-date").text(hijriDate);
+  $(".gregorian-date").text(gregorianDate + " / ");
+  $(".fajr-time").text(fajr);
+  $(".sunrise-time").text(sunrise);
+  $(".dhuhr-time").text(dhuhr);
+  $(".asr-time").text(asr);
+  $(".maghrib-time").text(maghrib);
+  $(".isha-time").text(isha);
+  if (cityID == 107) {
+    $(".country").text('Crna Gora');
+  }
+  else if (cityID == 108) {
+    $(".country").text('Crna Gora');
+  }
+  else if (cityID == 109) {
+    $(".country").text('Srbija');
+  }
+  else if (cityID == 110) {
+    $(".country").text('Srbija');
+  }
+  else if (cityID == 111) {
+    $(".country").text('Crna Gora');
+  }
+  else if (cityID == 112) {
+    $(".country").text('Crna Gora');
+  }
+  else if (cityID == 113) {
+    $(".country").text('Srbija');
+  }
+  else if (cityID == 114) {
+    $(".country").text('Srbija');
+  }
+  else if (cityID == 115) {
+    $(".country").text('Crna Gora');
+  }
+  else if (cityID == 116) {
+    $(".country").text('Srbija');
+  }
+  else if (cityID == 117) {
+    $(".country").text('Srbija');
+  }
+  else {
+    $(".country").text('Bosna i Hercegovina');
+  }
+  $(".city").text(obj.lokacija);
+  $(".gregorian-date").text(obj.datum[1] + ' / ');
+  $(".hijri-date").text(obj.datum[0]);
+  $('.upcoming-prayer').text("nadolazeći namaz");
+
+  removeActiveClass();
+  $('.isha').addClass("active");
+  upcomingPrayer();
+  $('.fajr').find('.upcoming-prayer').css({ visibility: 'visible' });
+
+  setTimeout(() => {
+    if ($('.isha').hasClass('active')) {
+      Night();
+      $('.local-time-wrapper').removeClass('day');
+    }
+  }, 1000);
+
+  hours = fajr.substring(0, fajr.indexOf(":"));
+  minutes = fajr.substring(fajr.indexOf(":") + 1);
+  currentDateTime = new Date(new Date().toLocaleString("en-US", { timeZone: timeZone }));
+  countDownTime = new Date(currentDateTime);
+  countDownTime.setHours(hours);
+  countDownTime.setMinutes(minutes);
+  countDownTime.setSeconds(0);
+
+  var cityID = localStorage.getItem('cityID');
+  var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${new Date().getFullYear()}/${new Date().getMonth() + 1}`;
+  getRequest(CalendarRows, calendarIZurl)
+
+}
+
+function CalendarRows(obj) {
+  document.querySelector("#table tbody").innerHTML = '';
+  $('.calendar-caption').html(monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
+  $('.calendar').removeClass('hide');
+  for (var i = 0; i < obj.dan.length; i++) {
+    document.querySelector("#table tbody").innerHTML += `<tr>
+    <td class="calendar-date">${i + 1 + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
+    <td>${obj.dan[i].vakat[0]}</td>
+    <td>${obj.dan[i].vakat[1]}</td>
+    <td>${obj.dan[i].vakat[2]}</td>
+    <td>${obj.dan[i].vakat[3]}</td>
+    <td>${obj.dan[i].vakat[4]}</td>
+    <td>${obj.dan[i].vakat[5]}</td>
+</tr>`;
+  }
+}
+//IZ
+
+function hideMap() {
+  $('#map').slideUp();
+  $('.instructions ').slideUp();
+  $('.autolocation').slideUp();
+  $('#toggle-icon').slideUp();
+  $('.calendar').addClass('hide');
+  $('.calculation-methods').addClass('toggle');
+}
+function showMap() {
+  $('#map').slideDown();
+  $('.instructions ').slideDown();
+  $('.autolocation').slideDown();
+  $('#toggle-icon').slideDown();
+  $('.calendar').removeClass('hide');
+  $('.calculation-methods').removeClass('toggle');
+}
 
 function formatAMPM(time) {
   var hours, minutes;
@@ -453,7 +676,7 @@ function getCalendar(obj) {
   else
     $('.calendar-caption').text(flag ? monthNamesBosnian[tempMonth] + ' ' + tempYear : monthNames[tempMonth] + ' ' + tempYear);
 
-  $('.calendar').addClass('show');
+  $('.calendar').removeClass('hide');
 }
 
 function Rows(obj) {
@@ -555,11 +778,6 @@ $('.print').on('click', function () {
   window.print();
 })
 
-window.onload = function () {
-  setTimeout(() => {
-    $("#toggle-icon").trigger("click");
-  }, 5000);
-}
 //clock
 const hourEl = document.querySelector('.hour')
 const minuteEl = document.querySelector('.minute')
@@ -604,3 +822,26 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 setTime()
 
 setInterval(setTime, 1000)
+
+
+function Night() {
+  $("#dark_theme").hide();
+  $("#light_theme").show();
+  $('.local-time-wrapper').removeClass('day');
+  $("#table").css({ backgroundColor: '#040d1d' });
+  $('.main-section').addClass("dark");
+  $('.form-control').removeClass("light");
+  $("meta[name='theme-color']").attr('content', '#030c1d');
+  $("body").css({ 'background': '#030c1d' });
+}
+
+function Day() {
+  $("#dark_theme").show();
+  $("#light_theme").hide();
+  $('.local-time-wrapper').addClass('day');
+  $("#table").css({ backgroundColor: '#0e313fd4' });
+  $('.main-section').removeClass("dark");
+  $('.form-control').addClass("light");
+  $("meta[name='theme-color']").attr('content', '#0e3443');
+  $("body").css({ 'background': '#0e3443' });
+}
