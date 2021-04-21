@@ -478,6 +478,7 @@ $('#locations').change(function () {
     $('.country').html('');
     $('.countdown').hide();
     $('#locationsIZ').addClass('animate');
+    location.reload();
   }
   else {
     $('#locationsIZ').hide();
@@ -521,7 +522,6 @@ function loadDataIZ(obj) {
     $('#locationsIZ').show();
   }
 
-  debugger
   var cityID = localStorage.getItem("cityID");
   if (cityID != null) {
     $('#locationsIZ option[value=' + cityID + ']').prop('selected', true);
