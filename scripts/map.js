@@ -11,10 +11,23 @@ function setupMap(center) {
 
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
+
+    $('.local-time-wrapper').removeClass('day');
+    $("#table").css({ backgroundColor: '#040d1d' });
+    $('.main-section').addClass("dark");
+    $('.form-control').removeClass("light");
+    $("meta[name='theme-color']").attr('content', '#030c1d');
+    $("body").css({ 'background': '#030c1d' });
   }
 
   function dayMap() {
     map.setStyle('mapbox://styles/mapbox/streets-v11');
+    $('.local-time-wrapper').addClass('day');
+    $("#table").css({ backgroundColor: '#0e313fd4' });
+    $('.main-section').removeClass("dark");
+    $('.form-control').addClass("light");
+    $("meta[name='theme-color']").attr('content', '#0e3443');
+    $("body").css({ 'background': '#0e3443' });
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
