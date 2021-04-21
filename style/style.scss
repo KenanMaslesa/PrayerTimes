@@ -218,6 +218,12 @@ body {
         text-align-last: center;
         cursor: pointer;
         appearance: none;
+
+        @media (max-width: 768px) {
+          margin-top: -10px;
+          margin-bottom: 10px;
+        }
+
         &.light {
           background-color: #104755;
         }

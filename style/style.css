@@ -262,6 +262,13 @@ body {
           appearance: none;
 }
 
+@media (max-width: 768px) {
+  #main .main-section .prayer-times-wrapper #locationsIZ {
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+}
+
 #main .main-section .prayer-times-wrapper #locationsIZ.light {
   background-color: #104755;
 }
