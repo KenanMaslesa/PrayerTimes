@@ -615,7 +615,7 @@ function CalendarRows(obj) {
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     document.querySelector("#table tbody").innerHTML += `<tr>
-    <td class="calendar-date">${i + 1 + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
+    <td class="calendar-date">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
