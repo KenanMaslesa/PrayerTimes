@@ -369,7 +369,7 @@ function setTimes() {
 
   if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active') || $('.fajr').hasClass('active')) {
     $("#dark_theme").trigger('click');
-    $('.local-time-wrapper').removeClass('day');
+    Night();
   }
   else {
     $("#light_theme").trigger('click');
@@ -827,7 +827,6 @@ setInterval(setTime, 1000)
 function Night() {
   $("#dark_theme").hide();
   $("#light_theme").show();
-  $('.local-time-wrapper').removeClass('day');
   $("#table").css({ backgroundColor: '#040d1d' });
   $('.main-section').addClass("dark");
   $('.form-control').removeClass("light");
@@ -838,7 +837,6 @@ function Night() {
 function Day() {
   $("#dark_theme").show();
   $("#light_theme").hide();
-  $('.local-time-wrapper').addClass('day');
   $("#table").css({ backgroundColor: '#0e313fd4' });
   $('.main-section').removeClass("dark");
   $('.form-control').addClass("light");
