@@ -494,7 +494,7 @@ $('#locations').change(function () {
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
       showMap();
-      var scrollTo = $('.prayer-times-wrapper').offset().top;
+      //var scrollTo = $('.prayer-times-wrapper').offset().top;
       setTimeout(() => {
         setupMap([longitude, latitude]);
         $('html, body').animate({ scrollTop: scrollTo }, 100);
