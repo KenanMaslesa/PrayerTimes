@@ -1042,6 +1042,7 @@ body {
   -webkit-transform: translate(-50%, -100%) rotate(0deg);
           transform: translate(-50%, -100%) rotate(0deg);
   height: 46px;
+  width: 2px;
   background-color: #e74c3c;
 }
 
