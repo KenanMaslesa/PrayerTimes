@@ -79,8 +79,8 @@ function errorLocation() {
 
 function IPLocation(location) {
   latitude = location.latitude,
-  longitude = location.longitude,
-  localStorage.setItem("latitude", latitude);
+    longitude = location.longitude,
+    localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
@@ -457,28 +457,33 @@ var x = setInterval(function () {
 $('#locations').change(function () {
   method = $(this).val();
   localStorage.setItem("method", method);
-  localStorage.setItem('cityID', null);
   currentTime = new Date();
 
   if (method == 16) {
-    localStorage.setItem('IZ', true);
-    $('#locationsIZ').show();
     hideMap();
-    $('.fajr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.sunrise-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.dhuhr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.asr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.maghrib-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.isha-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.countdown').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.city').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
-    $('.calendar').addClass('hide');
-    $('.card').removeClass('active');
-    $('.upcoming-prayer').html('');
-    $('.country').html('');
-    $('.countdown').hide();
-    $('#locationsIZ').addClass('animate');
-    location.reload();
+    $('#locationsIZ').show();
+    localStorage.setItem('IZ', true);
+    var cityID = localStorage.getItem('cityID');
+    if (cityID == null) {
+      $('.fajr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.sunrise-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.dhuhr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.asr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.maghrib-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.isha-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.countdown').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.city').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
+      $('.calendar').addClass('hide');
+      $('.card').removeClass('active');
+      $('.upcoming-prayer').html('');
+      $('.country').html('');
+      $('.countdown').hide();
+      $('#locationsIZ').addClass('animate');
+    }
+    else {
+      location.reload();
+      getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+    }
   }
   else {
     $('#locationsIZ').hide();
@@ -486,8 +491,10 @@ $('#locations').change(function () {
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
       showMap();
+      var scrollTo = $('.prayer-times-wrapper').offset().top;
       setTimeout(() => {
         setupMap([longitude, latitude]);
+        $('html, body').animate({ scrollTop: scrollTo }, 100);
       }, 500);
       localStorage.setItem('IZ', false);
     }
@@ -503,6 +510,7 @@ $('#locations').change(function () {
   setupMap([longitude, latitude]);
 
 });
+
 // IZ
 $('#locationsIZ').click(function () {
   $('#locationsIZ').removeClass('animate');

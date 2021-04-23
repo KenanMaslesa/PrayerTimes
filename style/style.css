@@ -423,7 +423,7 @@ body {
 
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .location-wrapper .country {
-    font-size: 27px;
+    font-size: 33px;
   }
 }
 
@@ -436,7 +436,7 @@ body {
 
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .location-wrapper .city {
-    font-size: 24px;
+    font-size: 30px;
   }
 }
 
