@@ -763,7 +763,7 @@ function getBosnianMonths(month) {
 }
 
 $('#toggle-icon').click(function () {
-  var isMobile = window.matchMedia("(max-width: 700px)");
+  var isMobile = window.matchMedia("(max-width: 768px)");
   $('#map').slideToggle();
   $('.prayer-times-wrapper').css({ 'z-index': '9999' });
   $('.autolocation').toggle('slow');
