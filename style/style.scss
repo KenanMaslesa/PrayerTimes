@@ -221,7 +221,6 @@ body {
 
         @media (max-width: 768px) {
           margin-top: -10px;
-          margin-bottom: 10px;
         }
 
         &.light {
@@ -341,6 +340,12 @@ body {
 
         @media (max-width: 768px) {
           padding-top: 80px;
+        }
+
+        &.IZ{
+          @media (max-width: 768px) {
+            padding-top: 60px;
+          }
         }
 
         .country {

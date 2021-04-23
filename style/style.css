@@ -265,7 +265,6 @@ body {
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper #locationsIZ {
     margin-top: -10px;
-    margin-bottom: 10px;
   }
 }
 
@@ -411,6 +410,12 @@ body {
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .location-wrapper {
     padding-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  #main .main-section .prayer-times-wrapper .location-wrapper.IZ {
+    padding-top: 60px;
   }
 }
 

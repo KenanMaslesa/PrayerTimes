@@ -464,6 +464,7 @@ $('#locations').change(function () {
     $('#locationsIZ').show();
     localStorage.setItem('IZ', true);
     var cityID = localStorage.getItem('cityID');
+
     if (cityID == null) {
       $('.fajr-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
       $('.sunrise-time').html('<img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">');
@@ -479,6 +480,7 @@ $('#locations').change(function () {
       $('.country').html('');
       $('.countdown').hide();
       $('#locationsIZ').addClass('animate');
+      $('.location-wrapper').removeClass('IZ');
     }
     else {
       location.reload();
@@ -487,6 +489,7 @@ $('#locations').change(function () {
   }
   else {
     $('#locationsIZ').hide();
+    $('.location-wrapper').removeClass('IZ');
     var isIZ = localStorage.getItem('IZ');
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
@@ -533,6 +536,7 @@ function loadDataIZ(obj) {
   var cityID = localStorage.getItem("cityID");
   if (cityID != null) {
     $('#locationsIZ option[value=' + cityID + ']').prop('selected', true);
+    $('.location-wrapper').addClass('IZ');
   }
 
   fajr = obj.vakat[0];
