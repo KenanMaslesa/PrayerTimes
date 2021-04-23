@@ -627,7 +627,7 @@ function CalendarRows(obj) {
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     document.querySelector("#table tbody").innerHTML += `<tr>
-    <td class="calendar-date">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) +''+ tempMonth}">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
@@ -636,6 +636,7 @@ function CalendarRows(obj) {
     <td>${obj.dan[i].vakat[5]}</td>
 </tr>`;
   }
+  $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
 }
 //IZ
 
@@ -681,8 +682,6 @@ function getCalendar(obj) {
 
   $('.date-caption').text(flag ? "Datum" : "Date");
   $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
-  $('#table .calendar-date:contains("fri")').parent().addClass("friday");
-  $('#table .calendar-date:contains("pet")').parent().addClass("friday");
   if (!calendarFlag)
     $('.calendar-caption').text(flag ? getBosnianMonths(month) + ' ' + tempYear : month + ' ' + tempYear);
   else
