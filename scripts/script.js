@@ -18,8 +18,9 @@ const monthNamesBosnian = ["", "Januar", "Februar", "Mart", "April", "Maj", "Jun
 ];
 window.onload = function () {
   if (method != 16) {
-    if (latitude == null || longitude == null)
+    if (latitude == null || longitude == null) {
       navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
+    }
     else {
       setupMap([longitude, latitude]);
       showPosition(method);
@@ -58,7 +59,6 @@ window.onload = function () {
 
 }
 
-
 document.querySelector(".autolocation").addEventListener('click', function () {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 });
@@ -74,12 +74,16 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  latitude = 43.869308818408456, longitude = 18.417377317154944;
+  getRequest(IPLocation, 'https://geolocation-db.com/json/');
+}
+
+function IPLocation(location) {
+  latitude = location.latitude,
+  longitude = location.longitude,
   localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
-  //window.location.reload();
 }
 
 
@@ -91,11 +95,7 @@ function getRequest(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      latitude = 43.869308818408456, longitude = 18.417377317154944;
-      localStorage.setItem("latitude", latitude);
-      localStorage.setItem("longitude", longitude);
-      showPosition(method);
-      //window.location.reload();
+      getRequest(IPLocation, 'https://geolocation-db.com/json/');
     }
   }
 
