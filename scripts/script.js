@@ -418,6 +418,13 @@ function removeUpcomingPrayer() {
   $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
 }
 
+function playAthan() {
+  var athan = new Howl({
+    src: ['./audio/Athan.mp3']
+  });
+  athan.play();
+}
+
 var x = setInterval(function () {
 
   if (currentDateTimeMiliSeconds >= countDownTimeMiliSeconds)
@@ -437,10 +444,13 @@ var x = setInterval(function () {
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     if (hours == 0 && minutes <= 9) {
       $('.countdown').addClass('danger');
+      if (hours == 0 && minutes == 0 && seconds == 0) {
+        playAthan();
+      }
     }
+
     else {
       $('.countdown').removeClass('danger');
     }
@@ -627,7 +637,7 @@ function CalendarRows(obj) {
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     document.querySelector("#table tbody").innerHTML += `<tr>
-    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) +''+ tempMonth}">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>

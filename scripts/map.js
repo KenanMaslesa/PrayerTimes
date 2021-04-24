@@ -37,7 +37,7 @@ function setupMap(center) {
     latitude = e.lngLat.lat;
     longitude = e.lngLat.lng;
     marker.setLngLat([longitude, latitude]);
-    showPosition();
+    showPosition(method);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
     $('.instructions').hide();
@@ -65,7 +65,7 @@ function setupMap(center) {
       longitude = coordinates[0];
       latitude = coordinates[1];
       marker.setLngLat([longitude, latitude]);
-      showPosition();
+      showPosition(method);
       localStorage.setItem("latitude", latitude);
       localStorage.setItem("longitude", longitude);
     });
@@ -87,7 +87,7 @@ function setupMap(center) {
     var lngLat = marker.getLngLat();
     longitude = lngLat.lng;
     latitude = lngLat.lat;
-    showPosition();
+    showPosition(method);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
   }
