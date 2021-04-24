@@ -419,10 +419,17 @@ function removeUpcomingPrayer() {
 }
 
 function playAthan() {
+  var number = Math.floor((Math.random() * 5)+1);
   var athan = new Howl({
-    src: ['./audio/Athan.mp3']
+    src: [`./audio/athan${number}.mp3`]
   });
   athan.play();
+}
+function playBeep() {
+  var beep = new Howl({
+    src: ['./audio/beep.mp3']
+  });
+  beep.play();
 }
 
 var x = setInterval(function () {
@@ -444,9 +451,14 @@ var x = setInterval(function () {
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
     if (hours == 0 && minutes <= 9) {
       $('.countdown').addClass('danger');
-      if (hours == 0 && minutes == 0 && seconds == 0) {
+
+      if (minutes == 9 && seconds == 59) {
+        playBeep();
+      }
+      if (minutes == 0 && seconds == 0) {
         playAthan();
       }
     }
