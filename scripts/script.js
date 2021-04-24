@@ -427,7 +427,7 @@ function playAthan() {
 }
 function playBeep() {
   var beep = new Howl({
-    src: ['./audio/beep.mp3']
+    src: ['./audio/beep2.mp3']
   });
   beep.play();
 }
@@ -876,3 +876,13 @@ function Day() {
   $("meta[name='theme-color']").attr('content', '#0e3443');
   $("body").css({ 'background': '#0e3443' });
 }
+
+
+//settings
+$('#close-settings-icon').click(function(){
+  $('.settings-wrapper').hide();
+})
+
+$('#settings-icon').click(function(){
+  $('.settings-wrapper').show();
+})
