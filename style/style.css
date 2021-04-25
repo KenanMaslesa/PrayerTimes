@@ -477,6 +477,7 @@ body {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -489,6 +490,12 @@ body {
   }
 }
 
+@media (min-width: 1440px) {
+  #main .main-section .prayer-times-wrapper .cards-wrapper {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .cards-wrapper .card:last-child {
     margin-bottom: 40px;
@@ -496,7 +503,7 @@ body {
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card {
-  width: 15%;
+  width: 14%;
   display: inline-block;
   height: 140px;
   background-color: white;
@@ -529,7 +536,7 @@ body {
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1860px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   #main .main-section .prayer-times-wrapper .cards-wrapper .card {
     width: 30%;
   }
@@ -1340,7 +1347,11 @@ body {
   font-size: 15px;
 }
 
-.settings-wrapper .settings .theme-color {
+.settings-wrapper .settings .theme-color-wrapper {
+  display: none;
+}
+
+.settings-wrapper .settings .theme-color-wrapper .theme-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1348,19 +1359,19 @@ body {
   padding: 10px 0px;
 }
 
-.settings-wrapper .settings .theme-color span {
+.settings-wrapper .settings .theme-color-wrapper .theme-color span {
   width: 25px;
   height: 25px;
   margin-right: 10px;
   cursor: pointer;
 }
 
-.settings-wrapper .settings .theme-color span.active {
+.settings-wrapper .settings .theme-color-wrapper .theme-color span.active {
   -webkit-box-shadow: 0 0 4px 1px #dcd3d394;
           box-shadow: 0 0 4px 1px #dcd3d394;
 }
 
-.settings-wrapper .settings .theme-color span:hover {
+.settings-wrapper .settings .theme-color-wrapper .theme-color span:hover {
   -webkit-box-shadow: 0 0 4px 1px #dcd3d394;
           box-shadow: 0 0 4px 1px #dcd3d394;
 }

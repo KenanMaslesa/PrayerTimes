@@ -396,10 +396,15 @@ body {
         width: 90%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
 
         @media (max-width: 768px) {
           flex-direction: column;
           width: 85%;
+        }
+
+        @media(min-width: 1440px){
+          width: 100%;
         }
 
         .card:last-child {
@@ -409,7 +414,7 @@ body {
         }
 
         .card {
-          width: 15%;
+          width: 14%;
           display: inline-block;
           height: 140px;
           background-color: white;
@@ -437,7 +442,7 @@ body {
           @media (min-width: 768px) and (max-width: 1024px) {
             width: 45%;
           }
-          @media (min-width: 1024px) and (max-width: 1860px) {
+          @media (min-width: 1024px) and (max-width: 1439px) {
             width: 30%;
           }
 
@@ -1085,25 +1090,30 @@ body {
       font-size: 15px;
     }
 
-    .theme-color {
-      display: flex;
-      width: 100%;
-      padding: 10px 0px;
+    .theme-color-wrapper{
+      display: none;
 
-      span {
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;
-        cursor: pointer;
-
-        &.active {
-          box-shadow: 0 0 4px 1px #dcd3d394;
-        }
-        &:hover {
-          box-shadow: 0 0 4px 1px #dcd3d394;
+      .theme-color {
+        display: flex;
+        width: 100%;
+        padding: 10px 0px;
+  
+        span {
+          width: 25px;
+          height: 25px;
+          margin-right: 10px;
+          cursor: pointer;
+  
+          &.active {
+            box-shadow: 0 0 4px 1px #dcd3d394;
+          }
+          &:hover {
+            box-shadow: 0 0 4px 1px #dcd3d394;
+          }
         }
       }
     }
+    
 
     .map-style {
       .title {

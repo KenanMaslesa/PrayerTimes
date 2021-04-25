@@ -6,6 +6,7 @@ let method = localStorage.getItem("method");
 let cityID = localStorage.getItem("cityID");
 let isAthanAllowed = localStorage.getItem("isAthanAllowed");
 let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
+let isDayNightMode = localStorage.getItem("isDayNightMode");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
 var themeColor = localStorage.getItem('themeColor');
 var bigDataCloud1 = 'd901232290c147beacf55aebb5bf7724';
@@ -84,10 +85,18 @@ function Settings() {
     localStorage.setItem('isNotificationAllowed', true);
     isNotificationAllowed = true;
   }
+  if (isDayNightMode == null) {
+    localStorage.setItem('isDayNightMode', true);
+    isDayNightMode = true;
+  }
   $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' || isAthanAllowed == true ? 'active' : '');
   $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' || isNotificationAllowed == true ? 'active' : '');
+  $('.day-night-mode .toggle-btn').addClass(isDayNightMode == 'true' || isDayNightMode == true ? 'active' : '');
   if (isNotificationAllowed == 'true')
     $('.range-slider').slideDown();
+
+    if (isDayNightMode == 'false')
+    $('.theme-color-wrapper').slideDown();
 
   $('.range-slider output').html(notificationMinutes);
   $('.range-slider input[type=range]').val(notificationMinutes);
@@ -896,10 +905,11 @@ $('#settings-icon').click(function () {
   $('.settings-wrapper').animate({ width: 'toggle' }, 350);
 })
 
-//$('input.cb-value').prop("checked", true);
+
 $('.cb-value').click(function () {
   var mainParent = $(this).parent('.toggle-btn');
   var isNotification = $(this).attr('data-notification');
+  var isDayNightMode = $(this).attr('data-dayNightMode');
 
   if (!$(mainParent).hasClass('active')) {
     $(mainParent).addClass('active');
@@ -907,6 +917,14 @@ $('.cb-value').click(function () {
       $('.range-slider').slideDown();
       localStorage.setItem('isNotificationAllowed', true);
       isNotificationAllowed = true;
+    }
+    else if(isDayNightMode){
+      $('.theme-color-wrapper').slideUp();
+      localStorage.setItem('isDayNightMode', true);
+      localStorage.setItem('themeColor', null);
+      $('.main-section').attr('style', '');
+      $('.theme-color span').removeClass('active');
+      isDayNightMode = true;
     }
     else {
       localStorage.setItem('isAthanAllowed', true);
@@ -919,6 +937,11 @@ $('.cb-value').click(function () {
       $('.range-slider').slideUp();
       localStorage.setItem('isNotificationAllowed', false);
       isNotificationAllowed = false;
+    }
+    else if(isDayNightMode){
+      $('.theme-color-wrapper').slideDown();
+      localStorage.setItem('isDayNightMode', false);
+      isDayNightMode = false;
     }
     else {
       localStorage.setItem('isAthanAllowed', false);
