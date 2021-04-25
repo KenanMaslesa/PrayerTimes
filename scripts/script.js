@@ -123,15 +123,13 @@ function getRequest(funk, url) {
       funk(JSON.parse(request.responseText));
     }
     else {
-      getRequest(IPLocation, 'https://geolocation-db.com/json/');
+      console.log(request.responseText)
     }
   }
 
   request.onerror = function () {
-    latitude = 43.869308818408456, longitude = 18.417377317154944;
-    localStorage.setItem("latitude", latitude);
-    localStorage.setItem("longitude", longitude);
-    showPosition(method);
+    getRequest(IPLocation, 'https://geolocation-db.com/json/');
+    
   };
 
   request.open("GET", url, true);
