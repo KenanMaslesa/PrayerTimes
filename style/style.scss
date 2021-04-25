@@ -403,7 +403,7 @@ body {
           width: 85%;
         }
 
-        @media(min-width: 1440px){
+        @media (min-width: 1440px) {
           width: 100%;
         }
 
@@ -586,7 +586,7 @@ body {
           &.active {
             background: #104755;
           }
-          &.gray{
+          &.gray {
             background: #282a2d;
           }
           &.friday {
@@ -1090,20 +1090,20 @@ body {
       font-size: 15px;
     }
 
-    .theme-color-wrapper{
+    .theme-color-wrapper {
       display: none;
 
       .theme-color {
         display: flex;
         width: 100%;
         padding: 10px 0px;
-  
+
         span {
           width: 25px;
           height: 25px;
           margin-right: 10px;
           cursor: pointer;
-  
+
           &.active {
             box-shadow: 0 0 4px 1px #dcd3d394;
           }
@@ -1113,7 +1113,6 @@ body {
         }
       }
     }
-    
 
     .map-style {
       .title {

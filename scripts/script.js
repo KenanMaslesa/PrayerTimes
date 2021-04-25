@@ -108,8 +108,8 @@ function Settings() {
 function successLocation(position) {
   currentPosition = position;
   latitude = position.coords.latitude,
-  longitude = position.coords.longitude,
-  localStorage.setItem("latitude", latitude);
+    longitude = position.coords.longitude,
+    localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
@@ -121,8 +121,8 @@ function errorLocation() {
 
 function IPLocation(location) {
   latitude = location.latitude,
-  longitude = location.longitude,
-  localStorage.setItem("latitude", latitude);
+    longitude = location.longitude,
+    localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
@@ -1085,20 +1085,20 @@ function Day() {
   $('#darkMode').removeClass('active');
 }
 
-document.onkeydown = function (e) { 
-  if (event.keyCode == 123) { 
-      return false; 
-  } 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { 
-      return false; 
-  } 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { 
-      return false; 
-  } 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { 
-      return false; 
-  } 
-  if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { 
-      return false; 
-  } 
-} 
+document.onkeydown = function (e) {
+  if (event.keyCode == 123) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+    return false;
+  }
+}
