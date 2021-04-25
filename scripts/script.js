@@ -7,6 +7,7 @@ let cityID = localStorage.getItem("cityID");
 let isAthanAllowed = localStorage.getItem("isAthanAllowed");
 let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
 let isDayNightMode = localStorage.getItem("isDayNightMode");
+let isDay = localStorage.getItem("isDay");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
 var themeColor = localStorage.getItem('themeColor');
 var bigDataCloud1 = 'd901232290c147beacf55aebb5bf7724';
@@ -95,7 +96,7 @@ function Settings() {
   if (isNotificationAllowed == 'true')
     $('.range-slider').slideDown();
 
-    if (isDayNightMode == 'false')
+  if (isDayNightMode == 'false')
     $('.theme-color-wrapper').slideDown();
 
   $('.range-slider output').html(notificationMinutes);
@@ -140,7 +141,7 @@ function getRequest(funk, url) {
 
   request.onerror = function () {
     getRequest(IPLocation, 'https://geolocation-db.com/json/');
-    
+
   };
 
   request.open("GET", url, true);
@@ -918,12 +919,14 @@ $('.cb-value').click(function () {
       localStorage.setItem('isNotificationAllowed', true);
       isNotificationAllowed = true;
     }
-    else if(isDayNightMode){
+    else if (isDayNightMode) {
       $('.theme-color-wrapper').slideUp();
       localStorage.setItem('isDayNightMode', true);
       localStorage.setItem('themeColor', null);
       $('.main-section').attr('style', '');
       $('.theme-color span').removeClass('active');
+      $('.form-control').css('background', '');
+      ThemeColor();
       isDayNightMode = true;
     }
     else {
@@ -938,7 +941,7 @@ $('.cb-value').click(function () {
       localStorage.setItem('isNotificationAllowed', false);
       isNotificationAllowed = false;
     }
-    else if(isDayNightMode){
+    else if (isDayNightMode) {
       $('.theme-color-wrapper').slideDown();
       localStorage.setItem('isDayNightMode', false);
       isDayNightMode = false;
@@ -986,18 +989,37 @@ function ThemeColor(color = null) {
       $("meta[name='theme-color']").attr('content', color);
     }
 
-    if (color == '#0606068c')
+    if (color == '#0606068c') {
       $("meta[name='theme-color']").attr('content', '#030c1d');
+      $('.form-control').css('background', '#030c1d');
+    }
 
-    else if (color == '#10475570')
+    else if (color == '#10475570') {
       $("meta[name='theme-color']").attr('content', '#072b45');
+      $('.form-control').css('background', '#072b45');
+    }
 
-    else if (color == '#42a76638')
+    else if (color == '#42a76638') {
       $("meta[name='theme-color']").attr('content', '#0e3443');
+      $('.form-control').css('background', '#0e3443');
+    }
 
-      else if (color == '#1e2227')
+    else if (color == '#1e2227') {
       $("#table tr.active").addClass('gray');
-      
+      $('.form-control').css('background', '#1e2227');
+    }
+
+  }
+  else {
+    
+    if (isDay != null) {
+      if (isDay == 'true')
+        $("#light_theme").trigger('click');
+
+      else
+        $("#dark_theme").trigger('click');
+
+    }
   }
 }
 

@@ -22,6 +22,7 @@ function setupMap(center) {
 
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
+    localStorage.setItem("isDay", false);
 
     $('.local-time-wrapper').removeClass('day');
     $("#table").css({ backgroundColor: '#040d1d' });
@@ -36,6 +37,8 @@ function setupMap(center) {
 
   function dayMap() {
     map.setStyle('mapbox://styles/mapbox/streets-v11');
+    localStorage.setItem("isDay", true);
+
     $('.local-time-wrapper').addClass('day');
     $("#table").css({ backgroundColor: '#0e313fd4' });
     $('.main-section').removeClass("dark");
