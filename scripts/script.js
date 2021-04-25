@@ -158,7 +158,7 @@ function showPosition(method) {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2`;
   }
 
-  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=2a1b056b085a47bfbe75c8452a37109c`;
+  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=a711a9c049714f5a935fddd5ed0f2ae6`;
 
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
