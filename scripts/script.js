@@ -953,6 +953,16 @@ $('.theme-color span').click(function () {
     $('.calendar #table tr.active').css('background', convertHex(color, 0.5));
     $("meta[name='theme-color']").attr('content', color);
   }
+
+  if(color == '#0606068c')
+  $("meta[name='theme-color']").attr('content', '#030c1d');
+
+  else if(color == '#10475570')
+  $("meta[name='theme-color']").attr('content', '#072b45');
+
+  else if(color == '#42a76638')
+  $("meta[name='theme-color']").attr('content', '#0e3443');
+
 })
 
 function convertHex(hex, opacity) {
