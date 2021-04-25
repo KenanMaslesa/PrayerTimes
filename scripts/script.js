@@ -4,6 +4,9 @@ let latitude = localStorage.getItem("latitude");
 let longitude = localStorage.getItem("longitude");
 let method = localStorage.getItem("method");
 let cityID = localStorage.getItem("cityID");
+let isAthanAllowed = localStorage.getItem("isAthanAllowed");
+let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
+var notificationMinutes = localStorage.getItem('notificationMinutes');
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag = true, month, year;
@@ -55,13 +58,37 @@ window.onload = function () {
       $(".loader").hide();
     }, 300);
   }
-  $('html, body').animate({ scrollTop: 0 }, 1000);
 
+  $('html, body').animate({ scrollTop: 0 }, 1000);
+  Settings();
 }
 
 document.querySelector(".autolocation").addEventListener('click', function () {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 });
+
+function Settings() {
+
+  if (notificationMinutes == null) {
+    localStorage.setItem('notificationMinutes', 10);
+    notificationMinutes = 10;
+  }
+  if (isAthanAllowed == null) {
+    localStorage.setItem('isAthanAllowed', true);
+    isAthanAllowed = true;
+  }
+  if (isNotificationAllowed == null) {
+    localStorage.setItem('isNotificationAllowed', true);
+    isNotificationAllowed = true;
+  }
+  $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' ? 'active' : '');
+  $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' ? 'active' : '');
+  if(isNotificationAllowed == 'true')
+  $('.range-slider').slideDown();
+
+  $('.range-slider output').html(notificationMinutes);
+  $('.range-slider input[type=range]').val(notificationMinutes);
+}
 
 function successLocation(position) {
   currentPosition = position;
@@ -220,7 +247,6 @@ function GetPrayerTimes(obj) {
 
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
-      Night();
       $("#dark_theme").trigger('click');
       $('.local-time-wrapper').removeClass('day');
     }
@@ -369,11 +395,9 @@ function setTimes() {
 
   if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active') || $('.fajr').hasClass('active')) {
     $("#dark_theme").trigger('click');
-    Night();
   }
   else {
     $("#light_theme").trigger('click');
-    Day();
   }
 
 }
@@ -419,7 +443,7 @@ function removeUpcomingPrayer() {
 }
 
 function playAthan() {
-  var number = Math.floor((Math.random() * 5)+1);
+  var number = Math.floor((Math.random() * 5) + 1);
   var athan = new Howl({
     src: [`./audio/athan${number}.mp3`]
   });
@@ -452,13 +476,17 @@ var x = setInterval(function () {
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+    if (isNotificationAllowed == true || isNotificationAllowed == 'true') {
+      if (minutes == notificationMinutes && seconds == 0) {
+        playBeep();
+      }
+    }
+
     if (hours == 0 && minutes <= 9) {
       $('.countdown').addClass('danger');
 
-      if (minutes == 9 && seconds == 59) {
-        playBeep();
-      }
-      if (minutes == 0 && seconds == 0) {
+      debugger
+      if ((isAthanAllowed == true || isAthanAllowed == 'true') && minutes == 0 && seconds == 0) {
         playAthan();
       }
     }
@@ -624,7 +652,7 @@ function loadDataIZ(obj) {
 
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
-      Night();
+      $("#dark_theme").trigger('click');
       $('.local-time-wrapper').removeClass('day');
     }
   }, 1000);
@@ -857,32 +885,69 @@ setTime()
 setInterval(setTime, 1000)
 
 
-function Night() {
-  $("#dark_theme").hide();
-  $("#light_theme").show();
-  $("#table").css({ backgroundColor: '#040d1d' });
-  $('.main-section').addClass("dark");
-  $('.form-control').removeClass("light");
-  $("meta[name='theme-color']").attr('content', '#030c1d');
-  $("body").css({ 'background': '#030c1d' });
-}
-
-function Day() {
-  $("#dark_theme").show();
-  $("#light_theme").hide();
-  $("#table").css({ backgroundColor: '#0e313fd4' });
-  $('.main-section').removeClass("dark");
-  $('.form-control').addClass("light");
-  $("meta[name='theme-color']").attr('content', '#0e3443');
-  $("body").css({ 'background': '#0e3443' });
-}
-
-
 //settings
-$('#close-settings-icon').click(function(){
-  $('.settings-wrapper').hide();
+$('#close-settings-icon').click(function () {
+  $('.settings-wrapper').animate({ width: 'toggle' }, 350);;
+
 })
 
-$('#settings-icon').click(function(){
-  $('.settings-wrapper').show();
+$('#settings-icon').click(function () {
+  $('.settings-wrapper').animate({ width: 'toggle' }, 350);
+})
+
+//$('input.cb-value').prop("checked", true);
+$('.cb-value').click(function () {
+  var mainParent = $(this).parent('.toggle-btn');
+  var isDarkMode = $(this).attr('data-darkmode');
+  var isNotification = $(this).attr('data-notification');
+
+  if (!$(mainParent).hasClass('active')) {
+    $(mainParent).addClass('active');
+    if (isDarkMode == 'true') {
+      $("#dark_theme").trigger('click');
+    }
+    else if (isNotification) {
+      $('.range-slider').slideDown();
+      localStorage.setItem('isNotificationAllowed', true);
+      isNotificationAllowed = true;
+    }
+    else {
+      localStorage.setItem('isAthanAllowed', true);
+      isAthanAllowed = true;
+    }
+  } else {
+    $(mainParent).removeClass('active');
+    if (isDarkMode == 'true') {
+      $("#light_theme").trigger('click');
+    }
+    else if (isNotification) {
+      $('.range-slider').slideUp();
+      localStorage.setItem('isNotificationAllowed', false);
+      isNotificationAllowed = false;
+    }
+    else {
+      localStorage.setItem('isAthanAllowed', false);
+      isAthanAllowed = false;
+    }
+  }
+
+})
+
+$(document).on('input', 'input[type="range"]', function (e) {
+  var minutes = e.currentTarget.value;
+  $('.range-slider output').html(minutes);
+  notificationMinutes = minutes;
+  localStorage.setItem('notificationMinutes', minutes);
+});
+
+//dark mode - settings
+$('.toggleDark').click(function () {
+  $('#darkMode').toggleClass('active');
+
+  if ($('#darkMode').hasClass('active')) {
+    $('#dark_theme').trigger('click');
+  }
+  else {
+    $('#light_theme').trigger('click');
+  }
 })

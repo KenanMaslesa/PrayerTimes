@@ -31,16 +31,16 @@
     <img id="globe" src="https://i.gifer.com/3IsN.gif" alt="globalprayertimes">
     <img id="globe-title" src="./images/loader-title.png" alt="globalprayertimes">
   </div>
+
   <main id="main">
     <h1 style="display: none;">Prayer times for the whole world</h1>
     <section id='map'></section>
-
-    <p class="instructions mobile">Click on the map wherever you want to see prayer times</p>
 
     <div class="dark-light-mode">
       <i class="ion-ios-moon" id="dark_theme"></i>
       <i class="ion-ios-sunny-outline" id="light_theme"></i>
     </div>
+    <p class="instructions mobile">Click on the map wherever you want to see prayer times</p>
 
     <section class="clock-wrapper">
       <div class="clock-container">
@@ -297,6 +297,62 @@
     </section>
 
   </main>
+  <i class="ion-android-settings" id="settings-icon"></i>
+  <div class="settings-wrapper">
+    <div class="settings">
+
+      <i class="ion-close-circled" id="close-settings-icon"></i>
+
+      <div class="dark-mode">
+        <label>Night</label>
+        <div class="toggleWrapper">
+          <input type="checkbox" class="dn" id="darkMode" data-darkmode="true"/>
+          <label for="dn" class="toggleDark">
+            <span class="toggle__handler">
+              <span class="crater crater--1"></span>
+              <span class="crater crater--2"></span>
+              <span class="crater crater--3"></span>
+            </span>
+            <span class="star star--1"></span>
+            <span class="star star--2"></span>
+            <span class="star star--3"></span>
+            <span class="star star--4"></span>
+            <span class="star star--5"></span>
+            <span class="star star--6"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="athan">
+        <label>Ezan</label>
+        <div class="toggle-btn">
+          <input type="checkbox" class="cb-value" />
+          <span class="round-btn"></span>
+        </div>
+      </div>
+
+      <div class="notification">
+        <label>Notification</label>
+        <div class="toggle-btn">
+          <input type="checkbox" class="cb-value" data-notification="true" />
+          <span class="round-btn"></span>
+        </div>
+      </div>
+
+      <div class="range-slider">
+        <div class="output">
+          <output>10</output><span>minuta</span>
+        </div>
+        <div class="range-container">
+          <form>
+            <input type="range" min="1" max="59" step="1" value="10">
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <div class="share-icon" data-aos="fade-right">
     <a href="http://www.facebook.com/sharer.php?u=https://www.globalprayertimes.com" target="_blank" id="facebook"><i
         class="ion-social-facebook"></i></a>
@@ -306,10 +362,10 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"></script>
-  <script src="scripts/map.min.js" defer></script>
-  <script src="scripts/script.min.js" defer></script>
-  <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="scripts/map.js" defer></script>
+  <script src="scripts/script.js" defer></script>
+  <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
 </body>
 
 </html>

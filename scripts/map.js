@@ -18,6 +18,9 @@ function setupMap(center) {
     $('.form-control').removeClass("light");
     $("meta[name='theme-color']").attr('content', '#030c1d');
     $("body").css({ 'background': '#030c1d' });
+    $("#dark_theme").hide();
+    $("#light_theme").show();
+    $('#darkMode').addClass('active');
   }
 
   function dayMap() {
@@ -28,6 +31,9 @@ function setupMap(center) {
     $('.form-control').addClass("light");
     $("meta[name='theme-color']").attr('content', '#0e3443');
     $("body").css({ 'background': '#0e3443' });
+    $("#dark_theme").show();
+    $("#light_theme").hide();
+    $('#darkMode').removeClass('active');
   }
 
   document.querySelector("#dark_theme").onclick = nightMap;
