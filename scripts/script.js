@@ -259,6 +259,7 @@ function GetPrayerTimes(obj) {
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
+      Night();
       $('.local-time-wrapper').removeClass('day');
     }
   }, 1000);
@@ -406,9 +407,11 @@ function setTimes() {
 
   if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active') || $('.fajr').hasClass('active')) {
     $("#dark_theme").trigger('click');
+    Night();
   }
   else {
     $("#light_theme").trigger('click');
+    Day();
   }
 
   ThemeColor(themeColor);
@@ -664,6 +667,7 @@ function loadDataIZ(obj) {
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
+      Night();
       $('.local-time-wrapper').removeClass('day');
     }
   }, 1000);
@@ -907,10 +911,10 @@ $('#settings-icon').click(function () {
 })
 
 
-$('.main-section').click(function(){
+$('.main-section').click(function () {
   $('.settings-wrapper').slideUp();
-  })
-  
+})
+
 
 
 $('.cb-value').click(function () {
@@ -1017,13 +1021,17 @@ function ThemeColor(color = null) {
 
   }
   else {
-    
-    if (isDay != null) {
-      if (isDay == 'true')
-        $("#light_theme").trigger('click');
 
-      else
+    if (isDay != null) {
+      if (isDay == 'true' || isDay == true) {
+        $("#light_theme").trigger('click');
+        Day();
+      }
+
+      else{
         $("#dark_theme").trigger('click');
+        Night();
+      }
 
     }
   }
@@ -1036,4 +1044,30 @@ function convertHex(hex, opacity) {
   b = parseInt(hex.substring(4, 6), 16);
   result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
   return result;
+}
+
+function Night() {
+  localStorage.setItem("isDay", false);
+  $('.local-time-wrapper').removeClass('day');
+  $("#table").css({ backgroundColor: '#040d1d' });
+  $('.main-section').addClass("dark");
+  $('.form-control').removeClass("light");
+  $("meta[name='theme-color']").attr('content', '#030c1d');
+  $("body").css({ 'background': '#030c1d' });
+  $("#dark_theme").hide();
+  $("#light_theme").show();
+  $('#darkMode').addClass('active');
+}
+
+function Day() {
+  localStorage.setItem("isDay", true);
+  $('.local-time-wrapper').addClass('day');
+  $("#table").css({ backgroundColor: '#0e313fd4' });
+  $('.main-section').removeClass("dark");
+  $('.form-control').addClass("light");
+  $("meta[name='theme-color']").attr('content', '#0e3443');
+  $("body").css({ 'background': '#0e3443' });
+  $("#dark_theme").show();
+  $("#light_theme").hide();
+  $('#darkMode').removeClass('active');
 }
