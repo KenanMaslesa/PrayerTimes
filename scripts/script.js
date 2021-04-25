@@ -416,7 +416,7 @@ function setTimes() {
     if (isDayNightMode == 'true' || isDayNightMode == true)
       Day();
   }
-
+  themeColor = localStorage.getItem('themeColor');
   ThemeColor(themeColor);
 }
 
