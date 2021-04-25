@@ -7,7 +7,7 @@ let cityID = localStorage.getItem("cityID");
 let isAthanAllowed = localStorage.getItem("isAthanAllowed");
 let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
-var themeColor = sessionStorage.getItem('themeColor');
+var themeColor = localStorage.getItem('themeColor');
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag = true, month, year;
@@ -939,7 +939,7 @@ $(document).on('input', 'input[type="range"]', function (e) {
 //theme color
 $('.theme-color span').click(function () {
   var color = $(this).attr('data-color');
-  sessionStorage.setItem('themeColor', color);
+  localStorage.setItem('themeColor', color);
   $('.theme-color span').removeClass('active');
   $(this).addClass('active');
   ThemeColor(color);
@@ -950,6 +950,7 @@ function ThemeColor(color = null) {
   if (color != null) {
     $(`.theme-color span[data-color='${color}']`).addClass('active');
     $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
+    $("#table tr.active").removeClass('gray');
 
     if (color == '#42a76638') {
       $('.form-control').css('background', '#0e313fd4');
@@ -970,6 +971,10 @@ function ThemeColor(color = null) {
 
     else if (color == '#42a76638')
       $("meta[name='theme-color']").attr('content', '#0e3443');
+
+      else if (color == '#1e2227')
+      $("#table tr.active").addClass('gray');
+      
   }
 }
 

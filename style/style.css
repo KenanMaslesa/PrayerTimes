@@ -715,6 +715,10 @@ body {
   background: #104755;
 }
 
+#main .main-section .calendar #table tr.gray {
+  background: #282a2d;
+}
+
 #main .main-section .calendar #table tr.friday {
   background: #0e586417;
 }
