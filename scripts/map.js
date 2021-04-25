@@ -40,7 +40,6 @@ function setupMap(center) {
     showPosition(method);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
-    $('.instructions').hide();
     $('.settings-wrapper').slideUp();
   });
 
