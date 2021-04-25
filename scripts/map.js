@@ -9,6 +9,17 @@ function setupMap(center) {
 
   });
 
+  var inputs = document.querySelectorAll('.map-style input');
+
+  function switchLayer(layer) {
+    var layerId = layer.target.id;
+    map.setStyle('mapbox://styles/mapbox/' + layerId);
+  }
+
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+  }
+
   function nightMap() {
     map.setStyle('mapbox://styles/mapbox/traffic-night-v2');
 

@@ -83,8 +83,8 @@ function Settings() {
   }
   $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' ? 'active' : '');
   $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' ? 'active' : '');
-  if(isNotificationAllowed == 'true')
-  $('.range-slider').slideDown();
+  if (isNotificationAllowed == 'true')
+    $('.range-slider').slideDown();
 
   $('.range-slider output').html(notificationMinutes);
   $('.range-slider input[type=range]').val(notificationMinutes);
@@ -477,7 +477,7 @@ var x = setInterval(function () {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     if (isNotificationAllowed == true || isNotificationAllowed == 'true') {
-      if (minutes == notificationMinutes && seconds == 0) {
+      if (hours == 0 && minutes == notificationMinutes && seconds == 0) {
         playBeep();
       }
     }
@@ -485,7 +485,6 @@ var x = setInterval(function () {
     if (hours == 0 && minutes <= 9) {
       $('.countdown').addClass('danger');
 
-      debugger
       if ((isAthanAllowed == true || isAthanAllowed == 'true') && minutes == 0 && seconds == 0) {
         playAthan();
       }
@@ -898,15 +897,11 @@ $('#settings-icon').click(function () {
 //$('input.cb-value').prop("checked", true);
 $('.cb-value').click(function () {
   var mainParent = $(this).parent('.toggle-btn');
-  var isDarkMode = $(this).attr('data-darkmode');
   var isNotification = $(this).attr('data-notification');
 
   if (!$(mainParent).hasClass('active')) {
     $(mainParent).addClass('active');
-    if (isDarkMode == 'true') {
-      $("#dark_theme").trigger('click');
-    }
-    else if (isNotification) {
+    if (isNotification) {
       $('.range-slider').slideDown();
       localStorage.setItem('isNotificationAllowed', true);
       isNotificationAllowed = true;
@@ -915,12 +910,10 @@ $('.cb-value').click(function () {
       localStorage.setItem('isAthanAllowed', true);
       isAthanAllowed = true;
     }
-  } else {
+  } 
+  else {
     $(mainParent).removeClass('active');
-    if (isDarkMode == 'true') {
-      $("#light_theme").trigger('click');
-    }
-    else if (isNotification) {
+    if (isNotification) {
       $('.range-slider').slideUp();
       localStorage.setItem('isNotificationAllowed', false);
       isNotificationAllowed = false;
@@ -940,14 +933,35 @@ $(document).on('input', 'input[type="range"]', function (e) {
   localStorage.setItem('notificationMinutes', minutes);
 });
 
-//dark mode - settings
-$('.toggleDark').click(function () {
-  $('#darkMode').toggleClass('active');
 
-  if ($('#darkMode').hasClass('active')) {
-    $('#dark_theme').trigger('click');
+//theme color
+$('.theme-color span').click(function () {
+  var color = $(this).attr('data-color');
+  $('.theme-color span').removeClass('active');
+  $(this).addClass('active');
+  $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
+
+  if (color == '#42a76638') {
+    $('.form-control').css('background', '#0e313fd4');
+    $('#table').css('background', '#0e313fd4');
+    $('.calendar #table tr.active').css('background', '#104755');
   }
   else {
-    $('#light_theme').trigger('click');
+    $('.form-control').css('background', color);
+    $('#table').css('background', convertHex(color, 0.1));
+    $('.calendar #table tr.active').css('background', convertHex(color, 0.5));
   }
 })
+
+function convertHex(hex, opacity) {
+  hex = hex.replace('#', '');
+  r = parseInt(hex.substring(0, 2), 16);
+  g = parseInt(hex.substring(2, 4), 16);
+  b = parseInt(hex.substring(4, 6), 16);
+  result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+  return result;
+}
+
+
+ switchLayer('satelit');
+  

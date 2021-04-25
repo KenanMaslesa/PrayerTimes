@@ -300,31 +300,10 @@
   <i class="ion-android-settings" id="settings-icon"></i>
   <div class="settings-wrapper">
     <div class="settings">
-
       <i class="ion-close-circled" id="close-settings-icon"></i>
 
-      <div class="dark-mode">
-        <label>Night</label>
-        <div class="toggleWrapper">
-          <input type="checkbox" class="dn" id="darkMode" data-darkmode="true"/>
-          <label for="dn" class="toggleDark">
-            <span class="toggle__handler">
-              <span class="crater crater--1"></span>
-              <span class="crater crater--2"></span>
-              <span class="crater crater--3"></span>
-            </span>
-            <span class="star star--1"></span>
-            <span class="star star--2"></span>
-            <span class="star star--3"></span>
-            <span class="star star--4"></span>
-            <span class="star star--5"></span>
-            <span class="star star--6"></span>
-          </label>
-        </div>
-      </div>
-
       <div class="athan">
-        <label>Ezan</label>
+        <label>Athan</label>
         <div class="toggle-btn">
           <input type="checkbox" class="cb-value" />
           <span class="round-btn"></span>
@@ -341,7 +320,7 @@
 
       <div class="range-slider">
         <div class="output">
-          <output>10</output><span>minuta</span>
+          <output>10</output><span>minutes</span>
         </div>
         <div class="range-container">
           <form>
@@ -350,6 +329,31 @@
         </div>
       </div>
 
+      <div class="theme-color-wrapper">
+        <label class="title">Theme Color</label>
+        <div class="theme-color">
+          <span style="background: #000000d1;" data-color="#000000d1"></span>
+          <span style="background: #0606068c;" data-color="#0606068c"></span>
+          <span style="background: #10475570;" data-color="#10475570"></span>
+          <span style="background: #42a76638;" data-color="#42a76638"></span>
+          <span style="background: #104755e6;" data-color="#104755e6"></span>
+          <span style="background: #181c22eb;" data-color="#1e2227"></span>
+        </div>
+      </div>
+
+      <div class="map-style">
+        <label class="title">Map Styles</label>
+        <input id="satellite-streets-v11" type="radio" name="rtoggle" value="satellite">
+        <label for="satellite-streets-v11">satellite</label>
+        <input id="light-v10" type="radio" name="rtoggle" value="light">
+        <label for="light-v10">light</label>
+        <input id="traffic-night-v2" type="radio" name="rtoggle" value="dark">
+        <label for="traffic-night-v2">dark</label>
+        <input id="navigation-night-v1" type="radio" name="rtoggle" value="night">
+        <label for="navigation-night-v1">night</label>
+        <input id="streets-v11" type="radio" name="rtoggle" value="streets">
+        <label for="streets-v11">streets</label>
+      </div>
     </div>
   </div>
 
@@ -364,7 +368,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="scripts/map.js" defer></script>
-  <script src="scripts/script.js" defer></script>
+  <script src="scripts/script.min.js" defer></script>
   <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
 </body>
 
