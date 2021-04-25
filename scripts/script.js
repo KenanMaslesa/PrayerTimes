@@ -1084,3 +1084,14 @@ function Day() {
   $("#light_theme").hide();
   $('#darkMode').removeClass('active');
 }
+
+//NO SLEEP
+var noSleep = new NoSleep();
+
+function enableNoSleep() {
+  noSleep.enable();
+  document.removeEventListener('touchstart', enableNoSleep, false);
+}
+
+document.addEventListener('touchstart', enableNoSleep, false);
+enableNoSleep();
