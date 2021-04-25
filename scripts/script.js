@@ -7,6 +7,7 @@ let cityID = localStorage.getItem("cityID");
 let isAthanAllowed = localStorage.getItem("isAthanAllowed");
 let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
+var themeColor = sessionStorage.getItem('themeColor');
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag = true, month, year;
@@ -400,6 +401,7 @@ function setTimes() {
     $("#light_theme").trigger('click');
   }
 
+  ThemeColor(themeColor);
 }
 
 function upcomingPrayer() {
@@ -910,7 +912,7 @@ $('.cb-value').click(function () {
       localStorage.setItem('isAthanAllowed', true);
       isAthanAllowed = true;
     }
-  } 
+  }
   else {
     $(mainParent).removeClass('active');
     if (isNotification) {
@@ -937,33 +939,39 @@ $(document).on('input', 'input[type="range"]', function (e) {
 //theme color
 $('.theme-color span').click(function () {
   var color = $(this).attr('data-color');
+  sessionStorage.setItem('themeColor', color);
   $('.theme-color span').removeClass('active');
   $(this).addClass('active');
-  $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
-
-  if (color == '#42a76638') {
-    $('.form-control').css('background', '#0e313fd4');
-    $('#table').css('background', '#0e313fd4');
-    $('.calendar #table tr.active').css('background', '#104755');
-    $("meta[name='theme-color']").attr('content', '#104755');
-  }
-  else {
-    $('.form-control').css('background', color);
-    $('#table').css('background', convertHex(color, 0.1));
-    $('.calendar #table tr.active').css('background', convertHex(color, 0.5));
-    $("meta[name='theme-color']").attr('content', color);
-  }
-
-  if(color == '#0606068c')
-  $("meta[name='theme-color']").attr('content', '#030c1d');
-
-  else if(color == '#10475570')
-  $("meta[name='theme-color']").attr('content', '#072b45');
-
-  else if(color == '#42a76638')
-  $("meta[name='theme-color']").attr('content', '#0e3443');
-
+  ThemeColor(color);
 })
+
+function ThemeColor(color = null) {
+
+  if (color != null) {
+    $(`.theme-color span[data-color='${color}']`).addClass('active');
+    $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
+
+    if (color == '#42a76638') {
+      $('.form-control').css('background', '#0e313fd4');
+      $('#table').css('background', '#0e313fd4');
+      $("meta[name='theme-color']").attr('content', '#104755');
+    }
+    else {
+      $('.form-control').css('background', color);
+      $('#table').css('background', convertHex(color, 0.1));
+      $("meta[name='theme-color']").attr('content', color);
+    }
+
+    if (color == '#0606068c')
+      $("meta[name='theme-color']").attr('content', '#030c1d');
+
+    else if (color == '#10475570')
+      $("meta[name='theme-color']").attr('content', '#072b45');
+
+    else if (color == '#42a76638')
+      $("meta[name='theme-color']").attr('content', '#0e3443');
+  }
+}
 
 function convertHex(hex, opacity) {
   hex = hex.replace('#', '');
