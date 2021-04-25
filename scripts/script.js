@@ -829,7 +829,7 @@ $('#toggle-icon').click(function () {
   $('.autolocation').toggle('slow');
   $('.local-time-wrapper').toggleClass('toggle');
   $('.calculation-methods').toggleClass('toggle');
-  $('.instructions').toggle(1000);
+  $('.instructions').toggle(500);
 
   if (isMobile.matches) {
     $('.local-time-wrapper.mobile').toggle(300);
