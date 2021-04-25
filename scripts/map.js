@@ -41,6 +41,7 @@ function setupMap(center) {
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
     $('.instructions').hide();
+    $('.settings-wrapper').slideUp();
   });
 
   // geocoder (input)
