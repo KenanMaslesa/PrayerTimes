@@ -1,21 +1,21 @@
 var positionFromStorage = localStorage.getItem("currentPosition");
-let currentPosition;
-let latitude = localStorage.getItem("latitude");
-let longitude = localStorage.getItem("longitude");
-let method = localStorage.getItem("method");
-let cityID = localStorage.getItem("cityID");
-let isAthanAllowed = localStorage.getItem("isAthanAllowed");
-let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
-let isDayNightMode = localStorage.getItem("isDayNightMode");
-let isDay = localStorage.getItem("isDay");
+var currentPosition;
+var latitude = localStorage.getItem("latitude");
+var longitude = localStorage.getItem("longitude");
+var method = localStorage.getItem("method");
+var cityID = localStorage.getItem("cityID");
+var isAthanAllowed = localStorage.getItem("isAthanAllowed");
+var isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
+var isDayNightMode = localStorage.getItem("isDayNightMode");
+var isDay = localStorage.getItem("isDay");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
 var themeColor = localStorage.getItem('themeColor');
 var bigDataCloud1 = 'd901232290c147beacf55aebb5bf7724';
 var bigDataCloud2 = 'a711a9c049714f5a935fddd5ed0f2ae6';
-let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
-let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
+var currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
+var timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag = true, month, year;
-let tempMonth = new Date().getMonth() + 1, tempYear = new Date().getFullYear(), calendarFlag = false;
+var tempMonth = new Date().getMonth() + 1, tempYear = new Date().getFullYear(), calendarFlag = false;
 
 const monthNames = ["", "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -24,6 +24,7 @@ const monthNames = ["", "January", "February", "March", "April", "May", "June",
 const monthNamesBosnian = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni",
   "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"
 ];
+
 window.onload = function () {
   if (method != 16) {
     if (latitude == null || longitude == null) {
@@ -47,6 +48,7 @@ window.onload = function () {
     }, 8000);
 
   }
+
   else {
     cityID = localStorage.getItem("cityID");
     if (cityID == 'null') {
@@ -54,7 +56,7 @@ window.onload = function () {
       $('#locationsIZ').addClass('animate');
     }
     else {
-      getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+      getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
     }
 
     hideMap();
@@ -73,7 +75,6 @@ document.querySelector(".autolocation").addEventListener('click', function () {
 });
 
 function Settings() {
-
   if (notificationMinutes == null) {
     localStorage.setItem('notificationMinutes', 10);
     notificationMinutes = 10;
@@ -93,6 +94,7 @@ function Settings() {
   $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' || isAthanAllowed == true ? 'active' : '');
   $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' || isNotificationAllowed == true ? 'active' : '');
   $('.day-night-mode .toggle-btn').addClass(isDayNightMode == 'true' || isDayNightMode == true ? 'active' : '');
+
   if (isNotificationAllowed == 'true' || isNotificationAllowed == true)
     $('.range-slider').slideDown();
 
@@ -106,8 +108,8 @@ function Settings() {
 function successLocation(position) {
   currentPosition = position;
   latitude = position.coords.latitude,
-    longitude = position.coords.longitude,
-    localStorage.setItem("latitude", latitude);
+  longitude = position.coords.longitude,
+  localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
@@ -119,8 +121,8 @@ function errorLocation() {
 
 function IPLocation(location) {
   latitude = location.latitude,
-    longitude = location.longitude,
-    localStorage.setItem("latitude", latitude);
+  longitude = location.longitude,
+  localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
   setupMap([longitude, latitude]);
   showPosition(method);
@@ -128,7 +130,6 @@ function IPLocation(location) {
 
 
 function getRequest(funk, url) {
-
   var request = new XMLHttpRequest();
   request.onload = function () {
     if (request.status == 200) {
@@ -141,7 +142,6 @@ function getRequest(funk, url) {
 
   request.onerror = function () {
     getRequest(IPLocation, 'https://geolocation-db.com/json/');
-
   };
 
   request.open("GET", url, true);
@@ -150,7 +150,6 @@ function getRequest(funk, url) {
 
 
 function showPosition(method) {
-
   currentTime = new Date();
   if (method != null) {
     $('#locations option[value=' + method + ']').prop('selected', true);
@@ -206,8 +205,8 @@ function GetCity(obj) {
     county = county.replace("Grad", "");
   }
 
-  document.querySelector(".country").textContent = country;
-  document.querySelector(".city").textContent = county;
+  $(".country").html(country);
+  $(".city").html(county);
 }
 
 function GetPrayerTimes(obj) {
@@ -299,7 +298,7 @@ $('#plus').on('click', function () {
   if (method == 16) {
     var cityID = localStorage.getItem('cityID');
     var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${tempYear}/${tempMonth}`;
-    getRequest(CalendarRows, calendarIZurl)
+    getRequest(CalendarRowsIZ, calendarIZurl)
   }
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
@@ -309,6 +308,7 @@ $('#plus').on('click', function () {
 
   getRequest(getCalendar, urlCalendar);
 });
+
 $('#minus').on('click', function () {
   calendarFlag = true;
   if (tempMonth <= 1) {
@@ -322,7 +322,7 @@ $('#minus').on('click', function () {
   if (method == 16) {
     var cityID = localStorage.getItem('cityID');
     var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${tempYear}/${tempMonth}`;
-    getRequest(CalendarRows, calendarIZurl)
+    getRequest(CalendarRowsIZ, calendarIZurl)
   }
   else if (method == 17) {
     urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
@@ -336,12 +336,14 @@ $('#minus').on('click', function () {
 function formatTime(h) {
   return h < 10 ? "0" + h : h;
 }
+
 function setHours(h = null) {
   if (h != null) {
     hours = h.substring(0, h.indexOf(":"));
     countDownTime.setHours(hours);
   }
 }
+
 function setMinutes(m = null) {
   if (m != null) {
     minutes = m.substring(m.indexOf(":") + 1);
@@ -350,13 +352,12 @@ function setMinutes(m = null) {
 }
 
 function removeActiveClass() {
-  document.querySelector(".fajr").classList.remove("active");
-  document.querySelector(".sunrise").classList.remove("active");
-  document.querySelector(".dhuhr").classList.remove("active");
-  document.querySelector(".asr").classList.remove("active");
-  document.querySelector(".maghrib").classList.remove("active");
-  document.querySelector(".isha").classList.remove("active");
-
+  $(".fajr").removeClass("active");
+  $(".sunrise").removeClass("active");
+  $(".dhuhr").removeClass("active");
+  $(".asr").removeClass("active");
+  $(".maghrib").removeClass("active");
+  $(".isha").removeClass("active");
 }
 
 function setTimes() {
@@ -467,6 +468,7 @@ function playAthan() {
   });
   athan.play();
 }
+
 function playBeep() {
   var beep = new Howl({
     src: ['./audio/beep2.mp3']
@@ -551,7 +553,7 @@ $('#locations').change(function () {
     }
     else {
       location.reload();
-      getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+      getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
     }
   }
   else {
@@ -561,15 +563,14 @@ $('#locations').change(function () {
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
       showMap();
-      //var scrollTo = $('.prayer-times-wrapper').offset().top;
       setTimeout(() => {
         setupMap([longitude, latitude]);
         $('html, body').animate({ scrollTop: scrollTo }, 100);
       }, 500);
       localStorage.setItem('IZ', false);
     }
-    //showMap();
   }
+
   if (method == 17) {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
   }
@@ -591,10 +592,11 @@ $('#locationsIZ').change(function () {
   localStorage.setItem("cityID", cityID);
   $('.countdown').show();
 
-  getRequest(loadDataIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
+  getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
 
 });
-function loadDataIZ(obj) {
+
+function prayerTimesIZ(obj) {
   if (method != null) {
     $('#locations option[value=' + method + ']').prop('selected', true);
     $('#locationsIZ').show();
@@ -621,6 +623,7 @@ function loadDataIZ(obj) {
   $(".asr-time").text(asr);
   $(".maghrib-time").text(maghrib);
   $(".isha-time").text(isha);
+
   if (cityID == 107) {
     $(".country").text('Crna Gora');
   }
@@ -657,6 +660,7 @@ function loadDataIZ(obj) {
   else {
     $(".country").text('Bosna i Hercegovina');
   }
+
   $(".city").text(obj.lokacija);
   $(".gregorian-date").text(obj.datum[1] + ' / ');
   $(".hijri-date").text(obj.datum[0]);
@@ -686,11 +690,11 @@ function loadDataIZ(obj) {
 
   var cityID = localStorage.getItem('cityID');
   var calendarIZurl = `https://api.vaktija.ba/vaktija/v1/${cityID}/${new Date().getFullYear()}/${new Date().getMonth() + 1}`;
-  getRequest(CalendarRows, calendarIZurl)
+  getRequest(CalendarRowsIZ, calendarIZurl)
 
 }
 
-function CalendarRows(obj) {
+function CalendarRowsIZ(obj) {
   document.querySelector("#table tbody").innerHTML = '';
   $('.calendar-caption').html(monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
   $('.calendar').removeClass('hide');
@@ -703,7 +707,7 @@ function CalendarRows(obj) {
     <td>${obj.dan[i].vakat[3]}</td>
     <td>${obj.dan[i].vakat[4]}</td>
     <td>${obj.dan[i].vakat[5]}</td>
-</tr>`;
+    </tr>`;
   }
   $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
 }
@@ -717,6 +721,7 @@ function hideMap() {
   $('.calendar').addClass('hide');
   $('.calculation-methods').addClass('toggle');
 }
+
 function showMap() {
   $('#map').slideDown();
   $('.instructions ').slideDown();
@@ -743,6 +748,7 @@ function formatAMPM(time) {
 function dayofMonth(d) {
   return (d.getDate() < 10 ? '0' : '') + d.getDate();
 }
+
 function getCalendar(obj) {
   document.querySelector("#table tbody").innerHTML = "";
   for (var i = 0; i < obj.data.length; i++) {
@@ -787,6 +793,7 @@ function getBosnianDays(day) {
   else if (day == "Sunday")
     return "ned";
 }
+
 function getEnglishDays(day) {
   if (day == "Monday")
     return "mon";
@@ -858,7 +865,7 @@ $('.print').on('click', function () {
   window.print();
 })
 
-//clock
+//CLOCK
 const hourEl = document.querySelector('.hour')
 const minuteEl = document.querySelector('.minute')
 const secondEl = document.querySelector('.second')
@@ -899,12 +906,8 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-setTime()
 
-setInterval(setTime, 1000)
-
-
-//settings
+//SETTINGS
 $('#close-settings-icon').click(function () {
   $('.settings-wrapper').animate({ width: 'toggle' }, 350);
 
@@ -978,7 +981,7 @@ $(document).on('input', 'input[type="range"]', function (e) {
 });
 
 
-//theme color
+//THEME COLOR
 $('.theme-color span').click(function () {
   var color = $(this).attr('data-color');
   localStorage.setItem('themeColor', color);
@@ -990,6 +993,7 @@ $('.theme-color span').click(function () {
 function ThemeColor(color = null) {
   isDay = localStorage.getItem('isDay');
   isDayNightMode = localStorage.getItem('isDayNightMode');
+
   if (color != null && (isDayNightMode == 'false' || isDayNightMode == false)) {
     $(`.theme-color span[data-color='${color}']`).addClass('active');
     $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
@@ -1027,6 +1031,7 @@ function ThemeColor(color = null) {
     }
 
   }
+
   else {
     if (isDay != null) {
       if (isDay == 'true' || isDay == true) {
@@ -1055,7 +1060,6 @@ function convertHex(hex, opacity) {
 }
 
 function Night() {
-  debugger
   localStorage.setItem("isDay", false);
   $('.local-time-wrapper').removeClass('day');
   $("#table").css({ backgroundColor: '#040d1d' });

@@ -43,23 +43,16 @@ function setupMap(center) {
     $('.settings-wrapper').slideUp();
   });
 
-  // geocoder (input)
-
-  var geocoder = new MapboxGeocoder({ // Initialize the geocoder
-    accessToken: mapboxgl.accessToken, // Set the access token
-    mapboxgl: mapboxgl, // Set the mapbox-gl instance
-    marker: false, // Do not use the default marker style
-    placeholder: 'Search for places', // Placeholder text for the search bar
+  var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    marker: false,
+    placeholder: 'Search for places',
   });
-
-  // Add the geocoder to the map
   map.addControl(geocoder);
 
-  map.on('load', function () {
 
-    // Listen for the `result` event from the Geocoder
-    // `result` event is triggered when a user makes a selection
-    // Add a marker at the result's coordinates
+  map.on('load', function () {
     geocoder.on('result', function (ev) {
       var coordinates = ev.result.center;
       longitude = coordinates[0];
