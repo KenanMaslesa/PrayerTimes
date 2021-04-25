@@ -8,6 +8,8 @@ let isAthanAllowed = localStorage.getItem("isAthanAllowed");
 let isNotificationAllowed = localStorage.getItem("isNotificationAllowed");
 var notificationMinutes = localStorage.getItem('notificationMinutes');
 var themeColor = localStorage.getItem('themeColor');
+var bigDataCloud1 = 'd901232290c147beacf55aebb5bf7724';
+var bigDataCloud2 = 'a711a9c049714f5a935fddd5ed0f2ae6';
 let currentTime, urlGetPrayerTimes, urlGetCity, urlCalendar;
 let timeZone, fajr, sunrise, dhuhr, asr, maghrib, isha, currentDateTime, countDownTime, gregorianDate,
   hijriDate, country, county, flag = true, month, year;
@@ -158,7 +160,7 @@ function showPosition(method) {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2`;
   }
 
-  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=a711a9c049714f5a935fddd5ed0f2ae6`;
+  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=${bigDataCloud1}`;
 
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
