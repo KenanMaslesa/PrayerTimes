@@ -81,8 +81,8 @@ function Settings() {
     localStorage.setItem('isNotificationAllowed', true);
     isNotificationAllowed = true;
   }
-  $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' ? 'active' : '');
-  $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' ? 'active' : '');
+  $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' || isAthanAllowed == true ? 'active' : '');
+  $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' || isNotificationAllowed == true ? 'active' : '');
   if (isNotificationAllowed == 'true')
     $('.range-slider').slideDown();
 
@@ -961,7 +961,3 @@ function convertHex(hex, opacity) {
   result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
   return result;
 }
-
-
- switchLayer('satelit');
-  
