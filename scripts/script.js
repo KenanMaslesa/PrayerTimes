@@ -79,8 +79,8 @@ function Settings() {
     notificationMinutes = 10;
   }
   if (isAthanAllowed == null) {
-    localStorage.setItem('isAthanAllowed', true);
-    isAthanAllowed = true;
+    localStorage.setItem('isAthanAllowed', false);
+    isAthanAllowed = false;
   }
   if (isNotificationAllowed == null) {
     localStorage.setItem('isNotificationAllowed', true);
@@ -93,7 +93,7 @@ function Settings() {
   $('.athan .toggle-btn').addClass(isAthanAllowed == 'true' || isAthanAllowed == true ? 'active' : '');
   $('.notification .toggle-btn').addClass(isNotificationAllowed == 'true' || isNotificationAllowed == true ? 'active' : '');
   $('.day-night-mode .toggle-btn').addClass(isDayNightMode == 'true' || isDayNightMode == true ? 'active' : '');
-  if (isNotificationAllowed == 'true')
+  if (isNotificationAllowed == 'true' || isNotificationAllowed == true)
     $('.range-slider').slideDown();
 
   if (isDayNightMode == 'false')
@@ -898,13 +898,19 @@ setInterval(setTime, 1000)
 
 //settings
 $('#close-settings-icon').click(function () {
-  $('.settings-wrapper').animate({ width: 'toggle' }, 350);;
+  $('.settings-wrapper').animate({ width: 'toggle' }, 350);
 
 })
 
 $('#settings-icon').click(function () {
   $('.settings-wrapper').animate({ width: 'toggle' }, 350);
 })
+
+
+$('.main-section').click(function(){
+  $('.settings-wrapper').slideUp();
+  })
+  
 
 
 $('.cb-value').click(function () {
