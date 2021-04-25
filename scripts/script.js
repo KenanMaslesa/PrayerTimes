@@ -945,11 +945,13 @@ $('.theme-color span').click(function () {
     $('.form-control').css('background', '#0e313fd4');
     $('#table').css('background', '#0e313fd4');
     $('.calendar #table tr.active').css('background', '#104755');
+    $("meta[name='theme-color']").attr('content', '#104755');
   }
   else {
     $('.form-control').css('background', color);
     $('#table').css('background', convertHex(color, 0.1));
     $('.calendar #table tr.active').css('background', convertHex(color, 0.5));
+    $("meta[name='theme-color']").attr('content', color);
   }
 })
 
