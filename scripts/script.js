@@ -259,7 +259,8 @@ function GetPrayerTimes(obj) {
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
-      Night();
+      if ((isDay == 'false' || isDay == false) && (isDayNightMode == 'true' || isDayNightMode == true))
+        Night();
       $('.local-time-wrapper').removeClass('day');
     }
   }, 1000);
@@ -407,11 +408,13 @@ function setTimes() {
 
   if ($('.maghrib').hasClass('active') || $('.isha').hasClass('active') || $('.fajr').hasClass('active')) {
     $("#dark_theme").trigger('click');
-    Night();
+    if (isDayNightMode == 'true' || isDayNightMode == true)
+      Night();
   }
   else {
     $("#light_theme").trigger('click');
-    Day();
+    if (isDayNightMode == 'true' || isDayNightMode == true)
+      Day();
   }
 
   ThemeColor(themeColor);
@@ -667,7 +670,8 @@ function loadDataIZ(obj) {
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
-      Night();
+      if (isDayNightMode == 'true' || isDayNightMode == true)
+        Night();
       $('.local-time-wrapper').removeClass('day');
     }
   }, 1000);
@@ -924,6 +928,7 @@ $('.cb-value').click(function () {
 
   if (!$(mainParent).hasClass('active')) {
     $(mainParent).addClass('active');
+
     if (isNotification) {
       $('.range-slider').slideDown();
       localStorage.setItem('isNotificationAllowed', true);
@@ -932,6 +937,7 @@ $('.cb-value').click(function () {
     else if (isDayNightMode) {
       $('.theme-color-wrapper').slideUp();
       localStorage.setItem('isDayNightMode', true);
+      isDayNightMode = true;
       localStorage.setItem('themeColor', null);
       $('.main-section').attr('style', '');
       $('.theme-color span').removeClass('active');
@@ -982,8 +988,9 @@ $('.theme-color span').click(function () {
 })
 
 function ThemeColor(color = null) {
-
-  if (color != null) {
+  isDay = localStorage.getItem('isDay');
+  isDayNightMode = localStorage.getItem('isDayNightMode');
+  if (color != null && (isDayNightMode == 'false' || isDayNightMode == false)) {
     $(`.theme-color span[data-color='${color}']`).addClass('active');
     $('.main-section').css('background-image', `-webkit-gradient(linear,left top,left bottom,from(${color})),url(../images/6.png)`);
     $("#table tr.active").removeClass('gray');
@@ -1021,16 +1028,17 @@ function ThemeColor(color = null) {
 
   }
   else {
-
     if (isDay != null) {
       if (isDay == 'true' || isDay == true) {
         $("#light_theme").trigger('click');
-        Day();
+        if (isDayNightMode == 'true' || isDayNightMode == true)
+          Day();
       }
 
-      else{
+      else {
         $("#dark_theme").trigger('click');
-        Night();
+        if (isDayNightMode == 'true' || isDayNightMode == true)
+          Night();
       }
 
     }
@@ -1047,6 +1055,7 @@ function convertHex(hex, opacity) {
 }
 
 function Night() {
+  debugger
   localStorage.setItem("isDay", false);
   $('.local-time-wrapper').removeClass('day');
   $("#table").css({ backgroundColor: '#040d1d' });
