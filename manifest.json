@@ -3,8 +3,8 @@
   "short_name": "Global Prayer Times",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#191d2f",
-  "theme_color": "#191d2f",
+  "background_color": "black",
+  "theme_color": "black",
   "orientation": "portrait-primary",
   "icons": [
     {
