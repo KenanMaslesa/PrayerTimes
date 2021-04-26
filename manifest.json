@@ -1,0 +1,20 @@
+{
+  "name": "Global Prayer Times",
+  "short_name": "GlobalPrayerTimes",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#030c1d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./images/logo.png",
+      "type": "image/png", "sizes": "462x446"
+    },
+    {
+      "src": "./images/logo.png",
+      "type": "image/png", "sizes": "144x144"
+    }
+   
+  ]
+}

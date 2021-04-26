@@ -473,7 +473,7 @@ function playAthan() {
 
 function playBeep() {
   var beep = new Howl({
-    src: ['./audio/beep2.mp3']
+    src: ['./audio/beep.mp3']
   });
   beep.play();
 }
@@ -1097,3 +1097,13 @@ function enableNoSleep() {
 
 document.addEventListener('touchstart', enableNoSleep, false);
 enableNoSleep();
+
+//SERVICE WORKER
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("./serviceWorker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
+}
