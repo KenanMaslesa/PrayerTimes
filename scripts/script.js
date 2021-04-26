@@ -62,7 +62,7 @@ window.onload = function () {
     hideMap();
 
     setTimeout(() => {
-      $(".loader").hide();
+      $(".loader").remove();
     }, 300);
   }
 
@@ -177,7 +177,7 @@ function showPosition(method) {
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
 
   setTimeout(() => {
-    $(".loader").hide();
+    $(".loader").remove();
   }, 1200);
 
 }
