@@ -66,6 +66,8 @@ window.onload = function () {
     }, 300);
   }
 
+  themeColor = localStorage.getItem('themeColor');
+  ThemeColor(themeColor);
   $('html, body').animate({ scrollTop: 0 }, 1000);
   Settings();
 }
