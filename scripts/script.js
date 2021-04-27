@@ -72,7 +72,7 @@ window.onload = function () {
   Settings();
 }
 
-document.querySelector(".autolocation").addEventListener('click', function () {
+$(".autolocation").on('click', function () {
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
 });
 
@@ -697,11 +697,11 @@ function prayerTimesIZ(obj) {
 }
 
 function CalendarRowsIZ(obj) {
-  document.querySelector("#table tbody").innerHTML = '';
+  $("#table tbody").html('');
   $('.calendar-caption').html(monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
-    document.querySelector("#table tbody").innerHTML += `<tr>
+    $("#table tbody").append(`<tr>
     <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
@@ -709,7 +709,7 @@ function CalendarRowsIZ(obj) {
     <td>${obj.dan[i].vakat[3]}</td>
     <td>${obj.dan[i].vakat[4]}</td>
     <td>${obj.dan[i].vakat[5]}</td>
-    </tr>`;
+    </tr>`);
   }
   $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
 }
@@ -752,9 +752,9 @@ function dayofMonth(d) {
 }
 
 function getCalendar(obj) {
-  document.querySelector("#table tbody").innerHTML = "";
+  $("#table tbody").html('');
   for (var i = 0; i < obj.data.length; i++) {
-    document.querySelector("#table tbody").innerHTML += Rows(obj.data[i]);
+    $("#table tbody").append(Rows(obj.data[i]));
   }
 
   $('.date-caption').text(flag ? "Datum" : "Date");
@@ -855,13 +855,13 @@ $('#toggle-icon').click(function () {
     $('.dark-light-mode').toggleClass('toggle');
     $('#settings-icon').toggleClass('top-0');
 
-    $(window).scroll(function(){
+    $(window).scroll(function () {
       var aTop = $('.cards-wrapper').offset().top;
       console.log($(this).scrollTop(), aTop)
-      if($(this).scrollTop()>=aTop){
+      if ($(this).scrollTop() >= aTop) {
         $('#settings-icon').hide();
       }
-      else{
+      else {
         $('#settings-icon').show();
       }
     });
@@ -880,11 +880,11 @@ $('.print').on('click', function () {
 })
 
 //CLOCK
-const hourEl = document.querySelector('.hour')
-const minuteEl = document.querySelector('.minute')
-const secondEl = document.querySelector('.second')
-const timeEl = document.querySelector('.time')
-const dateEl = document.querySelector('.date')
+const hourEl = $('.hour')
+const minuteEl = $('.minute')
+const secondEl = $('.second')
+const timeEl = $('.time')
+const dateEl = $('.date')
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const bosnianDays = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
@@ -901,17 +901,22 @@ function setTime(time = null) {
     const seconds = time.getSeconds()
     const ampm = hours >= 12 ? 'PM' : 'AM'
 
-    hourEl.style.transform = `translate(-50%, -100%) rotate(${scale(hoursForClock, 0, 11, 0, 360)}deg)`
-    minuteEl.style.transform = `translate(-50%, -100%) rotate(${scale(minutes, 0, 59, 0, 360)}deg)`
-    secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`
+    if (hours == 0 && minutes == 0 && seconds == 0) {
+      //midnight - reload fajr
+      location.reload();
+    }
+
+    hourEl.css('transform', `translate(-50%, -100%) rotate(${scale(hoursForClock, 0, 11, 0, 360)}deg)`);
+    minuteEl.css('transform', `translate(-50%, -100%) rotate(${scale(minutes, 0, 59, 0, 360)}deg)`);
+    secondEl.css('transform', `translate(-50%, -100%) rotate(${scale(seconds, 0, 59, 0, 360)}deg)`);
 
     if (flag) {
-      timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
-      dateEl.innerHTML = `${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`
+      timeEl.html(`${hours}:${minutes < 10 ? `0${minutes}` : minutes}`);
+      dateEl.html(`${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`);
     }
     else {
-      timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`;
-      dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
+      timeEl.html(`${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`);
+      dateEl.html(`${days[day]}, ${months[month]} <span class="circle">${date}</span>`);
     }
   }
 }
@@ -920,6 +925,11 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+$('.local-time-mobile').click(function () {
+  var buttonText = $(this).html();
+  $(this).html(buttonText == 'Show local time' ? 'Hide local time': 'Show local time');
+  $('.clock-container.mobile').slideToggle();
+})
 
 //SETTINGS
 $('#close-settings-icon').click(function () {
@@ -1112,7 +1122,7 @@ enableNoSleep();
 
 //SERVICE WORKER
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
+  window.addEventListener("load", function () {
     navigator.serviceWorker
       .register("./serviceWorker.js")
       .then(res => console.log("service worker registered"))

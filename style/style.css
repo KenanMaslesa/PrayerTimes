@@ -878,6 +878,16 @@ body {
   .clock-wrapper {
     display: none;
   }
+  .clock-wrapper.mobile {
+    display: block;
+    text-align: center;
+  }
+  .clock-wrapper.mobile button {
+    margin-top: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+  }
 }
 
 .clock-wrapper .clock-container {
@@ -899,12 +909,19 @@ body {
   right: 30px;
 }
 
+.clock-wrapper .clock-container.mobile {
+  position: static;
+  margin-top: 25px;
+  display: none;
+}
+
 .clock {
   position: relative;
   width: 100px;
   height: 100px;
   border: 1px solid #f3f2f229;
   border-radius: 50%;
+  margin: 0 auto;
 }
 
 .needle {
