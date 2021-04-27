@@ -96,97 +96,6 @@ body {
   }
 }
 
-#main .local-time-wrapper {
-  position: absolute;
-  top: 45%;
-  right: 0%;
-  min-width: 140px;
-  max-width: 140px;
-  height: auto;
-  text-align: center;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#16031000)), url(../images/globus.jpg);
-  background-image: linear-gradient(#16031000), url(../images/globus.jpg);
-  border-radius: 10px;
-  padding: 15px;
-  word-break: break-word;
-  border-top-right-radius: 0px;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-
-@media (max-width: 768px) {
-  #main .local-time-wrapper {
-    display: none;
-  }
-}
-
-#main .local-time-wrapper.toggle {
-  top: 0;
-}
-
-#main .local-time-wrapper.mobile {
-  top: 10px;
-  padding: 0px;
-  padding-top: 10px;
-  z-index: 9;
-  left: 10px;
-  min-width: 100px;
-  width: 110px;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0px;
-  display: none;
-}
-
-@media (max-width: 768px) {
-  #main .local-time-wrapper.mobile {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  #main .local-time-wrapper.mobile .localTime {
-    display: block;
-  }
-}
-
-#main .local-time-wrapper.day {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1603106e)), url(../images/dhuhr.jpg);
-  background-image: linear-gradient(#1603106e), url(../images/dhuhr.jpg);
-  background-size: cover;
-  background-position: bottom;
-}
-
-#main .local-time-wrapper .localTime {
-  color: white;
-  font-size: 23px;
-  padding-bottom: 10px;
-}
-
-#main .local-time-wrapper .localTime::before {
-  font-size: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  #main .local-time-wrapper .localTime {
-    display: none;
-  }
-}
-
-#main .local-time-wrapper .localTimeCaption {
-  color: sandybrown;
-  font-size: 12px;
-  padding-bottom: 5px;
-  font-weight: bold;
-}
-
-#main .local-time-wrapper .localTimeCity {
-  color: white;
-  padding: 3px;
-}
-
 #main #map {
   height: 45%;
   width: 100%;
@@ -204,7 +113,7 @@ body {
 }
 
 #main #map .mapboxgl-ctrl-geocoder {
-  width: 100%;
+  width: 90%;
 }
 
 #main #map .mapboxgl-marker {
