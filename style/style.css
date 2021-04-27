@@ -994,11 +994,9 @@ body {
 }
 
 .date .circle {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
   border-radius: 50%;
-  height: 18px;
-  width: 18px;
+  height: 22px;
+  width: 24px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1009,9 +1007,11 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   line-height: 18px;
-  -webkit-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
-  font-size: 12px;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+  font-size: 13px;
+  background: #2ecc71;
+  color: white;
 }
 
 .looping-rhombuses-spinner,
