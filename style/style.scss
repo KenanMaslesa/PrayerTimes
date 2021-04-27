@@ -709,11 +709,11 @@ body {
   @media (max-width: 768px) {
     display: none;
 
-    &.mobile{
+    &.mobile {
       display: block;
       text-align: center;
 
-      button{
+      button {
         margin-top: 20px;
         background: transparent;
         border: none;
@@ -809,9 +809,8 @@ body {
   font-size: 14px;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-}
 
-.date .circle {
+  .circle {
     border-radius: 50%;
     height: 22px;
     width: 24px;
@@ -819,10 +818,15 @@ body {
     align-items: center;
     justify-content: center;
     line-height: 18px;
-    transition: all .5s ease-in;
+    transition: all 0.5s ease-in;
     font-size: 13px;
-    background: #2ecc71;
     color: white;
+  }
+  &.mobile {
+    .circle {
+      background: #2ecc71;
+    }
+  }
 }
 
 //spin loader
