@@ -853,6 +853,18 @@ $('#toggle-icon').click(function () {
     $('.local-time-wrapper.mobile').toggle(300);
     $(this).toggleClass('toggle');
     $('.dark-light-mode').toggleClass('toggle');
+    $('#settings-icon').toggleClass('top-0');
+
+    $(window).scroll(function(){
+      var aTop = $('.cards-wrapper').offset().top;
+      console.log($(this).scrollTop(), aTop)
+      if($(this).scrollTop()>=aTop){
+        $('#settings-icon').hide();
+      }
+      else{
+        $('#settings-icon').show();
+      }
+    });
   }
 
   if (window.matchMedia("(max-width: 900px)").matches) {

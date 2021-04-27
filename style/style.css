@@ -1361,20 +1361,24 @@ body {
 #settings-icon {
   position: fixed;
   top: 5px;
-  color: #fff;
+  color: #ffffff;
   left: 5px;
   font-size: 25px;
   cursor: pointer;
   z-index: 9999;
   padding: 3px 8px;
-  background: #2222225c;
+  background: #0f0f0f57;
   border-radius: 50%;
 }
 
 @media (max-width: 768px) {
   #settings-icon {
+    top: 15px;
+    left: 5px;
+  }
+  #settings-icon.top-0 {
     top: 0px;
-    left: 0px;
+    background: transparent;
   }
 }
 
