@@ -407,6 +407,9 @@ body {
             background-image: (linear-gradient(#1603108f), url(../images/midnight.jpg));
             background-position: center;
             display: none;
+            margin-top: 25px;
+            height: 130px;
+            width: 13%;
             &.show {
               display: inline-block;
             }
@@ -415,6 +418,10 @@ body {
             background-image: (linear-gradient(#1603108f), url(../images/qiyam.jpg));
             background-position: center;
             display: none;
+            margin-top: 25px;
+            height: 130px;
+            width: 13%;
+
             &.show {
               display: inline-block;
             }
