@@ -542,7 +542,11 @@ body {
             padding: 8px;
             line-height: 1.5;
             vertical-align: top;
-            border-top: 1px solid #f4f4f414;
+            border-top: 1px solid #e7e7e70a;
+
+            @media(max-width:768px){
+              border-top: 1px solid #f4f4f414;
+            }
           }
         }
 
