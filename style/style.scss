@@ -729,9 +729,11 @@ body {
 .clock-wrapper {
   position: relative;
 
+  &.mobile {
+    display: none;
+  }
   @media (max-width: 768px) {
     display: none;
-
     &.mobile {
       display: block;
       text-align: center;

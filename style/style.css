@@ -902,6 +902,10 @@ body {
   position: relative;
 }
 
+.clock-wrapper.mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .clock-wrapper {
     display: none;
