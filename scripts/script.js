@@ -250,7 +250,7 @@ function GetPrayerTimes(obj) {
   $(".asr-caption").text(flag ? "Ikindija" : "Asr");
   $(".maghrib-caption").text(flag ? "Akšam" : "Maghrib");
   $(".isha-caption").text(flag ? "Jacija" : "Isha");
-  $(".midnight-caption").text("Midnight");
+  $(".midnight-caption").text(flag ? "Polovina noći" : "Midnight");
   $(".qiyam-caption").text("Qiyam");
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
