@@ -380,6 +380,8 @@ function setTimes() {
     setMinutes(sunrise);
     removeActiveClass();
     $('.fajr').addClass('active');
+    $('.qiyam').removeClass('show');
+      $('.midnight').removeClass('show');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -413,6 +415,8 @@ function setTimes() {
   if (currentDateTime >= countDownTime.getTime()) {
     removeActiveClass();
     $('.isha').addClass('active');
+    $('.qiyam').addClass('show');
+      $('.midnight').addClass('show');
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
     setMinutes(fajr);
@@ -472,6 +476,7 @@ function removeUpcomingPrayer() {
   $('.asr').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.maghrib').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
+  
 }
 
 function playAthan() {
