@@ -160,18 +160,18 @@ function showPosition(method) {
       return;
     }
     else if (method == 17) {
-      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
+      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&midnightMode=1`;
     }
     else {
-      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+      urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}&midnightMode=1`;
     }
   }
   else {
     //default method
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=2&midnightMode=1`;
   }
 
-  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=${bigDataCloud1}`;
+  urlGetCity = `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&key=${bigDataCloud1}&midnightMode=1`;
 
   getRequest(GetCity, urlGetCity);
   getRequest(GetPrayerTimes, urlGetPrayerTimes);
@@ -240,6 +240,9 @@ function GetPrayerTimes(obj) {
   $(".asr-time").text(flag ? asr : formatAMPM(asr));
   $(".maghrib-time").text(flag ? maghrib : formatAMPM(maghrib));
   $(".isha-time").text(flag ? isha : formatAMPM(isha));
+  $(".midnight-time").text(flag ? MidleNightAndlastThirdOrMidnight(2, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(2, fajr, maghrib)));
+  $(".qiyam-time").text(flag ? MidleNightAndlastThirdOrMidnight(3, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(3, fajr, maghrib)));
+  
 
   $(".fajr-caption").text(flag ? "Zora" : "Fajr");
   $(".sunrise-caption").text(flag ? "Izlazak sunca" : "Sunrise");
@@ -247,6 +250,8 @@ function GetPrayerTimes(obj) {
   $(".asr-caption").text(flag ? "Ikindija" : "Asr");
   $(".maghrib-caption").text(flag ? "Akšam" : "Maghrib");
   $(".isha-caption").text(flag ? "Jacija" : "Isha");
+  $(".midnight-caption").text("Midnight");
+  $(".qiyam-caption").text("Qiyam");
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
@@ -260,9 +265,15 @@ function GetPrayerTimes(obj) {
   setTimeout(() => {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
+      $('.qiyam').addClass('show');
+      $('.midnight').addClass('show');
       if ((isDay == 'false' || isDay == false) && (isDayNightMode == 'true' || isDayNightMode == true))
         Night();
       $('.local-time-wrapper').removeClass('day');
+    }
+    else{
+      $('.qiyam').removeClass('show');
+      $('.midnight').removeClass('show');
     }
   }, 1000);
 
@@ -275,12 +286,12 @@ function GetPrayerTimes(obj) {
   countDownTime.setSeconds(0);
 
   if (method == null)//default calendar method
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}&midnightMode=1`;
   else if (method == 17) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}&midnightMode=1`;
   }
   else {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${currentDateTime.getMonth() + 1}&year=${currentDateTime.getFullYear()}&midnightMode=1`;
   }
   if (method != 16) {
     getRequest(getCalendar, urlCalendar);
@@ -303,10 +314,10 @@ $('#plus').on('click', function () {
     getRequest(CalendarRowsIZ, calendarIZurl)
   }
   else if (method == 17) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}&midnightMode=1`;
   }
   else
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}&midnightMode=1`;
 
   getRequest(getCalendar, urlCalendar);
 });
@@ -327,10 +338,10 @@ $('#minus').on('click', function () {
     getRequest(CalendarRowsIZ, calendarIZurl)
   }
   else if (method == 17) {
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&month=${tempMonth}&year=${tempYear}&midnightMode=1`;
   }
   else
-    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}`;
+    urlCalendar = `https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${tempMonth}&year=${tempYear}&midnightMode=1`;
 
   getRequest(getCalendar, urlCalendar);
 });
@@ -574,10 +585,10 @@ $('#locations').change(function () {
   }
 
   if (method == 17) {
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=99&methodSettings=14.6,null,14.6&midnightMode=1`;
   }
   else {
-    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}`;
+    urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}&midnightMode=1`;
   }
   showPosition(method);
   setupMap([longitude, latitude]);
@@ -698,17 +709,19 @@ function prayerTimesIZ(obj) {
 
 function CalendarRowsIZ(obj) {
   $("#table tbody").html('');
-  $('.calendar-caption').html(monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
+  $('.calendar-caption').html('Islamska Zajednica, '+monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     $("#table tbody").append(`<tr>
-    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${(i < 9 ? '0' + (i + 1) : i + 1) + '. ' + obj.mjesec + '. ' + obj.godina}.</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) + '. ' + monthNamesBosnian[obj.mjesec].toLocaleLowerCase().substring(0,3)}</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
     <td>${obj.dan[i].vakat[3]}</td>
     <td>${obj.dan[i].vakat[4]}</td>
     <td>${obj.dan[i].vakat[5]}</td>
+    <td>${MidleNightAndlastThirdOrMidnight(2, obj.dan[i].vakat[0], obj.dan[i].vakat[4])}</td>
+    <td>${MidleNightAndlastThirdOrMidnight(3, obj.dan[i].vakat[0], obj.dan[i].vakat[4])}</td>
     </tr>`);
   }
   $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
@@ -768,15 +781,57 @@ function getCalendar(obj) {
 }
 
 function Rows(obj) {
+
+  var fajrTiming = obj.timings.Fajr.substring(0, obj.timings.Fajr.indexOf(" "));
+  var maghribTiming = obj.timings.Maghrib.substring(0, obj.timings.Maghrib.indexOf(" "));
   return `<tr>
       <td class="calendar-date" data-day="${obj.date.gregorian.day + tempMonth}">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
-      <td>${obj.timings.Fajr.substring(0, obj.timings.Fajr.indexOf(" "))}</td>
+      <td>${fajrTiming}</td>
       <td>${obj.timings.Sunrise.substring(0, obj.timings.Sunrise.indexOf(" "))}</td>
       <td>${obj.timings.Dhuhr.substring(0, obj.timings.Dhuhr.indexOf(" "))}</td>
       <td>${obj.timings.Asr.substring(0, obj.timings.Asr.indexOf(" "))}</td>
-      <td>${obj.timings.Maghrib.substring(0, obj.timings.Maghrib.indexOf(" "))}</td>
+      <td>${maghribTiming}</td>
       <td>${obj.timings.Isha.substring(0, obj.timings.Isha.indexOf(" "))}</td>
+      <td>${obj.timings.Midnight.substring(0, obj.timings.Midnight.indexOf(" "))}</td>
+      <td>${MidleNightAndlastThirdOrMidnight(3, fajrTiming, maghribTiming)}</td>
   </tr>`;
+}
+
+function MidleNightAndlastThirdOrMidnight(Number, Fajr, Magrib) {
+
+  var magribTime = new Date();
+  var magribHours = Magrib.substring(0, Magrib.indexOf(":"));
+  var magribminutes = Magrib.substring(Magrib.indexOf(":") + 1);
+  magribTime.setHours(magribHours);
+  magribTime.setMinutes(magribminutes);
+  magribTime.setSeconds(0);
+
+  var fajrTime = new Date();
+  fajrTime.setDate(fajrTime.getDate() + 1);
+
+  var fajrhours = Fajr.substring(0, Fajr.indexOf(":"));
+  var fajrminutes = Fajr.substring(Fajr.indexOf(":") + 1);
+  fajrTime.setHours(fajrhours);
+  fajrTime.setMinutes(fajrminutes);
+  fajrTime.setSeconds(0);
+
+  var diferenceMiliseconds = fajrTime - magribTime;
+
+  var Miliseconds = diferenceMiliseconds / Number;
+  var hours = Math.floor((Miliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((Miliseconds % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((Miliseconds % (1000 * 60)) / 1000);
+
+
+  var lastThirdOrMidnight = new Date(fajrTime);
+  lastThirdOrMidnight.setHours(fajrTime.getHours() - hours);
+  lastThirdOrMidnight.setMinutes(fajrTime.getMinutes() - minutes);
+  lastThirdOrMidnight.setSeconds(fajrTime.getSeconds() - seconds);
+
+  var lastThirdOrMidnightHours = lastThirdOrMidnight.getHours();
+  var lastThirdOrMidnightMinutes = lastThirdOrMidnight.getMinutes();
+  return formatTime(lastThirdOrMidnightHours) + ':' + formatTime(lastThirdOrMidnightMinutes);
+
 }
 
 function getBosnianDays(day) {
@@ -927,7 +982,7 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 
 $('.local-time-mobile').click(function () {
   var buttonText = $(this).html();
-  $(this).html(buttonText == 'Show local time' ? 'Hide local time': 'Show local time');
+  $(this).html(buttonText == 'Show local time' ? 'Hide local time' : 'Show local time');
   $('.clock-container.mobile').slideToggle();
 })
 
@@ -1129,3 +1184,8 @@ if ("serviceWorker" in navigator) {
       .catch(err => console.log("service worker not registered", err))
   })
 }
+
+
+$('.mapboxgl-ctrl-geocoder').on('propertychange input', function () {
+  $('.mapboxgl-ctrl-geocoder').css('width', '100%');
+});
