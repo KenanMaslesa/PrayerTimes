@@ -533,7 +533,7 @@ body {
 
 @media (max-width: 767px) {
   #main .main-section .prayer-times-wrapper .cards-wrapper .card {
-    width: 100%;
+    width: 100% !important;
     margin: 10px 0px;
   }
 }
@@ -671,7 +671,7 @@ body {
   padding: 8px;
   line-height: 1.5;
   vertical-align: top;
-  border-top: 1px solid transparent;
+  border-top: 1px solid #f4f4f414;
 }
 
 #main .main-section .calendar #table .calendar-date {

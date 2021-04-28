@@ -428,7 +428,7 @@ body {
           }
 
           @media (max-width: 767px) {
-            width: 100%;
+            width: 100% !important;
             margin: 10px 0px;
           }
           &.active {
@@ -542,7 +542,7 @@ body {
             padding: 8px;
             line-height: 1.5;
             vertical-align: top;
-            border-top: 1px solid transparent;
+            border-top: 1px solid #f4f4f414;
           }
         }
 
