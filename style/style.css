@@ -509,8 +509,6 @@ body {
   background-position: center;
   display: none;
   margin-top: 25px;
-  height: 130px;
-  width: 13%;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.midnight.show {
@@ -523,8 +521,6 @@ body {
   background-position: center;
   display: none;
   margin-top: 25px;
-  height: 130px;
-  width: 13%;
 }
 
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.qiyam.show {

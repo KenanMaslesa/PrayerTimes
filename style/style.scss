@@ -408,8 +408,7 @@ body {
             background-position: center;
             display: none;
             margin-top: 25px;
-            height: 130px;
-            width: 13%;
+
             &.show {
               display: inline-block;
             }
@@ -419,8 +418,6 @@ body {
             background-position: center;
             display: none;
             margin-top: 25px;
-            height: 130px;
-            width: 13%;
 
             &.show {
               display: inline-block;
@@ -544,7 +541,7 @@ body {
             vertical-align: top;
             border-top: 1px solid #e7e7e70a;
 
-            @media(max-width:768px){
+            @media (max-width: 768px) {
               border-top: 1px solid #f4f4f414;
             }
           }
