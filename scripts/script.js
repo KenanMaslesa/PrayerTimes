@@ -243,7 +243,6 @@ function GetPrayerTimes(obj) {
   $(".midnight-time").text(flag ? MidleNightAndlastThirdOrMidnight(2, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(2, fajr, maghrib)));
   $(".qiyam-time").text(flag ? MidleNightAndlastThirdOrMidnight(3, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(3, fajr, maghrib)));
   
-
   $(".fajr-caption").text(flag ? "Zora" : "Fajr");
   $(".sunrise-caption").text(flag ? "Izlazak sunca" : "Sunrise");
   $(".dhuhr-caption").text(flag ? "Podne" : "Dhuhr");
@@ -256,6 +255,7 @@ function GetPrayerTimes(obj) {
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
   $('.autolocation').text(flag ? "Lociraj me" : "Locate me");
+  $('.qiyamul-lejl').text(flag ? "Najbolji namaz nakon farz-namaza je noćni-namaz. (Muslim)" : "The most virtuous prayer after the obligatory prayers is that during the depths of the night (Tahajjud). (Sahih Muslim)" );
 
   removeActiveClass();
   $('.isha').addClass("active");
@@ -266,6 +266,7 @@ function GetPrayerTimes(obj) {
     if ($('.isha').hasClass('active')) {
       $("#dark_theme").trigger('click');
       $('.qiyam').addClass('show');
+      $('.qiyamul-lejl').addClass('show');
       $('.midnight').addClass('show');
       if ((isDay == 'false' || isDay == false) && (isDayNightMode == 'true' || isDayNightMode == true))
         Night();
@@ -273,6 +274,7 @@ function GetPrayerTimes(obj) {
     }
     else{
       $('.qiyam').removeClass('show');
+      $('.qiyamul-lejl').removeClass('show');
       $('.midnight').removeClass('show');
     }
   }, 1000);
@@ -381,6 +383,7 @@ function setTimes() {
     removeActiveClass();
     $('.fajr').addClass('active');
     $('.qiyam').removeClass('show');
+    $('.qiyamul-lejl').removeClass('show');
       $('.midnight').removeClass('show');
   }
 
@@ -416,6 +419,7 @@ function setTimes() {
     removeActiveClass();
     $('.isha').addClass('active');
     $('.qiyam').addClass('show');
+    $('.qiyamul-lejl').addClass('show');
       $('.midnight').addClass('show');
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
