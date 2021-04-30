@@ -518,7 +518,7 @@ body {
 #main .main-section .prayer-times-wrapper .cards-wrapper .card.qiyam {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1603108f)), url(../images/qiyam.jpg);
   background-image: linear-gradient(#1603108f), url(../images/qiyam.jpg);
-  background-position: center;
+  background-position: bottom;
   display: none;
   margin-top: 25px;
 }
