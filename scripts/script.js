@@ -788,17 +788,24 @@ function getCalendar(obj) {
 function Rows(obj) {
 
   var fajrTiming = obj.timings.Fajr.substring(0, obj.timings.Fajr.indexOf(" "));
+  var sunriseTiming = obj.timings.Sunrise.substring(0, obj.timings.Sunrise.indexOf(" "));
+  var dhuhrTiming = obj.timings.Dhuhr.substring(0, obj.timings.Dhuhr.indexOf(" "));
+  var asrTiming = obj.timings.Asr.substring(0, obj.timings.Asr.indexOf(" "));
   var maghribTiming = obj.timings.Maghrib.substring(0, obj.timings.Maghrib.indexOf(" "));
+  var ishaTiming = obj.timings.Isha.substring(0, obj.timings.Isha.indexOf(" "));
+  var midnightTiming = MidleNightAndlastThirdOrMidnight(2, fajrTiming, maghribTiming);
+  var qiyamTiming = MidleNightAndlastThirdOrMidnight(3, fajrTiming, maghribTiming);
+
   return `<tr>
       <td class="calendar-date" data-day="${obj.date.gregorian.day + tempMonth}">${obj.date.gregorian.day}. ${flag ? getBosnianDays(obj.date.gregorian.weekday.en) : getEnglishDays(obj.date.gregorian.weekday.en)}</td>
-      <td>${fajrTiming}</td>
-      <td>${obj.timings.Sunrise.substring(0, obj.timings.Sunrise.indexOf(" "))}</td>
-      <td>${obj.timings.Dhuhr.substring(0, obj.timings.Dhuhr.indexOf(" "))}</td>
-      <td>${obj.timings.Asr.substring(0, obj.timings.Asr.indexOf(" "))}</td>
-      <td>${maghribTiming}</td>
-      <td>${obj.timings.Isha.substring(0, obj.timings.Isha.indexOf(" "))}</td>
-      <td>${MidleNightAndlastThirdOrMidnight(2, fajrTiming, maghribTiming)}</td>
-      <td>${MidleNightAndlastThirdOrMidnight(3, fajrTiming, maghribTiming)}</td>
+      <td>${flag ? fajrTiming : formatAMPM(fajrTiming)}</td>
+      <td>${flag ? sunriseTiming : formatAMPM(sunriseTiming)}</td>
+      <td>${flag ? dhuhrTiming : formatAMPM(dhuhrTiming)}</td>
+      <td>${flag ? asrTiming : formatAMPM(asrTiming)}</td>
+      <td>${flag ? maghribTiming : formatAMPM(maghribTiming)}</td>
+      <td>${flag ? ishaTiming : formatAMPM(ishaTiming)}</td>
+      <td>${flag ? midnightTiming : formatAMPM(midnightTiming)}</td>
+      <td>${flag ? qiyamTiming : formatAMPM(qiyamTiming)}</td>
   </tr>`;
 }
 
