@@ -797,7 +797,7 @@ function Rows(obj) {
       <td>${obj.timings.Asr.substring(0, obj.timings.Asr.indexOf(" "))}</td>
       <td>${maghribTiming}</td>
       <td>${obj.timings.Isha.substring(0, obj.timings.Isha.indexOf(" "))}</td>
-      <td>${obj.timings.Midnight.substring(0, obj.timings.Midnight.indexOf(" "))}</td>
+      <td>${MidleNightAndlastThirdOrMidnight(2, fajrTiming, maghribTiming)}</td>
       <td>${MidleNightAndlastThirdOrMidnight(3, fajrTiming, maghribTiming)}</td>
   </tr>`;
 }
