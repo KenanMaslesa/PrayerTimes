@@ -251,7 +251,7 @@ function GetPrayerTimes(obj) {
   $(".maghrib-caption").text(flag ? "Akšam" : "Maghrib");
   $(".isha-caption").text(flag ? "Jacija" : "Isha");
   $(".midnight-caption").text(flag ? "Polovina noći" : "Midnight");
-  $(".qiyam-caption").text("Qiyam");
+  $(".qiyam-caption").text(flag ? "Zadnja trećina noći" : "Qiyamul-lejl");
   $(".instructions").text(flag ? bosnianInstruction : englishInstruction);
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));

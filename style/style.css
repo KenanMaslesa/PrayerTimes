@@ -641,6 +641,7 @@ body {
 #main .main-section .calendar #table th {
   text-align: center;
   padding: 15px;
+  max-width: 80px;
 }
 
 @media (max-width: 767px) {
