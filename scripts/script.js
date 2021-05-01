@@ -960,6 +960,7 @@ const dateEl = $('.date')
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const bosnianDays = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const bosnianMonths = ["Jan", "Feb", "Mart", "April", "Maj", "Juni", "Juli", "Aug", "Sep", "Okt", "Nov", "Dec"];
 
 function setTime(time = null) {
   if (time != null) {
@@ -983,11 +984,11 @@ function setTime(time = null) {
 
     if (flag) {
       timeEl.html(`${hours}:${minutes < 10 ? `0${minutes}` : minutes}`);
-      dateEl.html(`${bosnianDays[day]}, ${months[month]} <span class="circle">${date}</span>`);
+      dateEl.html(`${bosnianDays[day]}, ${date}. ${bosnianMonths[month]} `);
     }
     else {
       timeEl.html(`${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`);
-      dateEl.html(`${days[day]}, ${months[month]} <span class="circle">${date}</span>`);
+      dateEl.html(`${days[day]}, ${months[month]} ${date}`);
     }
   }
 }
