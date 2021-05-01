@@ -255,7 +255,7 @@ function GetPrayerTimes(obj) {
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
   $('.autolocation').text(flag ? "Lociraj me" : "Locate me");
-  $('.qiyamul-lejl').text(flag ? "Najbolji namaz nakon farz-namaza je noćni-namaz. (Muslim)" : "The most virtuous prayer after the obligatory prayers is that during the depths of the night (Tahajjud). (Sahih Muslim)" );
+  $('.qiyamul-lejl').text(flag ? "Najbolji namaz nakon farz namaza je noćni namaz. (Muslim)" : "The most virtuous prayer after the obligatory prayers is that during the depths of the night (Tahajjud). (Sahih Muslim)" );
 
   removeActiveClass();
   $('.isha').addClass("active");
