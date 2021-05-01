@@ -268,7 +268,7 @@ function GetPrayerTimes(obj) {
       $('.qiyam').addClass('show');
       $('.qiyamul-lejl').addClass('show');
       $('.midnight').addClass('show');
-      if ((isDay == 'false' || isDay == false) && (isDayNightMode == 'true' || isDayNightMode == true))
+      if ((isDay == 'false' || isDay == false || isDay == null) && (isDayNightMode == 'true' || isDayNightMode == true || isDayNightMode == null))
         Night();
       $('.local-time-wrapper').removeClass('day');
     }
