@@ -576,6 +576,7 @@ body {
 
 #main .main-section .calendar .calendar-arrows {
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 #main .main-section .calendar .calendar-arrows i {
@@ -649,6 +650,7 @@ body {
   #main .main-section .calendar #table th {
     padding: 12px 0px;
     font-size: 7px;
+    max-width: 40px;
   }
 }
 
@@ -675,6 +677,7 @@ body {
 @media (max-width: 768px) {
   #main .main-section .calendar #table tr td {
     border-top: 1px solid #f4f4f414;
+    max-width: 40px;
   }
 }
 
