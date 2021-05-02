@@ -645,6 +645,10 @@ function prayerTimesIZ(obj) {
   $(".asr-time").text(asr);
   $(".maghrib-time").text(maghrib);
   $(".isha-time").text(isha);
+  $(".midnight-time").text(MidleNightAndlastThirdOrMidnight(2, fajr, maghrib));
+  $(".qiyam-time").text(MidleNightAndlastThirdOrMidnight(3, fajr, maghrib));
+  $('.qiyamul-lejl').text("Najbolji namaz nakon farz namaza je noćni namaz. (Muslim)");
+  
 
   if (cityID == 107) {
     $(".country").text('Crna Gora');
@@ -722,7 +726,7 @@ function CalendarRowsIZ(obj) {
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     $("#table tbody").append(`<tr>
-    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) + '. ' + monthNamesBosnian[obj.mjesec].toLocaleLowerCase().substring(0,3)}</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) +'. ' + obj.mjesec+'.'}</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
