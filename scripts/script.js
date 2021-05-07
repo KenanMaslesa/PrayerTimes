@@ -726,7 +726,7 @@ function CalendarRowsIZ(obj) {
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     $("#table tbody").append(`<tr>
-    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) +'. ' + obj.mjesec+'.'}</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) +'. ' + formatTime(obj.mjesec)+'.'}</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
