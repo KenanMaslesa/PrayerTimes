@@ -223,7 +223,7 @@ body {
           animation: changeColor 1.2s infinite;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 550px) {
   #main .main-section .prayer-times-wrapper .calculation-methods #toggle-icon {
     left: 50%;
     top: -10px;
