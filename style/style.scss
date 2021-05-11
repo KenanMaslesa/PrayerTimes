@@ -265,6 +265,10 @@ body {
       .location-wrapper {
         text-align: center;
 
+        @media (max-width: 768px) {
+          padding-top: 40px;
+        }
+
         @media (max-width: 550px) {
           padding-top: 45px;
         }
@@ -411,6 +415,10 @@ body {
             filter: brightness(0.9);
             padding: 0px 5px;
             border-radius: 3px;
+          }
+
+          @media(min-width: 550px) and (max-width:768px){
+            width: 45%;
           }
 
           &:hover {
