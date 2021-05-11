@@ -505,7 +505,9 @@ body {
     height: 55px;
     background-image: none !important;
     padding-top: 0;
-    background: #112d384a;
+    background: #112d385e;
+    -webkit-filter: brightness(0.9);
+            filter: brightness(0.9);
     padding: 0px 5px;
     border-radius: 3px;
   }
