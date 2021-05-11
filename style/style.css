@@ -340,6 +340,12 @@ body {
 
 @media (max-width: 768px) {
   #main .main-section .prayer-times-wrapper .location-wrapper .country {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  #main .main-section .prayer-times-wrapper .location-wrapper .country {
     display: none;
   }
 }

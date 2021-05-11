@@ -282,6 +282,9 @@ body {
           font-weight: normal;
 
           @media (max-width: 768px) {
+            font-size: 30px;
+          }
+          @media (max-width: 550px) {
             display: none;
           }
         }
