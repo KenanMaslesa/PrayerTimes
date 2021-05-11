@@ -365,8 +365,8 @@ body {
           cursor: pointer;
           padding-top: 12px;
 
-          .sunrise-caption{
-            @media(max-width:768px){
+          .sunrise-caption {
+            @media (max-width: 768px) {
               max-width: 50px;
             }
           }
@@ -384,10 +384,12 @@ body {
 
             @media (max-width: 550px) {
               position: absolute;
-              top: 2px;
-              left: 8px;
+              top: 50%;
+              left: 50%;
               font-size: 11px;
               color: #ffdead;
+              max-width: 100px;
+              transform: translate(-50%, -50%);
             }
           }
 
@@ -607,7 +609,7 @@ body {
             @media (max-width: 768px) {
               border-top: 1px solid #f4f4f414;
               max-width: 40px;
-              font-size:10px;
+              font-size: 10px;
             }
           }
         }
