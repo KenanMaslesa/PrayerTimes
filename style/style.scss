@@ -164,7 +164,11 @@ body {
         text-align: center;
         transition: all 0.6s;
 
-        @media (max-width: 768px) {
+        @media (min-width: 550px) and (max-width:768px) {
+          top: 0;
+        }
+
+        @media (max-width: 550px) {
           left: 50%;
           transform: translate(-50%, -50%);
           top: 50px;

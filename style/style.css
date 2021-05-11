@@ -198,7 +198,13 @@ body {
   transition: all 0.6s;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 550px) and (max-width: 768px) {
+  #main .main-section .prayer-times-wrapper .calculation-methods {
+    top: 0;
+  }
+}
+
+@media (max-width: 550px) {
   #main .main-section .prayer-times-wrapper .calculation-methods {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
