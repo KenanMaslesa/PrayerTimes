@@ -599,7 +599,6 @@ $('#locations').change(function () {
     var isIZ = localStorage.getItem('IZ');
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
-      showMap();
       setTimeout(() => {
         setupMap([longitude, latitude]);
         $('html, body').animate({ scrollTop: scrollTo }, 100);
