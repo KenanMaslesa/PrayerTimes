@@ -745,8 +745,6 @@ function CalendarRowsIZ(obj) {
     <td>${obj.dan[i].vakat[3]}</td>
     <td>${obj.dan[i].vakat[4]}</td>
     <td>${obj.dan[i].vakat[5]}</td>
-    <td>${MidleNightAndlastThirdOrMidnight(2, obj.dan[i].vakat[0], obj.dan[i].vakat[4])}</td>
-    <td>${MidleNightAndlastThirdOrMidnight(3, obj.dan[i].vakat[0], obj.dan[i].vakat[4])}</td>
     </tr>`);
   }
   $(`td[data-day="${dayofMonth(new Date) + (new Date().getMonth() + 1)}"]`).parent().addClass("active");
@@ -825,8 +823,6 @@ function Rows(obj) {
       <td>${flag ? asrTiming : formatAMPM(asrTiming)}</td>
       <td>${flag ? maghribTiming : formatAMPM(maghribTiming)}</td>
       <td>${flag ? ishaTiming : formatAMPM(ishaTiming)}</td>
-      <td>${flag ? midnightTiming : formatAMPM(midnightTiming)}</td>
-      <td>${flag ? qiyamTiming : formatAMPM(qiyamTiming)}</td>
   </tr>`;
 }
 
