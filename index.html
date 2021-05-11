@@ -116,128 +116,127 @@
 
         <button class="autolocation">Autolocation</button>
         <div class="location-wrapper">
-          <input id="locationsIZ" list="cities" type="text" onchange="LocationChanged(this);" placeholder="Odaberite grad">
-          <datalist id="cities">
-              <option  value="Banovići" location="0">Banovići</option>
-              <option  value="Banja Luka" location="1">Banja Luka</option>
-              <option  value="Bihać" location="2">Bihać</option>
-              <option  value="Bijeljina" location="3">Bijeljina</option>
-              <option  value="Bileća" location="4">Bileća</option>
-              <option  value="Bosanski Brod" location="5">Bosanski Brod</option>
-              <option  value="Bosanska Dubica" location="6">Bosanska Dubica</option>
-              <option  value="Bosanska Gradiška" location="7">Bosanska Gradiška</option>
-              <option  value="Bosansko Grahovo" location="8">Bosansko Grahovo</option>
-              <option  value="Bosanska Krupa" location="9">Bosanska Krupa</option>
-              <option  value="Bosanski Novi" location="10">Bosanski Novi</option>
-              <option  value="Bosanski Petrovac" location="11">Bosanski Petrovac</option>
-              <option  value="Bosanski Šamac" location="12">Bosanski Šamac</option>
-              <option  value="Bratunac" location="13">Bratunac</option>
-              <option  value="Brčko" location="14">Brčko</option>
-              <option  value="Breza" location="15">Breza</option>
-              <option  value="Bugojno" location="16">Bugojno</option>
-              <option  value="Busovača" location="17">Busovača</option>
-              <option  value="Bužim" location="18">Bužim</option>
-              <option  value="Cazin" location="19">Cazin</option>
-              <option  value="Čajniče" location="20">Čajniče</option>
-              <option  value="Čapljina" location="21">Čapljina</option>
-              <option  value="Čelić" location="22">Čelić</option>
-              <option  value="Čelinac" location="23">Čelinac</option>
-              <option  value="Čitluk" location="24">Čitluk</option>
-              <option  value="Derventa" location="25">Derventa</option>
-              <option  value="Doboj" location="26">Doboj</option>
-              <option  value="Donji Vakuf" location="27">Donji Vakuf</option>
-              <option  value="Drvar" location="28">Drvar</option>
-              <option  value="Foča" location="29">Foča</option>
-              <option  value="Fojnica" location="30">Fojnica</option>
-              <option  value="Gacko" location="31">Gacko</option>
-              <option  value="Glamoč" location="32">Glamoč</option>
-              <option  value="Goražde" location="33">Goražde</option>
-              <option  value="Gornji Vakuf" location="34">Gornji Vakuf</option>
-              <option  value="Gračanica" location="35">Gračanica</option>
-              <option  value="Gradačac" location="36">Gradačac</option>
-              <option  value="Grude" location="37">Grude</option>
-              <option  value="Hadžići" location="38">Hadžići</option>
-              <option  value="Han-Pijesak" location="39">Han-Pijesak</option>
-              <option  value="Ilijaš" location="41">Ilijaš</option>
-              <option  value="Jablanica" location="42">Jablanica</option>
-              <option  value="Jajce" location="43">Jajce</option>
-              <option  value="Kakanj" location="44">Kakanj</option>
-              <option  value="Kalesija" location="45">Kalesija</option>
-              <option  value="Kalinovik" location="46">Kalinovik</option>
-              <option  value="Kiseljak" location="47">Kiseljak</option>
-              <option  value="Kladanj" location="48">Kladanj</option>
-              <option  value="Ključ" location="49">Ključ</option>
-              <option  value="Konjic" location="50">Konjic</option>
-              <option  value="Kotor-Varoš" location="51">Kotor-Varoš</option>
-              <option  value="Kreševo" location="52">Kreševo</option>
-              <option  value="Kupres" location="53">Kupres</option>
-              <option  value="Laktaši" location="54">Laktaši</option>
-              <option  value="Livno" location="40">Livno</option>
-              <option  value="Lopare" location="55">Lopare</option>
-              <option  value="Lukavac" location="56">Lukavac</option>
-              <option  value="Ljubinje" location="57">Ljubinje</option>
-              <option  value="Ljubuški" location="58">Ljubuški</option>
-              <option  value="Maglaj" location="59">Maglaj</option>
-              <option  value="Modriča" location="60">Modriča</option>
-              <option  value="Mostar" location="61">Mostar</option>
-              <option  value="Mrkonjić-Grad" location="62">Mrkonjić-Grad</option>
-              <option  value="Neum" location="63">Neum</option>
-              <option  value="Nevesinje" location="64">Nevesinje</option>
-              <option  value="Novi Travnik" location="65">Novi Travnik</option>
-              <option  value="Odžak" location="66">Odžak</option>
-              <option  value="Olovo" location="67">Olovo</option>
-              <option  value="Orašje" location="68">Orašje</option>
-              <option  value="Pale" location="69">Pale</option>
-              <option  value="Posušje" location="70">Posušje</option>
-              <option  value="Prijedor" location="71">Prijedor</option>
-              <option  value="Prnjavor" location="72">Prnjavor</option>
-              <option  value="Prozor" location="73">Prozor</option>
-              <option  value="Rogatica" location="74">Rogatica</option>
-              <option  value="Rudo" location="75">Rudo</option>
-              <option  value="Sanski Most" location="76">Sanski Most</option>
-              <option  value="Sarajevo" location="77">Sarajevo</option>
-              <option  value="Skender-Vakuf" location="78">Skender-Vakuf</option>
-              <option  value="Sokolac" location="79">Sokolac</option>
-              <option  value="Srbac" location="80">Srbac</option>
-              <option  value="Srebrenica" location="81">Srebrenica</option>
-              <option  value="Srebrenik" location="82">Srebrenik</option>
-              <option  value="Stolac" location="83">Stolac</option>
-              <option  value="Šekovići" location="84">Šekovići</option>
-              <option  value="Šipovo" location="85">Šipovo</option>
-              <option  value="Široki Brijeg" location="86">Široki Brijeg</option>
-              <option  value="Teslić" location="87">Teslić</option>
-              <option  value="Tešanj" location="88">Tešanj</option>
-              <option  value="Tomislav-Grad" location="89">Tomislav-Grad</option>
-              <option  value="Travnik" location="90">Travnik</option>
-              <option  value="Trebinje" location="91">Trebinje</option>
-              <option  value="Trnovo" location="92">Trnovo</option>
-              <option  value="Tuzla" location="93">Tuzla</option>
-              <option  value="Ugljevik" location="94">Ugljevik</option>
-              <option  value="Vareš" location="95">Vareš</option>
-              <option  value="Velika Kladuša" location="96">Velika Kladuša</option>
-              <option  value="Visoko" location="97">Visoko</option>
-              <option  value="Višegrad" location="98">Višegrad</option>
-              <option  value="Vitez" location="99">Vitez</option>
-              <option  value="Vlasenica" location="100">Vlasenica</option>
-              <option  value="Zavidovići" location="101">Zavidovići</option>
-              <option  value="Zenica" location="102">Zenica</option>
-              <option  value="Zvornik" location="103">Zvornik</option>
-              <option  value="Žepa" location="104">Žepa</option>
-              <option  value="Žepče" location="105">Žepče</option>
-              <option  value="Živinice" location="106">Živinice</option>
-              <option  value="Bijelo Polje" location="107">Bijelo Polje</option>
-              <option  value="Gusinje" location="108">Gusinje</option>
-              <option  value="Nova Varoš" location="109">Nova Varoš</option>
-              <option  value="Novi Pazar" location="110">Novi Pazar</option>
-              <option  value="Plav" location="111">Plav</option>
-              <option  value="Pljevlja" location="112">Pljevlja</option>
-              <option  value="Priboj" location="113">Priboj</option>
-              <option  value="Prijepolje" location="114">Prijepolje</option>
-              <option  value="Rožaje" location="115">Rožaje</option>
-              <option  value="Sjenica" location="116">Sjenica</option>
-              <option  value="Tutin" location="117">Tutin</option>
-          </datalist>
-
+          <select class="form-control" id="locationsIZ" type="submit">
+            <option value="-1">Odaberite grad</option>
+            <option value="0">Banovići</option>
+            <option value="1">Banja Luka</option>
+            <option value="2">Bihać</option>
+            <option value="3">Bijeljina</option>
+            <option value="4">Bileća</option>
+            <option value="5">Bosanski Brod</option>
+            <option value="6">Bosanska Dubica</option>
+            <option value="7">Bosanska Gradiška</option>
+            <option value="8">Bosansko Grahovo</option>
+            <option value="9">Bosanska Krupa</option>
+            <option value="10">Bosanski Novi</option>
+            <option value="11">Bosanski Petrovac</option>
+            <option value="12">Bosanski Šamac</option>
+            <option value="13">Bratunac</option>
+            <option value="14">Brčko</option>
+            <option value="15">Breza</option>
+            <option value="16">Bugojno</option>
+            <option value="17">Busovača</option>
+            <option value="18">Bužim</option>
+            <option value="19">Cazin</option>
+            <option value="20">Čajniče</option>
+            <option value="21">Čapljina</option>
+            <option value="22">Čelić</option>
+            <option value="23">Čelinac</option>
+            <option value="24">Čitluk</option>
+            <option value="25">Derventa</option>
+            <option value="26">Doboj</option>
+            <option value="27">Donji Vakuf</option>
+            <option value="28">Drvar</option>
+            <option value="29">Foča</option>
+            <option value="30">Fojnica</option>
+            <option value="31">Gacko</option>
+            <option value="32">Glamoč</option>
+            <option value="33">Goražde</option>
+            <option value="34">Gornji Vakuf</option>
+            <option value="35">Gračanica</option>
+            <option value="36">Gradačac</option>
+            <option value="37">Grude</option>
+            <option value="38">Hadžići</option>
+            <option value="39">Han-Pijesak</option>
+            <option value="41">Ilijaš</option>
+            <option value="42">Jablanica</option>
+            <option value="43">Jajce</option>
+            <option value="44">Kakanj</option>
+            <option value="45">Kalesija</option>
+            <option value="46">Kalinovik</option>
+            <option value="47">Kiseljak</option>
+            <option value="48">Kladanj</option>
+            <option value="49">Ključ</option>
+            <option value="50">Konjic</option>
+            <option value="51">Kotor-Varoš</option>
+            <option value="52">Kreševo</option>
+            <option value="53">Kupres</option>
+            <option value="54">Laktaši</option>
+            <option value="40">Livno</option>
+            <option value="55">Lopare</option>
+            <option value="56">Lukavac</option>
+            <option value="57">Ljubinje</option>
+            <option value="58">Ljubuški</option>
+            <option value="59">Maglaj</option>
+            <option value="60">Modriča</option>
+            <option value="61">Mostar</option>
+            <option value="62">Mrkonjić-Grad</option>
+            <option value="63">Neum</option>
+            <option value="64">Nevesinje</option>
+            <option value="65">Novi Travnik</option>
+            <option value="66">Odžak</option>
+            <option value="67">Olovo</option>
+            <option value="68">Orašje</option>
+            <option value="69">Pale</option>
+            <option value="70">Posušje</option>
+            <option value="71">Prijedor</option>
+            <option value="72">Prnjavor</option>
+            <option value="73">Prozor</option>
+            <option value="74">Rogatica</option>
+            <option value="75">Rudo</option>
+            <option value="76">Sanski Most</option>
+            <option value="77">Sarajevo</option>
+            <option value="78">Skender-Vakuf</option>
+            <option value="79">Sokolac</option>
+            <option value="80">Srbac</option>
+            <option value="81">Srebrenica</option>
+            <option value="82">Srebrenik</option>
+            <option value="83">Stolac</option>
+            <option value="84">Šekovići</option>
+            <option value="85">Šipovo</option>
+            <option value="86">Široki Brijeg</option>
+            <option value="87">Teslić</option>
+            <option value="88">Tešanj</option>
+            <option value="89">Tomislav-Grad</option>
+            <option value="90">Travnik</option>
+            <option value="91">Trebinje</option>
+            <option value="92">Trnovo</option>
+            <option value="93">Tuzla</option>
+            <option value="94">Ugljevik</option>
+            <option value="95">Vareš</option>
+            <option value="96">Velika Kladuša</option>
+            <option value="97">Visoko</option>
+            <option value="98">Višegrad</option>
+            <option value="99">Vitez</option>
+            <option value="100">Vlasenica</option>
+            <option value="101">Zavidovići</option>
+            <option value="102">Zenica</option>
+            <option value="103">Zvornik</option>
+            <option value="104">Žepa</option>
+            <option value="105">Žepče</option>
+            <option value="106">Živinice</option>
+            <option value="107">Bijelo Polje</option>
+            <option value="108">Gusinje</option>
+            <option value="109">Nova Varoš</option>
+            <option value="110">Novi Pazar</option>
+            <option value="111">Plav</option>
+            <option value="112">Pljevlja</option>
+            <option value="113">Priboj</option>
+            <option value="114">Prijepolje</option>
+            <option value="115">Rožaje</option>
+            <option value="116">Sjenica</option>
+            <option value="117">Tutin</option>
+          </select>
 
           <div class="country"></div>
           <div class="city"></div>
@@ -318,7 +317,7 @@
 
           <div class="card qiyam">
             <span class="upcoming-prayer">Upcoming prayer</span>
-            <div class="prayer-name qiyam-caption">Noćni namaz</div>
+            <div class="prayer-name qiyam-caption">Zadnja trećina</div>
             <div class="prayer-time qiyam-time">
               <img src="https://i.stack.imgur.com/qq8AE.gif" width="35" height="35">
             </div>

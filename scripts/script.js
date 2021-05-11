@@ -626,7 +626,7 @@ $('#locationsIZ').click(function () {
   $('#locationsIZ').removeClass('animate');
 });
 
-/*$('#locationsIZ').change(function () {
+$('#locationsIZ').change(function () {
   cityID = $(this).val();
 
   localStorage.setItem("cityID", cityID);
@@ -634,8 +634,8 @@ $('#locationsIZ').click(function () {
 
   getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
 
-});*/
-
+});
+/*
 function LocationChanged(elem) {
   let cityID = 'none';
   let dt = document.getElementById('cities');
@@ -651,7 +651,7 @@ function LocationChanged(elem) {
     getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
   }
 
-}
+}*/
 
 
 function prayerTimesIZ(obj) {
