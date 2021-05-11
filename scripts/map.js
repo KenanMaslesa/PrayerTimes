@@ -87,3 +87,14 @@ function setupMap(center) {
   marker.on("dragend", onDragEnd);
 
 }
+
+function isMobileDevice() {
+  return $(window).width() < 550 || $(window).height() < 550;
+}
+
+if (isMobileDevice()) {
+  setTimeout(() => {
+    $("#toggle-icon").trigger("click");
+    $('#settings-icon').addClass('top-0');
+  }, 500);
+}

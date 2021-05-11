@@ -31,21 +31,23 @@ window.onload = function () {
       navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
     }
     else {
-      setupMap([longitude, latitude]);
+        setupMap([longitude, latitude]);
       showPosition(method);
     }
 
-    setTimeout(() => {
+    if(!isMobileDevice()){
       setTimeout(() => {
-        if (method != 16) {
-          $("#toggle-icon").trigger("click");
-        }
         setTimeout(() => {
-          $("#toggle-icon").removeClass("animate");
-        }, 5000);
-      }, 2000);
-      $("#toggle-icon").addClass("animate");
-    }, 8000);
+          if (method != 16) {
+            $("#toggle-icon").trigger("click");
+          }
+          setTimeout(() => {
+            $("#toggle-icon").removeClass("animate");
+          }, 5000);
+        }, 2000);
+        $("#toggle-icon").addClass("animate");
+      }, 8000);
+    }
 
   }
 
@@ -113,7 +115,7 @@ function successLocation(position) {
     longitude = position.coords.longitude,
     localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
-  setupMap([longitude, latitude]);
+    setupMap([longitude, latitude]);
   showPosition(method);
 }
 
@@ -126,7 +128,7 @@ function IPLocation(location) {
     longitude = location.longitude,
     localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
-  setupMap([longitude, latitude]);
+    setupMap([longitude, latitude]);
   showPosition(method);
 }
 
@@ -242,7 +244,7 @@ function GetPrayerTimes(obj) {
   $(".isha-time").text(flag ? isha : formatAMPM(isha));
   $(".midnight-time").text(flag ? MidleNightAndlastThirdOrMidnight(2, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(2, fajr, maghrib)));
   $(".qiyam-time").text(flag ? MidleNightAndlastThirdOrMidnight(3, fajr, maghrib) : formatAMPM(MidleNightAndlastThirdOrMidnight(3, fajr, maghrib)));
-  
+
   $(".fajr-caption").text(flag ? "Zora" : "Fajr");
   $(".sunrise-caption").text(flag ? "Izlazak sunca" : "Sunrise");
   $(".dhuhr-caption").text(flag ? "Podne" : "Dhuhr");
@@ -255,7 +257,7 @@ function GetPrayerTimes(obj) {
   $('.upcoming-prayer').text(flag ? "nadolazeći namaz" : "upcoming prayer");
   $('.mapboxgl-ctrl-geocoder--input').attr("placeholder", (flag ? "Pretraži mjesta" : "Search for places"));
   $('.autolocation').text(flag ? "Lociraj me" : "Locate me");
-  $('.qiyamul-lejl').text(flag ? "Najbolji namaz nakon farz namaza je noćni namaz. (Muslim)" : "The most virtuous prayer after the obligatory prayers is that during the depths of the night (Tahajjud). (Sahih Muslim)" );
+  $('.qiyamul-lejl').text(flag ? "Najbolji namaz nakon farz namaza je noćni namaz. (Muslim)" : "The most virtuous prayer after the obligatory prayers is that during the depths of the night (Tahajjud). (Sahih Muslim)");
 
   removeActiveClass();
   $('.isha').addClass("active");
@@ -272,7 +274,7 @@ function GetPrayerTimes(obj) {
         Night();
       $('.local-time-wrapper').removeClass('day');
     }
-    else{
+    else {
       $('.qiyam').removeClass('show');
       $('.qiyamul-lejl').removeClass('show');
       $('.midnight').removeClass('show');
@@ -384,7 +386,7 @@ function setTimes() {
     $('.fajr').addClass('active');
     $('.qiyam').removeClass('show');
     $('.qiyamul-lejl').removeClass('show');
-      $('.midnight').removeClass('show');
+    $('.midnight').removeClass('show');
   }
 
   if (currentDateTime >= countDownTime.getTime()) {
@@ -420,7 +422,7 @@ function setTimes() {
     $('.isha').addClass('active');
     $('.qiyam').addClass('show');
     $('.qiyamul-lejl').addClass('show');
-      $('.midnight').addClass('show');
+    $('.midnight').addClass('show');
     countDownTime.setDate(countDownTime.getDate() + 1);
     setHours(fajr);
     setMinutes(fajr);
@@ -480,7 +482,7 @@ function removeUpcomingPrayer() {
   $('.asr').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.maghrib').find('.upcoming-prayer').css({ visibility: 'hidden' });
   $('.isha').find('.upcoming-prayer').css({ visibility: 'hidden' });
-  
+
 }
 
 function playAthan() {
@@ -550,6 +552,10 @@ $('#locations').change(function () {
   localStorage.setItem("method", method);
   currentTime = new Date();
 
+  if (isMobileDevice()) {
+    $('.calculation-methods').addClass('toggle');
+  }
+
   if (method == 16) {
     hideMap();
     $('#locationsIZ').show();
@@ -574,19 +580,24 @@ $('#locations').change(function () {
       $('.location-wrapper').removeClass('IZ');
     }
     else {
-      location.reload();
+      if (!isMobileDevice()) {
+        location.reload();
+      }
       getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
     }
   }
   else {
     $('#locationsIZ').hide();
+    if (isMobileDevice()) {
+      $('.calculation-methods').addClass('toggle');
+    }
     $('.location-wrapper').removeClass('IZ');
     var isIZ = localStorage.getItem('IZ');
     $('#locationsIZ option[value=-1]').prop('selected', true);
     if (isIZ == 'true') {
       showMap();
       setTimeout(() => {
-        setupMap([longitude, latitude]);
+          setupMap([longitude, latitude]);
         $('html, body').animate({ scrollTop: scrollTo }, 100);
       }, 500);
       localStorage.setItem('IZ', false);
@@ -600,7 +611,7 @@ $('#locations').change(function () {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}&midnightMode=1`;
   }
   showPosition(method);
-  setupMap([longitude, latitude]);
+    setupMap([longitude, latitude]);
 
 });
 
@@ -611,6 +622,7 @@ $('#locationsIZ').click(function () {
 
 $('#locationsIZ').change(function () {
   cityID = $(this).val();
+
   localStorage.setItem("cityID", cityID);
   $('.countdown').show();
 
@@ -648,7 +660,7 @@ function prayerTimesIZ(obj) {
   $(".midnight-time").text(MidleNightAndlastThirdOrMidnight(2, fajr, maghrib));
   $(".qiyam-time").text(MidleNightAndlastThirdOrMidnight(3, fajr, maghrib));
   $('.qiyamul-lejl').text("Najbolji namaz nakon farz namaza je noćni namaz. (Muslim)");
-  
+
 
   if (cityID == 107) {
     $(".country").text('Crna Gora');
@@ -722,11 +734,11 @@ function prayerTimesIZ(obj) {
 
 function CalendarRowsIZ(obj) {
   $("#table tbody").html('');
-  $('.calendar-caption').html('Islamska Zajednica, '+monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
+  $('.calendar-caption').html('Islamska Zajednica, ' + monthNamesBosnian[obj.mjesec] + ' ' + obj.godina + '.')
   $('.calendar').removeClass('hide');
   for (var i = 0; i < obj.dan.length; i++) {
     $("#table tbody").append(`<tr>
-    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i+1) +'. ' + formatTime(obj.mjesec)+'.'}</td>
+    <td class="calendar-date" data-day="${(i < 9 ? '0' + (i + 1) : i + 1) + '' + tempMonth}">${formatTime(i + 1) + '. ' + formatTime(obj.mjesec) + '.'}</td>
     <td>${obj.dan[i].vakat[0]}</td>
     <td>${obj.dan[i].vakat[1]}</td>
     <td>${obj.dan[i].vakat[2]}</td>
@@ -756,7 +768,8 @@ function showMap() {
   $('.autolocation').slideDown();
   $('#toggle-icon').slideDown();
   $('.calendar').removeClass('hide');
-  $('.calculation-methods').removeClass('toggle');
+  if (!isMobileDevice())
+    $('.calculation-methods').removeClass('toggle');
 }
 
 function formatAMPM(time) {
@@ -932,7 +945,6 @@ $('#toggle-icon').click(function () {
 
     $(window).scroll(function () {
       var aTop = $('.cards-wrapper').offset().top;
-      console.log($(this).scrollTop(), aTop)
       if ($(this).scrollTop() >= aTop) {
         $('#settings-icon').hide();
       }
@@ -1207,6 +1219,16 @@ if ("serviceWorker" in navigator) {
 }
 
 
-$('.mapboxgl-ctrl-geocoder').on('propertychange input', function () {
-  $('.mapboxgl-ctrl-geocoder').css('width', '100%');
+$('.mapboxgl-ctrl-geocoder').on('click', function () {
+  $('.mapboxgl-ctrl-geocoder').css('width', '85%');
 });
+
+$(document).on('click', function (e) {
+  if ($(e.target).closest(".mapboxgl-ctrl-geocoder").length === 0) {
+    $('.mapboxgl-ctrl-geocoder').css('width', '60%');
+  }
+});
+
+function isMobileDevice() {
+  return $(window).width() < 550 || $(window).height() < 550;
+}

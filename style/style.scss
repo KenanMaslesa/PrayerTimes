@@ -85,6 +85,7 @@ body {
   #map {
     height: 45%;
     width: 100%;
+
     @media (max-width: 768px) {
       min-height: 380px;
     }
@@ -144,6 +145,7 @@ body {
 
         @media (max-width: 768px) {
           margin-top: -10px;
+          margin-bottom: 10px;
         }
 
         &.light {
@@ -188,7 +190,9 @@ body {
             transform: translate(-50%);
 
             &.toggle {
-              top: 82px;
+              top: 33px;
+              right: 0px;
+              left: 108%;
             }
           }
         }
@@ -262,7 +266,7 @@ body {
         text-align: center;
 
         @media (max-width: 768px) {
-          padding-top: 80px;
+          padding-top: 45px;
         }
 
         &.IZ {
@@ -280,6 +284,9 @@ body {
           @media (max-width: 768px) {
             font-size: 33px;
           }
+          @media (max-width: 550px) {
+            display: none;
+          }
         }
         .city {
           color: floralwhite;
@@ -288,7 +295,7 @@ body {
           font-weight: normal;
 
           @media (max-width: 768px) {
-            font-size: 30px;
+            font-size: 32px;
           }
         }
       }
@@ -299,6 +306,9 @@ body {
         @media (max-width: 768px) {
           font-size: 14px;
         }
+        @media (max-width: 550px) {
+          margin-top: 20px;
+        }
       }
 
       .countdown {
@@ -308,6 +318,7 @@ body {
         padding: 20px;
         @media (max-width: 768px) {
           font-size: 57px;
+          padding-bottom: 10px;
         }
 
         &.danger {
@@ -324,6 +335,10 @@ body {
         @media (max-width: 768px) {
           flex-direction: column;
           width: 85%;
+        }
+
+        @media (max-width: 550px) {
+          width: 90%;
         }
 
         @media (min-width: 1440px) {
@@ -350,6 +365,12 @@ body {
           cursor: pointer;
           padding-top: 12px;
 
+          .sunrise-caption{
+            @media(max-width:768px){
+              max-width: 50px;
+            }
+          }
+
           .upcoming-prayer {
             color: #f99494;
             text-transform: uppercase;
@@ -360,6 +381,15 @@ body {
             text-align: center;
             font-size: 15px;
             transition-delay: 1.5s;
+
+            @media (max-width: 550px) {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              max-width: 100px;
+              font-size: 12px;
+            }
           }
 
           @media (min-width: 768px) and (max-width: 1024px) {
@@ -367,6 +397,18 @@ body {
           }
           @media (min-width: 1024px) and (max-width: 1439px) {
             width: 30%;
+          }
+          @media (max-width: 550px) {
+            width: 100% !important;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            height: 55px;
+            background-image: none !important;
+            padding-top: 0;
+            background: #0f313e61;
+            padding: 0px 5px;
+            border-radius: 3px;
           }
 
           &:hover {
@@ -411,6 +453,10 @@ body {
 
             &.show {
               display: inline-block;
+
+              @media (max-width: 550px) {
+                display: flex;
+              }
             }
           }
           &.qiyam {
@@ -421,16 +467,23 @@ body {
 
             &.show {
               display: inline-block;
+
+              @media (max-width: 550px) {
+                display: flex;
+                margin-top: 0;
+                margin-bottom: 10px;
+              }
             }
           }
 
-          @media (max-width: 767px) {
-            width: 100% !important;
-            margin: 10px 0px;
-          }
           &.active {
             box-shadow: 0px 2px 20px 6px #dcd3d394;
             transition-delay: 0.9s;
+
+            @media (max-width: 550px) {
+              filter: brightness(4);
+              box-shadow: none;
+            }
           }
 
           .prayer-name,
@@ -447,6 +500,12 @@ body {
           }
           .prayer-time {
             font-size: 30px;
+
+            @media (max-width: 550px) {
+              right: 5px;
+              position: absolute;
+              font-size: 28px;
+            }
           }
         }
       }
@@ -1199,6 +1258,10 @@ body {
   color: #fffaf0;
   font-size: 22px;
   display: none;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 
   &.show {
     display: block;
