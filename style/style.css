@@ -319,7 +319,7 @@ body {
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 550px) {
   #main .main-section .prayer-times-wrapper .location-wrapper {
     padding-top: 45px;
   }
