@@ -448,7 +448,7 @@ body {
   padding-top: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 550px) {
   #main .main-section .prayer-times-wrapper .cards-wrapper .card .sunrise-caption {
     max-width: 50px;
   }
