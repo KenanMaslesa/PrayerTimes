@@ -31,11 +31,11 @@ window.onload = function () {
       navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
     }
     else {
-        setupMap([longitude, latitude]);
+      setupMap([longitude, latitude]);
       showPosition(method);
     }
 
-    if(!isMobileDevice()){
+    if (!isMobileDevice()) {
       setTimeout(() => {
         setTimeout(() => {
           if (method != 16) {
@@ -53,7 +53,8 @@ window.onload = function () {
 
   else {
     cityID = localStorage.getItem("cityID");
-    $('#map').hide();
+    $('.instructions,#toggle-icon,#map').remove();
+    $('.calculation-methods').addClass('toggle');
 
     if (cityID == 'null') {
       $('#locationsIZ').show();
@@ -118,7 +119,7 @@ function successLocation(position) {
     longitude = position.coords.longitude,
     localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
-    setupMap([longitude, latitude]);
+  setupMap([longitude, latitude]);
   showPosition(method);
 }
 
@@ -131,7 +132,7 @@ function IPLocation(location) {
     longitude = location.longitude,
     localStorage.setItem("latitude", latitude);
   localStorage.setItem("longitude", longitude);
-    setupMap([longitude, latitude]);
+  setupMap([longitude, latitude]);
   showPosition(method);
 }
 
@@ -600,7 +601,7 @@ $('#locations').change(function () {
     if (isIZ == 'true') {
       showMap();
       setTimeout(() => {
-          setupMap([longitude, latitude]);
+        setupMap([longitude, latitude]);
         $('html, body').animate({ scrollTop: scrollTo }, 100);
       }, 500);
       localStorage.setItem('IZ', false);
@@ -614,7 +615,7 @@ $('#locations').change(function () {
     urlGetPrayerTimes = `https://api.aladhan.com/v1/timings/${currentTime.getTime() / 1000}?latitude=${latitude}&longitude=${longitude}&method=${method}&midnightMode=1`;
   }
   showPosition(method);
-    setupMap([longitude, latitude]);
+  setupMap([longitude, latitude]);
 
 });
 

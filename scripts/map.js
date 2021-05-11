@@ -96,5 +96,5 @@ if (isMobileDevice()) {
   setTimeout(() => {
     $("#toggle-icon").trigger("click");
     $('#settings-icon').addClass('top-0');
-  }, 100);
+  }, 500);
 }
