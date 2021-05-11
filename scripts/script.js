@@ -53,9 +53,12 @@ window.onload = function () {
 
   else {
     cityID = localStorage.getItem("cityID");
+    $('#map').hide();
+
     if (cityID == 'null') {
       $('#locationsIZ').show();
       $('#locationsIZ').addClass('animate');
+      $('#map').hide();
     }
     else {
       getRequest(prayerTimesIZ, 'https://api.vaktija.ba/vaktija/v1/' + cityID);
